@@ -14,30 +14,40 @@
     }
 
     /* ===== Top Bar ===== */
-.top-bar {
-  display: flex;
-  align-items: center;
-  height: 120px;
-  padding: 0 24px;
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
 
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    #ffffff 180px,
-    #e6edf3 55%,
-    #cfdbe6 100%
-  );
-}
-    
-.logo {
-  height: 70px;
-  margin-right: 20px;
-}
-  .top-text h1,
-.top-text h2 {
-  color: #2f6fa3;
-}
-  
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #ffffff 160px,
+        #e6edf3 55%,
+        #cfdbe6 100%
+      );
+    }
+
+    .logo {
+      height: 70px;
+      width: auto;
+      flex: 0 0 auto;
+    }
+
+    .top-text {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .top-text h1,
+    .top-text h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: normal;
+      line-height: 1.15;
+      color: #2f6fa3;
+    }
 
     /* ===== Main Content ===== */
     .section {
@@ -103,21 +113,23 @@
     table th {
       background: #f5f5f5;
     }
-/* ===== Repair Result Table Scroll Fix ===== */
-#repairResult {
-  overflow-x: auto;
-  margin-top: 12px;
-}
 
-#repairResult table {
-  min-width: 900px;
-  width: 100%;
-}
+    /* ===== Repair Result Table Scroll Fix ===== */
+    #repairResult {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
 
-#repairResult th,
-#repairResult td {
-  white-space: nowrap;
-}
+    #repairResult table {
+      min-width: 900px;
+      width: 100%;
+    }
+
+    #repairResult th,
+    #repairResult td {
+      white-space: nowrap;
+    }
+
     /* ===== Footer ===== */
     .footer {
       border-top: 1px solid #ddd;
@@ -165,7 +177,6 @@
 
     <div class="capabilities">
 
-      <!-- ===== Distribution & Repair ===== -->
       <div class="card">
         <h3>Aviation Component Distribution & Repair</h3>
 
@@ -186,7 +197,6 @@
         <div id="repairResult"></div>
       </div>
 
-      <!-- ===== R&D ===== -->
       <div class="card">
         <h3>Avionics Test Equipment R&D</h3>
         <p>Submit your test or development requirements to our engineering team.</p>
@@ -194,7 +204,6 @@
         <button>Submit Inquiry</button>
       </div>
 
-      <!-- ===== Member Area ===== -->
       <div class="card">
         <h3>Authorized Member Area</h3>
         <p>Internal access for approved partners and team members.</p>
@@ -215,7 +224,6 @@
     </p>
   </div>
 
-  <!-- ===== Repair Search Script ===== -->
   <script src="repair_search.js"></script>
 
 </body>
