@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Long Avionic, LLC</title>
+  <title>Longavionic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
@@ -13,19 +13,20 @@
       background: #fff;
     }
 
-    /* ===== Top Header ===== */
-    .top-header {
+    /* ===== Top Bar ===== */
+    .top-bar {
       display: flex;
       align-items: center;
       height: 120px;
       padding: 0 24px;
-      background: linear-gradient(135deg, #2f6fa3, #4b8fc2);
+      background: linear-gradient(135deg, #2f6fa3, #4b90c6);
       color: #fff;
     }
 
-    .top-header img {
-      height: 60px;
-      margin-right: 18px;
+    .logo {
+      height: 70px;
+      margin-right: 20px;
+      opacity: 0.9;
     }
 
     .top-text h1,
@@ -33,12 +34,11 @@
       margin: 0;
       font-size: 22px;
       font-weight: normal;
-      line-height: 1.4;
     }
 
-    /* ===== Section ===== */
+    /* ===== Main Content ===== */
     .section {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
     }
@@ -64,26 +64,41 @@
       margin-top: 0;
     }
 
+    .card h4 {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
     .card input,
     .card textarea {
       width: 100%;
-      margin-top: 8px;
-      padding: 8px;
+      padding: 6px;
       font-size: 14px;
-      box-sizing: border-box;
+      margin-bottom: 8px;
     }
 
     .card button {
-      margin-top: 10px;
-      padding: 8px 14px;
+      padding: 6px 12px;
       font-size: 14px;
       cursor: pointer;
     }
 
-    hr {
-      margin: 20px 0;
-      border: none;
-      border-top: 1px dashed #ccc;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: left;
+    }
+
+    table th {
+      background: #f5f5f5;
     }
 
     /* ===== Footer ===== */
@@ -99,12 +114,12 @@
 
 <body>
 
-  <!-- ===== Top Header ===== -->
-  <div class="top-header">
-    <img src="IMG_0431.png" alt="Long Avionic Logo">
+  <!-- ===== Top Bar ===== -->
+  <div class="top-bar">
+    <img src="IMG_0431.png" class="logo" alt="Long Avionic Logo">
     <div class="top-text">
-      <h1>Aviation Component Distribution &amp; Repair</h1>
-      <h2>Avionics Test Equipment R&amp;D</h2>
+      <h1>Aviation Component Distribution & Repair</h1>
+      <h2>Avionics Test Equipment R&D</h2>
     </div>
   </div>
 
@@ -117,12 +132,13 @@
     </p>
 
     <p>
-      龍 Long Avionic, LLC provides professional aviation test solutions and engineering services for global aviation partners.
+      龍 Long Avionic, LLC provides professional aviation test solutions and
+      engineering services for global aviation partners.
     </p>
 
     <p>
-      We focus on avionics test bench design, test equipment integration, and technical consulting,
-      supporting MROs, operators, and engineering teams.
+      We focus on avionics test bench design, test equipment integration,
+      and technical consulting, supporting MROs, operators, and engineering teams.
     </p>
   </div>
 
@@ -132,30 +148,36 @@
 
     <div class="capabilities">
 
-      <!-- Distribution & Repair -->
+      <!-- ===== Distribution & Repair ===== -->
       <div class="card">
-        <h3>Aviation Component Distribution &amp; Repair</h3>
+        <h3>Aviation Component Distribution & Repair</h3>
 
-        <p><strong>Component Distribution Search</strong></p>
+        <h4>Component Distribution Search</h4>
         <input type="text" placeholder="Search inventory by PN or Description">
         <button>Search Inventory</button>
 
-        <hr>
+        <hr style="margin:16px 0;">
 
-        <p><strong>Repair Capability Search</strong></p>
-        <input type="text" placeholder="Search repair capability by PN">
-        <button>Search Repair Capability</button>
+        <h4>Repair Capability Search</h4>
+        <input
+          type="text"
+          id="repairInput"
+          placeholder="Search repair capability by PN"
+        >
+        <button onclick="searchRepair()">Search Repair Capability</button>
+
+        <div id="repairResult"></div>
       </div>
 
-      <!-- Avionics Test Equipment R&D -->
+      <!-- ===== R&D ===== -->
       <div class="card">
-        <h3>Avionics Test Equipment R&amp;D</h3>
+        <h3>Avionics Test Equipment R&D</h3>
         <p>Submit your test or development requirements to our engineering team.</p>
-        <textarea rows="4" placeholder="Describe your requirement"></textarea>
+        <textarea rows="5" placeholder="Describe your requirement"></textarea>
         <button>Submit Inquiry</button>
       </div>
 
-      <!-- Member Area -->
+      <!-- ===== Member Area ===== -->
       <div class="card">
         <h3>Authorized Member Area</h3>
         <p>Internal access for approved partners and team members.</p>
@@ -175,6 +197,9 @@
       <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a>
     </p>
   </div>
+
+  <!-- ===== Repair Search Script ===== -->
+  <script src="repair_search.js"></script>
 
 </body>
 </html>
