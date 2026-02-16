@@ -1,273 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Longavionic</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Long Avionic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #111;
-      background: #fff;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff;
+  color: #111;
+}
 
-    /* ===== Top Bar ===== */
-    .top-bar {
-      display: flex;
-      align-items: center;
-      height: 140px;
-      border-bottom: 1px solid #ddd;
-      overflow: hidden;
-    }
+/* ===== Top Hero ===== */
+.top-hero {
+  position: relative;
+  height: 96px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+}
 
-    /* Logo */
-    .logo-area {
-      flex: 0 0 160px;
-      padding-left: 16px;
-      z-index: 3;
-      background: #fff;
-    }
+/* Logo integrated */
+.hero-logo {
+  position: relative;
+  z-index: 3;
+  margin-left: 16px;
+}
 
-    .logo-area img {
-      height: 80px;
-      width: auto;
-    }
+.hero-logo img {
+  height: 58px;
+  opacity: 0.95;
+}
 
-    /* Hero */
-    .hero-area {
-      position: relative;
-      flex: 1;
-      height: 100%;
-      background: #000;
-      color: #fff;
-      overflow: hidden;
-    }
+/* Hero text */
+.hero-text {
+  position: relative;
+  z-index: 3;
+  margin-left: 20px;
+  color: #fff;
+}
 
-    .hero-text {
-      position: relative;
-      z-index: 3;
-      padding: 36px;
-    }
+.hero-text h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.4px;
+}
 
-    .hero-text h1 {
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: 0.5px;
-    }
+.hero-text p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: 0.7;
+}
 
-    .hero-text p {
-      margin-top: 8px;
-      font-size: 14px;
-      opacity: 0.8;
-    }
+/* ===== Engineering animation ===== */
+.signal-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
 
-    /* ===== Stars ===== */
-    .stars {
-      position: absolute;
-      width: 300%;
-      height: 300%;
-      background: transparent
-        url('https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/img/stars.png')
-        repeat;
-      animation: moveStars 50s linear infinite;
-      opacity: 0.35;
-      z-index: 1;
-    }
+.signal-line {
+  position: absolute;
+  height: 2px;
+  width: 180px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #4da6ff,
+    transparent
+  );
+  opacity: 0.35;
+  animation: flow 8s linear infinite;
+}
 
-    @keyframes moveStars {
-      from { transform: translate(0, 0); }
-      to { transform: translate(-500px, -500px); }
-    }
+.signal-line:nth-child(1) { top: 30%; animation-delay: 0s; }
+.signal-line:nth-child(2) { top: 50%; animation-delay: 2s; }
+.signal-line:nth-child(3) { top: 70%; animation-delay: 4s; }
 
-    /* ===== Plane ===== */
-    .plane {
-      position: absolute;
-      top: 50%;
-      left: -120px;
-      width: 80px;
-      height: 30px;
-      border: 2px solid #4da6ff;
-      border-radius: 4px;
-      transform: translateY(-50%) skewX(-10deg);
-      opacity: 0.85;
-      animation: flyPlane 18s linear infinite;
-      z-index: 2;
-    }
+@keyframes flow {
+  from { transform: translateX(-200px); }
+  to { transform: translateX(120vw); }
+}
 
-    .plane::before {
-      content: '';
-      position: absolute;
-      left: -20px;
-      top: 8px;
-      width: 20px;
-      height: 14px;
-      border: 2px solid #4da6ff;
-      border-right: none;
-    }
+/* ===== Content ===== */
+.section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
 
-    .plane::after {
-      content: '';
-      position: absolute;
-      right: 10px;
-      top: -12px;
-      width: 10px;
-      height: 12px;
-      border-left: 2px solid #4da6ff;
-      border-top: 2px solid #4da6ff;
-    }
+.capabilities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
 
-    @keyframes flyPlane {
-      from {
-        transform: translate(-120px, -50%) skewX(-10deg);
-      }
-      to {
-        transform: translate(calc(100vw + 120px), -50%) skewX(-10deg);
-      }
-    }
+.card {
+  border: 1px solid #ddd;
+  padding: 20px;
+}
 
-    /* ===== Main Content ===== */
-    .section {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+.card input,
+.card textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 6px;
+  font-size: 14px;
+}
 
-    h2 {
-      margin-top: 0;
-    }
+.card button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
 
-    ul {
-      padding-left: 20px;
-    }
-
-    /* Core Capabilities */
-    .capabilities {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      border: 1px solid #ddd;
-      padding: 20px;
-    }
-
-    .card input,
-    .card textarea {
-      width: 100%;
-      margin-top: 10px;
-      padding: 6px;
-      font-size: 14px;
-    }
-
-    .card button {
-      margin-top: 10px;
-      padding: 6px 12px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    /* Footer */
-    .footer {
-      border-top: 1px solid #ddd;
-      margin-top: 60px;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-    }
-  </style>
+/* Footer */
+.footer {
+  border-top: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ===== Top Bar ===== -->
-  <div class="top-bar">
-    <div class="logo-area">
-      <img src="IMG_0431.png" alt="Long Avionic Logo">
+<!-- ===== HERO ===== -->
+<div class="top-hero">
+  <div class="hero-logo">
+    <img src="IMG_0431.png" alt="Long Avionic Logo">
+  </div>
+
+  <div class="hero-text">
+    <h1>Long Avionic, LLC</h1>
+    <p>Avionics Test • ATE • Engineering Services</p>
+  </div>
+
+  <div class="signal-layer">
+    <div class="signal-line"></div>
+    <div class="signal-line"></div>
+    <div class="signal-line"></div>
+  </div>
+</div>
+
+<!-- ===== About ===== -->
+<div class="section">
+  <h2>About Us</h2>
+  <p>Long Avionic, LLC was founded in January 2023 and is based in Houston, Texas.</p>
+  <p>In 2026, we plan to pursue ASA membership as part of our commitment to industry standards and continuous improvement.</p>
+  <p>龍 Long Avionic, LLC provides professional aviation test solutions and engineering services for global aviation partners.</p>
+</div>
+
+<!-- ===== Core Capabilities ===== -->
+<div class="section">
+  <h2>Core Capabilities</h2>
+
+  <div class="capabilities">
+    <div class="card">
+      <h3>Aviation Component Distribution</h3>
+      <input placeholder="Search by PN or Description">
+      <button>Search</button>
     </div>
 
-    <div class="hero-area">
-      <div class="stars"></div>
-      <div class="plane"></div>
+    <div class="card">
+      <h3>Test Equipment & R&D</h3>
+      <textarea rows="4" placeholder="Describe your requirement"></textarea>
+      <button>Submit Inquiry</button>
+    </div>
 
-      <div class="hero-text">
-        <h1>Long Avionic, LLC</h1>
-        <p>Avionics Test • ATE • Engineering Services</p>
-      </div>
+    <div class="card">
+      <h3>Authorized Member Area</h3>
+      <input placeholder="Username">
+      <input type="password" placeholder="Password">
+      <button>Login</button>
     </div>
   </div>
+</div>
 
-  <!-- ===== About Us ===== -->
-  <div class="section">
-    <h2>About Us</h2>
-
-    <p>
-      Long Avionic, LLC was founded in January 2023 and is based in Houston, Texas.
-    </p>
-
-    <p>
-      In 2026, we plan to pursue ASA membership as part of our commitment to industry standards and continuous improvement.
-    </p>
-
-    <p>
-      龍 Long Avionic, LLC provides professional aviation test solutions and engineering services for global aviation partners.
-    </p>
-
-    <p>
-      We focus on avionics test bench design, test equipment integration, and technical consulting,
-      supporting MROs, operators, and engineering teams.
-    </p>
-  </div>
-
-  <!-- ===== Services ===== -->
-  <div class="section">
-    <h2>Our Services</h2>
-    <ul>
-      <li>Aviation Component Distribution</li>
-      <li>Avionic Test Bench Design</li>
-      <li>Aviation Technology Consulting</li>
-    </ul>
-  </div>
-
-  <!-- ===== Core Capabilities ===== -->
-  <div class="section">
-    <h2>Core Capabilities</h2>
-
-    <div class="capabilities">
-      <div class="card">
-        <h3>Aviation Component Distribution</h3>
-        <p>Search available inventory by part number or description.</p>
-        <input type="text" placeholder="Search by PN or Description">
-        <button>Search</button>
-      </div>
-
-      <div class="card">
-        <h3>Test Equipment & R&D</h3>
-        <p>Submit your test or development requirements to our engineering team.</p>
-        <textarea rows="4" placeholder="Describe your requirement"></textarea>
-        <button>Submit Inquiry</button>
-      </div>
-
-      <div class="card">
-        <h3>Authorized Member Area</h3>
-        <p>Internal access for approved partners and team members.</p>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button>Login</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== Footer ===== -->
-  <div class="footer">
-    <p><strong>Website under construction.</strong></p>
-    <p>
-      Contact:
-      <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a>
-    </p>
-  </div>
+<!-- ===== Footer ===== -->
+<div class="footer">
+  <strong>Website under construction.</strong><br>
+  Contact: <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a>
+</div>
 
 </body>
 </html>
