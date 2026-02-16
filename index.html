@@ -4,14 +4,88 @@
   <meta charset="UTF-8">
   <title>Longavionic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Top bar layout */
+.top-bar {
+  display: flex;
+  align-items: center;
+  height: 160px;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+}
+
+/* Logo */
+.logo-area {
+  flex: 0 0 200px;
+  padding-left: 20px;
+}
+
+.logo-area img {
+  height: 120px;
+  width: auto;
+}
+
+/* Hero area */
+.hero-area {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Text */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+}
+
+.hero-text h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.hero-text p {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Stars animation */
+.stars {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent url('https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/img/stars.png') repeat;
+  animation: moveStars 60s linear infinite;
+  opacity: 0.25;
+}
+
+@keyframes moveStars {
+  from { transform: translate(0,0); }
+  to { transform: translate(-500px, -500px); }
+}
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <img src="IMG_0431.png" alt="Long Avionic Logo" class="logo">
-    <h1>Long Avionic, LLC</h1>
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="logo-area">
+    <img src="IMG_0431.png" alt="Long Avionic Logo">
   </div>
+
+  <div class="hero-area">
+    <div class="stars"></div>
+
+    <div class="hero-text">
+      <h1>Long Avionic, LLC</h1>
+      <p>Avionics Test • ATE • Engineering Solutions</p>
+    </div>
+  </div>
+</div>
 
   <!-- Company Introduction -->
   <div class="section">
