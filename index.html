@@ -1,218 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Long Avionic, LLC</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Long Avionic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #111;
-  background: #fff;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111;
+      background: #fff;
+    }
 
-/* ===== Top Hero ===== */
-.top-bar {
-  position: relative;
-  height: 140px;
-  background: linear-gradient(135deg, #2f6fa3, #4c8fc2);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
+    /* ===== Top Banner ===== */
+    .top-banner {
+      display: flex;
+      align-items: center;
+      padding: 20px 30px;
+      background: linear-gradient(135deg, #2f6fa5, #4b8fc9);
+      color: #fff;
+    }
 
-/* Background motion */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
+    .top-banner img {
+      height: 60px;
+      width: auto;
+      margin-right: 20px;
+      opacity: 0.9;
+    }
 
-.streak {
-  position: absolute;
-  top: 40%;
-  left: -30%;
-  width: 200%;
-  height: 2px;
-  background: rgba(255,255,255,0.15);
-  animation: moveStreak 18s linear infinite;
-}
+    .top-text h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-.streak:nth-child(2) {
-  top: 60%;
-  animation-duration: 26s;
-  opacity: 0.1;
-}
+    .top-text h2 {
+      margin: 4px 0 0;
+      font-size: 28px;
+      font-weight: normal;
+      opacity: 0.9;
+    }
 
-@keyframes moveStreak {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
+    /* ===== Section ===== */
+    .section {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
 
-/* Jet silhouette */
-.jet {
-  position: absolute;
-  top: 35%;
-  right: -120px;
-  width: 100px;
-  height: 30px;
-  border-top: 2px solid rgba(255,255,255,0.6);
-  border-bottom: 2px solid rgba(255,255,255,0.6);
-  transform: skewX(-15deg);
-  animation: flyJet 22s linear infinite;
-}
+    h2 {
+      margin-bottom: 20px;
+    }
 
-@keyframes flyJet {
-  from { right: -140px; }
-  to { right: 110%; }
-}
+    /* ===== Capabilities ===== */
+    .capabilities {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
 
-/* Logo & text */
-.logo-area {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  padding-left: 24px;
-  gap: 16px;
-}
+    .card {
+      border: 1px solid #ddd;
+      padding: 20px;
+      background: #fff;
+    }
 
-.logo-area img {
-  height: 64px;
-  opacity: 0.9;
-}
+    .card h3 {
+      margin-top: 0;
+    }
 
-.logo-text h1 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: 0.6px;
-}
+    .card p {
+      font-size: 14px;
+    }
 
-.logo-text h1.sub {
-  margin-top: 4px;
-  font-weight: 400;
-  opacity: 0.85;
-}
+    .card input,
+    .card textarea {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
 
-/* ===== Main Content ===== */
-.section {
-  max-width: 1100px;
-  margin: 48px auto;
-  padding: 0 20px;
-}
+    .card button {
+      margin-top: 10px;
+      padding: 6px 14px;
+      font-size: 14px;
+      cursor: pointer;
+    }
 
-h2 {
-  margin-top: 0;
-}
+    .divider {
+      margin: 16px 0;
+      border-top: 1px dashed #ccc;
+    }
 
-ul {
-  padding-left: 20px;
-}
+    .repair-label {
+      color: #d9534f;
+      font-weight: bold;
+    }
 
-/* ===== Core Capabilities ===== */
-.capabilities {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  border: 1px solid #ddd;
-  padding: 20px;
-}
-
-.card input,
-.card textarea {
-  width: 100%;
-  margin-top: 10px;
-  padding: 6px;
-  font-size: 14px;
-}
-
-.card button {
-  margin-top: 10px;
-  padding: 6px 12px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-/* ===== Footer ===== */
-.footer {
-  border-top: 1px solid #ddd;
-  margin-top: 60px;
-  padding: 20px;
-  text-align: center;
-  font-size: 14px;
-}
-</style>
+    /* ===== Footer ===== */
+    .footer {
+      border-top: 1px solid #ddd;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- ===== Top ===== -->
-<div class="top-bar">
-  <div class="hero-bg">
-    <div class="streak"></div>
-    <div class="streak"></div>
-    <div class="jet"></div>
-  </div>
-
-  <div class="logo-area">
+  <!-- ===== Top Banner ===== -->
+  <div class="top-banner">
     <img src="IMG_0431.png" alt="Long Avionic Logo">
-    <div class="logo-text">
+    <div class="top-text">
       <h1>Aviation Component Distribution &amp; Repair</h1>
-      <h1 class="sub">Avionics Test Equipment R&amp;D</h1>
+      <h2>Avionics Test Equipment R&amp;D</h2>
     </div>
   </div>
-</div>
 
-<!-- ===== About Us ===== -->
-<div class="section">
-  <h2>About Us</h2>
-  <p>Long Avionic, LLC was founded in Jan 2023 and is based in Houston, Texas.</p>
-  <p>In 2026, we plan to pursue ASA membership as part of our commitment to industry standards and continuous improvement.</p>
-  <p>龍 Long Avionic, LLC provides professional aviation test solutions and engineering services for global aviation partners.</p>
-  <p>We focus on avionics test bench design, test equipment integration, and technical consulting, supporting MROs, operators, and engineering teams.</p>
-</div>
+  <!-- ===== About Us ===== -->
+  <div class="section">
+    <h2>About Us</h2>
 
-<!-- ===== Core Capabilities ===== -->
-<div class="section">
-  <h2>Core Capabilities</h2>
+    <p>
+      Long Avionic, LLC was founded in Jan 2023 and is based in Houston, Texas.
+    </p>
 
-  <div class="capabilities">
-    <div class="card">
-      <h3>Aviation Component Distribution</h3>
-      <p>Search available inventory by part number or description.</p>
-      <input type="text" placeholder="Search by PN or Description">
-      <button>Search</button>
-    </div>
+    <p>
+      In 2026, we plan to pursue ASA membership as part of our commitment to industry standards and continuous improvement.
+    </p>
 
-    <div class="card">
-      <h3>Avionics Test Equipment R&amp;D</h3>
-      <p>Submit your test or development requirements to our engineering team.</p>
-      <textarea rows="4" placeholder="Describe your requirement"></textarea>
-      <button>Submit Inquiry</button>
-    </div>
+    <p>
+      龍 Long Avionic, LLC provides professional aviation test solutions and engineering services for global aviation partners.
+    </p>
 
-    <div class="card">
-      <h3>Authorized Member Area</h3>
-      <p>Internal access for approved partners and team members.</p>
-      <input type="text" placeholder="Username">
-      <input type="password" placeholder="Password">
-      <button>Login</button>
+    <p>
+      We focus on avionics test bench design, test equipment integration, and technical consulting,
+      supporting MROs, operators, and engineering teams.
+    </p>
+  </div>
+
+  <!-- ===== Core Capabilities ===== -->
+  <div class="section">
+    <h2>Core Capabilities</h2>
+
+    <div class="capabilities">
+
+      <!-- Distribution & Repair -->
+      <div class="card">
+        <h3>
+          Aviation Component Distribution
+          <span style="float:right; color:#d9534f; font-size:14px;">&amp; Repair</span>
+        </h3>
+
+        <p><strong>Component Distribution Search</strong></p>
+        <input type="text" placeholder="Search inventory by PN or Description">
+        <button>Search Inventory</button>
+
+        <div class="divider"></div>
+
+        <p class="repair-label">Repair Capability Search</p>
+        <input type="text" placeholder="Search repair capability by PN">
+        <button>Search Repair Capability</button>
+      </div>
+
+      <!-- R&D -->
+      <div class="card">
+        <h3>Avionics Test Equipment R&amp;D</h3>
+        <p>Submit your test or development requirements to our engineering team.</p>
+        <textarea rows="4" placeholder="Describe your requirement"></textarea>
+        <button>Submit Inquiry</button>
+      </div>
+
+      <!-- Member Area -->
+      <div class="card">
+        <h3>Authorized Member Area</h3>
+        <p>Internal access for approved partners and team members.</p>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button>Login</button>
+      </div>
+
     </div>
   </div>
-</div>
 
-<!-- ===== Footer ===== -->
-<div class="footer">
-  <p><strong>Website under construction.</strong></p>
-  <p>Contact: <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a></p>
-</div>
+  <!-- ===== Footer ===== -->
+  <div class="footer">
+    <p><strong>Website under construction.</strong></p>
+    <p>
+      Contact:
+      <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a>
+    </p>
+  </div>
 
 </body>
 </html>
