@@ -15,6 +15,7 @@
 
     /* ===== Top Bar ===== */
     .top-bar {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -38,6 +39,7 @@
     .top-text {
       flex: 1 1 auto;
       min-width: 0;
+      z-index: 1;
     }
 
     .top-text h1,
@@ -47,6 +49,24 @@
       font-weight: normal;
       line-height: 1.15;
       color: #3a4fb7;
+    }
+
+    /* ===== Top Bar Stars Decoration ===== */
+    .top-stars {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      pointer-events: none;
+
+      background-image:
+        radial-gradient(#b6c7d8 1px, transparent 1px),
+        radial-gradient(#d4e0ec 1px, transparent 1px);
+      background-size: 18px 18px, 28px 28px;
+      background-position: 0 0, 10px 10px;
+
+      opacity: 0.35;
     }
 
     /* ===== Main Content ===== */
@@ -146,10 +166,13 @@
   <!-- ===== Top Bar ===== -->
   <div class="top-bar">
     <img src="IMG_0431.png" class="logo" alt="Long Avionic Logo">
+
     <div class="top-text">
       <h1>Aviation Component Distribution & Repair</h1>
       <h2>Avionics Test Equipment R&D</h2>
     </div>
+
+    <div class="top-stars"></div>
   </div>
 
   <!-- ===== About Us ===== -->
