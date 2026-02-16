@@ -17,14 +17,14 @@ body {
 .top-hero {
   position: relative;
   height: 96px;
-  background: #000;
   display: flex;
   align-items: center;
   overflow: hidden;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #cfd8e3;
+  background: linear-gradient(135deg, #7bb7e8, #cfe8ff);
 }
 
-/* Logo integrated */
+/* Logo */
 .hero-logo {
   position: relative;
   z-index: 3;
@@ -32,16 +32,15 @@ body {
 }
 
 .hero-logo img {
-  height: 58px;
-  opacity: 0.95;
+  height: 56px;
+  opacity: 0.9;
 }
 
-/* Hero text */
+/* Text */
 .hero-text {
   position: relative;
   z-index: 3;
-  margin-left: 20px;
-  color: #fff;
+  margin-left: 18px;
 }
 
 .hero-text h1 {
@@ -53,37 +52,37 @@ body {
 .hero-text p {
   margin: 4px 0 0;
   font-size: 12px;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
-/* ===== Engineering animation ===== */
+/* ===== Aviation Signal Animation ===== */
 .signal-layer {
   position: absolute;
   inset: 0;
   z-index: 1;
-  overflow: hidden;
+  pointer-events: none;
 }
 
-.signal-line {
+.signal {
   position: absolute;
   height: 2px;
-  width: 180px;
+  width: 220px;
   background: linear-gradient(
     90deg,
     transparent,
-    #4da6ff,
+    rgba(255,255,255,0.9),
     transparent
   );
-  opacity: 0.35;
-  animation: flow 8s linear infinite;
+  opacity: 0.5;
+  animation: signalMove 10s linear infinite;
 }
 
-.signal-line:nth-child(1) { top: 30%; animation-delay: 0s; }
-.signal-line:nth-child(2) { top: 50%; animation-delay: 2s; }
-.signal-line:nth-child(3) { top: 70%; animation-delay: 4s; }
+.signal:nth-child(1) { top: 30%; animation-delay: 0s; }
+.signal:nth-child(2) { top: 55%; animation-delay: 3s; }
+.signal:nth-child(3) { top: 75%; animation-delay: 6s; }
 
-@keyframes flow {
-  from { transform: translateX(-200px); }
+@keyframes signalMove {
+  from { transform: translateX(-240px); }
   to { transform: translateX(120vw); }
 }
 
@@ -143,9 +142,9 @@ body {
   </div>
 
   <div class="signal-layer">
-    <div class="signal-line"></div>
-    <div class="signal-line"></div>
-    <div class="signal-line"></div>
+    <div class="signal"></div>
+    <div class="signal"></div>
+    <div class="signal"></div>
   </div>
 </div>
 
@@ -186,7 +185,8 @@ body {
 <!-- ===== Footer ===== -->
 <div class="footer">
   <strong>Website under construction.</strong><br>
-  Contact: <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a>
+  Contact:
+  <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a>
 </div>
 
 </body>
