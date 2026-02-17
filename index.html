@@ -20,6 +20,7 @@
       align-items: center;
       gap: 16px;
       padding: 16px 20px;
+      overflow: hidden;
 
       background: linear-gradient(
         90deg,
@@ -34,12 +35,13 @@
       height: 70px;
       width: auto;
       flex: 0 0 auto;
+      z-index: 2;
     }
 
     .top-text {
       flex: 1 1 auto;
       min-width: 0;
-      z-index: 1;
+      z-index: 2;
     }
 
     .top-text h1,
@@ -51,22 +53,39 @@
       color: #3a4fb7;
     }
 
-    /* ===== Top Bar Stars Decoration ===== */
+    /* ===== Aviation Symbols Decoration ===== */
     .top-stars {
       position: absolute;
       top: 0;
       right: 0;
-      width: 40%;
+      width: 45%;
       height: 100%;
       pointer-events: none;
+      z-index: 1;
+    }
 
-      background-image:
-        radial-gradient(#b6c7d8 1px, transparent 1px),
-        radial-gradient(#d4e0ec 1px, transparent 1px);
-      background-size: 18px 18px, 28px 28px;
-      background-position: 0 0, 10px 10px;
+    .top-stars::before {
+      content: "✈︎ ✦ ✧ ✈︎ ✦ ✧ ✈︎ ✦ ✧";
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      font-size: 18px;
+      letter-spacing: 16px;
+      opacity: 0.28;
+      color: #6f859b;
+      white-space: nowrap;
+    }
 
-      opacity: 0.35;
+    .top-stars::after {
+      content: "✧ ✦ ✈︎ ✧ ✦ ✈︎ ✧ ✦";
+      position: absolute;
+      bottom: 18px;
+      right: 48px;
+      font-size: 14px;
+      letter-spacing: 20px;
+      opacity: 0.18;
+      color: #8ea2b6;
+      white-space: nowrap;
     }
 
     /* ===== Main Content ===== */
@@ -157,6 +176,18 @@
       padding: 20px;
       text-align: center;
       font-size: 14px;
+    }
+
+    /* ===== Mobile Optimization ===== */
+    @media (max-width: 600px) {
+      .top-stars::before {
+        font-size: 14px;
+        letter-spacing: 10px;
+      }
+
+      .top-stars::after {
+        display: none;
+      }
     }
   </style>
 </head>
