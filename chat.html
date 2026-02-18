@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CATS Group Chat</title>
+  <title>CATS Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <style>
     body {
       margin: 0;
@@ -13,103 +12,73 @@
       background: #0f172a;
       color: #e5e7eb;
     }
-
-    h2 {
-      margin-top: 0;
-      color: #38bdf8;
-    }
-
-    .user {
-      color: #94a3b8;
-      margin-bottom: 12px;
-    }
-
+    h2 { color: #38bdf8; margin-top: 0; }
+    .user { color: #94a3b8; margin-bottom: 10px; }
     .chat-box {
-      border: 1px solid #1e293b;
-      border-radius: 10px;
-      padding: 12px;
       height: 320px;
       overflow-y: auto;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 10px;
       background: #020617;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-
-    .msg {
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
-
-    .msg b {
-      color: #22c55e;
-    }
-
+    .msg { margin-bottom: 6px; font-size: 14px; }
+    .msg b { color: #22c55e; }
     textarea {
       width: 100%;
       height: 60px;
-      padding: 8px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid #334155;
       background: #020617;
       color: #e5e7eb;
-      resize: none;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 8px;
     }
-
     button {
-      margin-top: 8px;
+      margin-top: 6px;
       padding: 8px 16px;
-      font-size: 14px;
       border: none;
       border-radius: 6px;
-      cursor: pointer;
       background: #2563eb;
       color: white;
+      cursor: pointer;
     }
   </style>
 </head>
-
 <body>
 
-  <h2 id="title">CATS Group</h2>
-  <div class="user" id="userInfo"></div>
+<h2>CATS Chat</h2>
+<div class="user" id="userInfo"></div>
 
-  <div class="chat-box" id="chat"></div>
+<div class="chat-box" id="chat"></div>
 
-  <textarea id="input" placeholder="Type message here..."></textarea>
-  <button onclick="send()">Send</button>
+<textarea id="input" placeholder="Type message..."></textarea>
+<button onclick="send()">Send</button>
 
-  <script>
-    const params = new URLSearchParams(location.search);
-    const group = params.get("group") || "general";
-    const user = sessionStorage.getItem("memberUser") || "Guest";
+<script>
+  const user = sessionStorage.getItem("memberUser") || "Guest";
+  document.getElementById("userInfo").textContent = "Logged in as: " + user;
 
-    const key = "chat_" + group;
-    const chat = document.getElementById("chat");
+  const chat = document.getElementById("chat");
+  const key = "cats_chat";
 
-    document.getElementById("title").textContent =
-      "CATS Group: " + group.toUpperCase();
-    document.getElementById("userInfo").textContent =
-      "Logged in as: " + user;
+  function load() {
+    chat.innerHTML = localStorage.getItem(key) || "";
+    chat.scrollTop = chat.scrollHeight;
+  }
 
-    function load() {
-      chat.innerHTML = localStorage.getItem(key) || "";
-      chat.scrollTop = chat.scrollHeight;
-    }
+  function send() {
+    const input = document.getElementById("input");
+    if (!input.value.trim()) return;
+    const msg = `<div class="msg"><b>${user}:</b> ${input.value}</div>`;
+    chat.innerHTML += msg;
+    localStorage.setItem(key, chat.innerHTML);
+    input.value = "";
+    chat.scrollTop = chat.scrollHeight;
+  }
 
-    function send() {
-      const input = document.getElementById("input");
-      const text = input.value.trim();
-      if (!text) return;
-
-      const msg = `<div class="msg"><b>${user}:</b> ${text}</div>`;
-      chat.innerHTML += msg;
-      localStorage.setItem(key, chat.innerHTML);
-      input.value = "";
-      chat.scrollTop = chat.scrollHeight;
-    }
-
-    load();
-  </script>
+  load();
+</script>
 
 </body>
 </html>
