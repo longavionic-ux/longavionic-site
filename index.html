@@ -35,11 +35,13 @@
     .logo {
       height: 68px;
       width: auto;
+      flex: 0 0 auto;
       z-index: 2;
     }
 
     .top-text {
       flex: 1 1 auto;
+      min-width: 0;
       z-index: 2;
     }
 
@@ -111,6 +113,7 @@
       margin-top: 0;
     }
 
+    /* ===== Core Capabilities ===== */
     .capabilities {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -145,6 +148,40 @@
       padding: 6px 12px;
       font-size: 14px;
       cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: left;
+    }
+
+    table th {
+      background: #f5f5f5;
+    }
+
+    /* ===== Repair Result Table Scroll Fix ===== */
+    #repairResult {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    #repairResult table {
+      min-width: 900px;
+      width: 100%;
+    }
+
+    #repairResult th,
+    #repairResult td {
+      white-space: nowrap;
     }
 
     /* ===== Footer ===== */
@@ -197,6 +234,10 @@
       .top-stars::after {
         display: none;
       }
+
+      .section-divider {
+        margin-top: 18px;
+      }
     }
   </style>
 </head>
@@ -230,24 +271,38 @@
     <h2>Core Capabilities</h2>
 
     <div class="capabilities">
+
       <div class="card">
         <h3>Aviation Component Distribution & Repair</h3>
+
+        <h4>Component Distribution Search</h4>
         <input type="text" placeholder="Search inventory by PN or Description">
         <button>Search Inventory</button>
+
+        <hr style="margin:16px 0;">
+
+        <h4>Repair Capability Search</h4>
+        <input id="repairInput" type="text" placeholder="Search repair capability by PN">
+        <button onclick="searchRepair()">Search Repair Capability</button>
+
+        <div id="repairResult"></div>
       </div>
 
       <div class="card">
         <h3>Avionics Test Equipment R&D</h3>
+        <p>Submit your test or development requirements to our engineering team.</p>
         <textarea rows="5" placeholder="Describe your requirement"></textarea>
         <button>Submit Inquiry</button>
       </div>
 
       <div class="card">
         <h3>Authorized Member Area</h3>
+        <p>Internal access for approved partners and team members.</p>
         <input type="text" placeholder="Username">
         <input type="password" placeholder="Password">
         <button>Login</button>
       </div>
+
     </div>
   </div>
 
