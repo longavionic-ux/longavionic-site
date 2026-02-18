@@ -1,49 +1,21 @@
 function login() {
-  const user = document.getElementById("memberUser").value.trim();
-  const pass = document.getElementById("memberPass").value.trim();
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value.trim();
 
   if (!user || !pass) {
     alert("Please enter username and password");
     return;
   }
 
+  // 使用你之前的账号规则：用户名 = 密码
   if (user !== pass) {
-    alert("Invalid credentials");
+    alert("Invalid username or password");
     return;
   }
 
-  let access = [];
-  let redirect = "";
-
-  switch (user.toLowerCase()) {
-    case "cats support1":
-    case "longavionic1":
-      access = ["setnix", "aero", "skysmart"];
-      redirect = "member-cats.html";
-      break;
-
-    case "setnix1":
-      access = ["setnix"];
-      redirect = "member-setnix.html";
-      break;
-
-    case "aero instruments1":
-      access = ["aero"];
-      redirect = "member-aero.html";
-      break;
-
-    case "skysmart1":
-      access = ["skysmart"];
-      redirect = "member-skysmart.html";
-      break;
-
-    default:
-      alert("No permission assigned");
-      return;
-  }
-
+  // 记录登录用户
   sessionStorage.setItem("memberUser", user);
-  sessionStorage.setItem("memberAccess", JSON.stringify(access));
 
-  window.location.href = redirect;
+  // 直接进入聊天
+  window.location.href = "chat.html?group=setnix";
 }
