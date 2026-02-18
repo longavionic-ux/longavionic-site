@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CATS Group Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    h1 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      color: #94a3b8;
+      margin-bottom: 30px;
+    }
+
+    .box {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="title">CATS Group</h1>
+  <div class="info" id="roleInfo"></div>
+
+  <div class="box">
+    <p>This is the chat module placeholder.</p>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const group = (params.get("group") || "").toLowerCase();
+
+    const user = sessionStorage.getItem("memberUser");
+    let access = [];
+    try {
+      access = JSON.parse(sessionStorage.getItem("memberAccess") || "[]");
+    } catch (e) {
+      access = [];
+    }
+
+    if (!user || !access.includes(group)) {
+      alert("Access denied");
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("title").textContent =
+        "CATS Group: " + group.toUpperCase();
+      document.getElementById("roleInfo").textContent =
+        "Logged in as: " + user;
+      document.getElementById("status").textContent =
+        "You have access to this group.";
+    }
+  </script>
+
+</body>
+</html>
