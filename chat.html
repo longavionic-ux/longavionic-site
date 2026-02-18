@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CATS Group Chat</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     body {
       margin: 0;
-      padding: 40px;
+      padding: 24px;
       font-family: Arial, Helvetica, sans-serif;
-      background: #020617;
+      background: #0f172a;
       color: #e5e7eb;
     }
 
     h1 {
+      margin-top: 0;
       color: #38bdf8;
-      margin-bottom: 10px;
     }
 
-    .info {
+    .user {
       color: #94a3b8;
-      margin-bottom: 30px;
+      margin-bottom: 16px;
+      font-size: 14px;
     }
 
-    .box {
+    .chat-box {
       background: #020617;
       border: 1px solid #1e293b;
       border-radius: 10px;
-      padding: 20px;
+      padding: 16px;
+      height: 320px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+
+    .msg {
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .msg strong {
+      color: #22c55e;
+    }
+
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 6px;
+      background: #2563eb;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
     }
   </style>
 </head>
@@ -36,36 +75,86 @@
 <body>
 
   <h1 id="title">CATS Group</h1>
-  <div class="info" id="roleInfo"></div>
+  <div class="user" id="userInfo"></div>
 
-  <div class="box">
-    <p>This is the chat module placeholder.</p>
-    <p id="status"></p>
-  </div>
+  <div class="chat-box" id="chatBox"></div>
+
+  <textarea id="msgInput" rows="3" placeholder="Type message here..."></textarea>
+  <button onclick="sendMsg()">Send</button>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const group = (params.get("group") || "").toLowerCase();
+    // ===============================
+    // Basic info
+    // ===============================
+    const params = new URLSearchParams(location.search);
+    const group = (params.get("group") || "unknown").toLowerCase();
 
-    const user = sessionStorage.getItem("memberUser");
+    const user = sessionStorage.getItem("memberUser") || "";
     let access = [];
+
     try {
       access = JSON.parse(sessionStorage.getItem("memberAccess") || "[]");
     } catch (e) {
       access = [];
     }
 
-    if (!user || !access.includes(group)) {
+    // ===============================
+    // Permission guard
+    // ===============================
+    if (!user || !Array.isArray(access) || !access.includes(group)) {
       alert("Access denied");
       window.location.href = "index.html";
-    } else {
-      document.getElementById("title").textContent =
-        "CATS Group: " + group.toUpperCase();
-      document.getElementById("roleInfo").textContent =
-        "Logged in as: " + user;
-      document.getElementById("status").textContent =
-        "You have access to this group.";
     }
+
+    // ===============================
+    // UI setup
+    // ===============================
+    document.getElementById("title").textContent =
+      "CATS Group: " + group.toUpperCase();
+    document.getElementById("userInfo").textContent =
+      "Logged in as: " + user;
+
+    const key = "chat_" + group;
+    const box = document.getElementById("chatBox");
+
+    // ===============================
+    // Render messages
+    // ===============================
+    function render() {
+      box.innerHTML = "";
+      const msgs = JSON.parse(localStorage.getItem(key) || "[]");
+
+      msgs.forEach(m => {
+        const div = document.createElement("div");
+        div.className = "msg";
+        div.innerHTML = `<strong>${m.user}:</strong> ${m.text}`;
+        box.appendChild(div);
+      });
+
+      box.scrollTop = box.scrollHeight;
+    }
+
+    // ===============================
+    // Send message
+    // ===============================
+    function sendMsg() {
+      const input = document.getElementById("msgInput");
+      const text = input.value.trim();
+      if (!text) return;
+
+      const msgs = JSON.parse(localStorage.getItem(key) || "[]");
+      msgs.push({
+        user: user,
+        text: text,
+        time: Date.now()
+      });
+
+      localStorage.setItem(key, JSON.stringify(msgs));
+      input.value = "";
+      render();
+    }
+
+    render();
   </script>
 
 </body>
