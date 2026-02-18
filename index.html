@@ -191,7 +191,6 @@
       min-width: 900px;
     }
 
-    /* Quote button (used by JS) */
     .quote-btn {
       padding: 4px 10px;
       font-size: 12px;
@@ -309,11 +308,8 @@
         <h3>Aviation Component Distribution & Repair</h3>
 
         <h4>Component Distribution Search</h4>
-        <input
-          type="text"
-          id="inventoryInput"
-          placeholder="Search inventory by PN or Description"
-        >
+        <input type="text" id="inventoryInput"
+               placeholder="Search inventory by PN or Description">
         <button onclick="searchStock()">Search Inventory</button>
 
         <div id="inventoryResult"></div>
@@ -321,11 +317,8 @@
         <hr style="margin:16px 0;">
 
         <h4>Repair Capability Search</h4>
-        <input
-          type="text"
-          id="repairInput"
-          placeholder="Search repair capability by PN"
-        >
+        <input type="text" id="repairInput"
+               placeholder="Search repair capability by PN">
         <button onclick="searchRepair()">Search Repair Capability</button>
 
         <div id="repairResult"></div>
@@ -347,9 +340,9 @@
         <p>
           Internal access for approved partners and team members.
         </p>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button>Login</button>
+        <input type="text" id="memberUser" placeholder="Username">
+        <input type="password" id="memberPass" placeholder="Password">
+        <button onclick="login()">Login</button>
       </div>
 
     </div>
@@ -381,6 +374,7 @@
        ===================================================== -->
   <script src="stock_search.js"></script>
   <script src="repair_search.js"></script>
+  <script src="member_login.js"></script>
 
 </body>
 </html>
