@@ -60,6 +60,15 @@
       color: #64748b;
     }
   </style>
+  <script>
+  const user = sessionStorage.getItem("memberUser");
+  const access = JSON.parse(sessionStorage.getItem("memberAccess") || "[]");
+
+  if (!user || !access.includes("aero")) {
+    alert("Access denied");
+    window.location.href = "index.html";
+  }
+</script>
 </head>
 
 <body>
