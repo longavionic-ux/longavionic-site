@@ -19,20 +19,21 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 16px 20px;
+      padding: 18px 24px;
       overflow: hidden;
 
       background: linear-gradient(
         90deg,
         #ffffff 0%,
-        #ffffff 160px,
-        #e6edf3 55%,
-        #cfdbe6 100%
+        #ffffff 140px,
+        #e1ebf5 45%,
+        #9fb5d1 70%,
+        #2f4fa8 100%
       );
     }
 
     .logo {
-      height: 70px;
+      height: 68px;
       width: auto;
       flex: 0 0 auto;
       z-index: 2;
@@ -50,15 +51,15 @@
       font-size: 22px;
       font-weight: normal;
       line-height: 1.15;
-      color: #3a4fb7;
+      color: #2b3f8f;
     }
 
-    /* ===== Aviation Symbols Decoration ===== */
+    /* ===== Aviation Symbol Layer ===== */
     .top-stars {
       position: absolute;
       top: 0;
       right: 0;
-      width: 45%;
+      width: 50%;
       height: 100%;
       pointer-events: none;
       z-index: 1;
@@ -67,24 +68,24 @@
     .top-stars::before {
       content: "✈︎ ✦ ✧ ✈︎ ✦ ✧ ✈︎ ✦ ✧";
       position: absolute;
-      top: 18px;
-      right: 24px;
-      font-size: 18px;
-      letter-spacing: 16px;
-      opacity: 0.28;
-      color: #6f859b;
+      top: 20px;
+      right: 28px;
+      font-size: 22px;
+      letter-spacing: 20px;
+      opacity: 0.45;
+      color: #d6e2ff;
       white-space: nowrap;
     }
 
     .top-stars::after {
       content: "✧ ✦ ✈︎ ✧ ✦ ✈︎ ✧ ✦";
       position: absolute;
-      bottom: 18px;
-      right: 48px;
-      font-size: 14px;
-      letter-spacing: 20px;
-      opacity: 0.18;
-      color: #8ea2b6;
+      bottom: 22px;
+      right: 60px;
+      font-size: 16px;
+      letter-spacing: 24px;
+      opacity: 0.35;
+      color: #c2d4ff;
       white-space: nowrap;
     }
 
@@ -178,11 +179,16 @@
       font-size: 14px;
     }
 
-    /* ===== Mobile Optimization ===== */
+    /* ===== Mobile ===== */
     @media (max-width: 600px) {
+      .top-text h1,
+      .top-text h2 {
+        font-size: 18px;
+      }
+
       .top-stars::before {
-        font-size: 14px;
-        letter-spacing: 10px;
+        font-size: 16px;
+        letter-spacing: 12px;
       }
 
       .top-stars::after {
