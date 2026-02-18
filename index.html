@@ -19,12 +19,12 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 18px 24px;
+      padding: 14px 22px; /* ≈ 原 3/4 */
       overflow: hidden;
       background: linear-gradient(
         90deg,
         #ffffff 0%,
-        #ffffff 140px,
+        #ffffff 130px,
         #e1ebf5 42%,
         #8ea7c6 68%,
         #2a4493 86%,
@@ -33,7 +33,7 @@
     }
 
     .logo {
-      height: 68px;
+      height: 56px; /* 原 68 */
       width: auto;
       flex: 0 0 auto;
       z-index: 2;
@@ -48,7 +48,7 @@
     .top-text h1,
     .top-text h2 {
       margin: 0;
-      font-size: 22px;
+      font-size: 20px; /* 原 22 */
       font-weight: normal;
       line-height: 1.15;
       color: #243a7a;
@@ -68,10 +68,10 @@
     .top-stars::before {
       content: "✈︎ ✦ ✧ ✈︎ ✦ ✧ ✈︎ ✦ ✧";
       position: absolute;
-      top: 18px;
-      right: 24px;
-      font-size: 42px;
-      letter-spacing: 24px;
+      top: 14px;
+      right: 22px;
+      font-size: 36px;
+      letter-spacing: 22px;
       opacity: 0.55;
       color: #e3ebff;
       white-space: nowrap;
@@ -80,10 +80,10 @@
     .top-stars::after {
       content: "✧ ✦ ✈︎ ✧ ✦ ✈︎ ✧ ✦";
       position: absolute;
-      bottom: 18px;
-      right: 56px;
-      font-size: 30px;
-      letter-spacing: 28px;
+      bottom: 14px;
+      right: 52px;
+      font-size: 26px;
+      letter-spacing: 26px;
       opacity: 0.42;
       color: #c7d6ff;
       white-space: nowrap;
@@ -93,7 +93,7 @@
     .section-divider {
       height: 2px;
       max-width: 1200px;
-      margin: 26px auto 0;
+      margin: 22px auto 0;
       background: linear-gradient(
         90deg,
         transparent 0%,
@@ -184,14 +184,14 @@
       white-space: nowrap;
     }
 
-    /* ===== Footer ===== */
+    /* ===== Footer (Two Lines, Reordered) ===== */
     .footer {
       border-top: 1px solid #ddd;
-      margin-top: 60px;
-      padding: 16px 20px;
+      margin-top: 48px;
+      padding: 12px 16px;
       text-align: center;
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.4;
       color: #555;
     }
 
@@ -205,38 +205,28 @@
     }
 
     .footer-line {
-      margin: 4px 0;
+      margin: 3px 0;
     }
 
-    .footer-social span {
+    .footer-line span {
       margin: 0 6px;
       color: #aaa;
-    }
-
-    .footer-legal {
-      margin-top: 6px;
-      font-size: 12px;
-      color: #888;
     }
 
     /* ===== Mobile ===== */
     @media (max-width: 600px) {
       .top-text h1,
       .top-text h2 {
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .top-stars::before {
-        font-size: 30px;
-        letter-spacing: 14px;
+        font-size: 26px;
+        letter-spacing: 16px;
       }
 
       .top-stars::after {
         display: none;
-      }
-
-      .section-divider {
-        margin-top: 18px;
       }
     }
   </style>
@@ -308,19 +298,20 @@
 
   <!-- ===== Footer ===== -->
   <div class="footer">
+    <!-- 第一行：业务 / 联系 -->
     <div class="footer-line">
-      📍 Houston, Texas, USA ·
       <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a>
-    </div>
-
-    <div class="footer-line footer-social">
+      <span>·</span>
       <a href="#">LinkedIn</a><span>·</span>
       <a href="#">Twitter</a><span>·</span>
       <a href="#">Facebook</a>
     </div>
 
-    <div class="footer-legal">
-      © 2023–2026 Long Avionic, LLC. All rights reserved.
+    <!-- 第二行：地址 + legal -->
+    <div class="footer-line">
+      Houston, Texas, USA
+      <span>·</span>
+      © 2023–2026 Long Avionic, LLC
     </div>
   </div>
 
