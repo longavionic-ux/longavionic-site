@@ -86,8 +86,10 @@
     const key = "chat_" + group;
     const chat = document.getElementById("chat");
 
-    document.getElementById("title").textContent = "CATS Group: " + group.toUpperCase();
-    document.getElementById("userInfo").textContent = "Logged in as: " + user;
+    document.getElementById("title").textContent =
+      "CATS Group: " + group.toUpperCase();
+    document.getElementById("userInfo").textContent =
+      "Logged in as: " + user;
 
     function load() {
       chat.innerHTML = localStorage.getItem(key) || "";
