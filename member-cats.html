@@ -52,21 +52,32 @@
       color: white;
     }
 
+    .group-box button:hover {
+      background: #1d4ed8;
+    }
+
     .note {
       margin-top: 40px;
       font-size: 13px;
       color: #64748b;
     }
   </style>
-  <script>
-  const user = sessionStorage.getItem("memberUser");
-  const access = JSON.parse(sessionStorage.getItem("memberAccess") || "[]");
 
-  if (!user || !access.includes("cats")) {
-    alert("Access denied");
-    window.location.href = "index.html";
-  }
-</script>
+  <!-- ===== Access Guard (原样保留) ===== -->
+  <script>
+    const user = sessionStorage.getItem("memberUser");
+    const access = JSON.parse(sessionStorage.getItem("memberAccess") || "[]");
+
+    if (!user || !access.includes("cats")) {
+      alert("Access denied");
+      window.location.href = "index.html";
+    }
+
+    function enterGroup(group) {
+      // 现在先统一跳到占位页
+      window.location.href = "chat.html?group=" + encodeURIComponent(group);
+    }
+  </script>
 </head>
 
 <body>
@@ -76,32 +87,35 @@
     Role: Global Debug & Integration Authority
   </div>
 
+  <!-- ===== SETNIX ===== -->
   <div class="group-box">
     <h2>SETNIX · CATS</h2>
     <p>
       Core CATS development, TPS debug, hardware integration and global coordination.
     </p>
-    <button onclick="alert('SETNIX CATS module will be connected next step')">
+    <button onclick="enterGroup('setnix')">
       Enter Group
     </button>
   </div>
 
+  <!-- ===== AERO ===== -->
   <div class="group-box">
     <h2>Aero Instruments · CATS AITS6000</h2>
     <p>
       Dedicated support channel for Aero Instruments systems and field debugging.
     </p>
-    <button onclick="alert('Aero Instruments module will be connected next step')">
+    <button onclick="enterGroup('aero')">
       Enter Group
     </button>
   </div>
 
+  <!-- ===== SKYSMART ===== -->
   <div class="group-box">
     <h2>Skysmart · CATS</h2>
     <p>
       Skysmart-specific test environment, issue tracking and remote debug.
     </p>
-    <button onclick="alert('Skysmart module will be connected next step')">
+    <button onclick="enterGroup('skysmart')">
       Enter Group
     </button>
   </div>
