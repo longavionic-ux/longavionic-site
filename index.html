@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Longavionic</title>
+  <title>Long Avionic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
@@ -19,7 +19,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 14px 22px; /* ~原高度 3/4 */
+      padding: 14px 22px;
       overflow: hidden;
       background: linear-gradient(
         90deg,
@@ -35,13 +35,11 @@
     .logo {
       height: 56px;
       width: auto;
-      flex: 0 0 auto;
       z-index: 2;
     }
 
     .top-text {
       flex: 1 1 auto;
-      min-width: 0;
       z-index: 2;
     }
 
@@ -101,7 +99,7 @@
       );
     }
 
-    /* ===== Main Content ===== */
+    /* ===== Sections ===== */
     .section {
       max-width: 1200px;
       margin: 40px auto;
@@ -112,7 +110,7 @@
       margin-top: 0;
     }
 
-    /* ===== Core Capabilities ===== */
+    /* ===== Core Capabilities Cards ===== */
     .capabilities {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -149,6 +147,7 @@
       cursor: pointer;
     }
 
+    /* ===== Repair Result Table ===== */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -168,7 +167,6 @@
       background: #f5f5f5;
     }
 
-    /* ===== Repair Result Scroll ===== */
     #repairResult {
       overflow-x: auto;
       margin-top: 12px;
@@ -190,7 +188,7 @@
       color: #fff;
     }
 
-    /* ===== Footer (Two Lines) ===== */
+    /* ===== Footer ===== */
     .footer {
       border-top: 1px solid #ddd;
       margin-top: 48px;
@@ -210,23 +208,6 @@
       margin: 0 6px;
       color: #aaa;
     }
-
-    /* ===== Mobile ===== */
-    @media (max-width: 600px) {
-      .top-text h1,
-      .top-text h2 {
-        font-size: 17px;
-      }
-
-      .top-stars::before {
-        font-size: 26px;
-        letter-spacing: 16px;
-      }
-
-      .top-stars::after {
-        display: none;
-      }
-    }
   </style>
 </head>
 
@@ -235,23 +216,33 @@
   <!-- ===== Top Bar ===== -->
   <div class="top-bar">
     <img src="IMG_0431.png" class="logo" alt="Long Avionic Logo">
-
     <div class="top-text">
       <h1>Aviation Component Distribution & Repair</h1>
       <h2>Avionics Test Equipment R&D</h2>
     </div>
-
     <div class="top-stars"></div>
   </div>
 
   <div class="section-divider"></div>
 
+  <!-- ===== About Us ===== -->
+  <div class="section">
+    <h2>About Us</h2>
+    <p>Long Avionic, LLC was founded in January 2023 and is based in Houston, Texas.</p>
+    <p>龍 Long Avionic, LLC provides professional aviation test solutions and engineering services for global aviation partners.</p>
+    <p>We focus on avionics test bench design, test equipment integration, and technical consulting, supporting MROs, operators, and engineering teams.</p>
+  </div>
+
   <!-- ===== Core Capabilities ===== -->
   <div class="section">
-    <h2>Repair Capability Search</h2>
+    <h2>Core Capabilities</h2>
 
     <div class="capabilities">
+
+      <!-- Distribution & Repair -->
       <div class="card">
+        <h3>Aviation Component Distribution & Repair</h3>
+        <h4>Repair Capability Search</h4>
         <input
           type="text"
           id="repairInput"
@@ -261,6 +252,24 @@
 
         <div id="repairResult"></div>
       </div>
+
+      <!-- R&D -->
+      <div class="card">
+        <h3>Avionics Test Equipment R&D</h3>
+        <p>Submit your test or development requirements to our engineering team.</p>
+        <textarea rows="5" placeholder="Describe your requirement"></textarea>
+        <button>Submit Inquiry</button>
+      </div>
+
+      <!-- Member Area -->
+      <div class="card">
+        <h3>Authorized Member Area</h3>
+        <p>Internal access for approved partners and team members.</p>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button>Login</button>
+      </div>
+
     </div>
   </div>
 
