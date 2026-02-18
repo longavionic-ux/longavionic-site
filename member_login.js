@@ -1,55 +1,41 @@
-// ===================================================
-// Advanced Member Login & Routing
-// DO NOT REMOVE OR MODIFY WITHOUT CONFIRMATION
-// ===================================================
+function login() {
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value.trim();
 
-// Account & permission definition
-const memberUsers = {
-  "CATS Support1": {
-    password: "CATS Support1",
-    redirect: "member-cats.html"
-  },
-  "Longavionic1": {
-    password: "Longavionic1",
-    redirect: "member-cats.html"
-  },
-  "Aero Instruments 1": {
-    password: "Aero Instruments 1",
-    redirect: "member-aero.html"
-  },
-  "Setnix 1": {
-    password: "Setnix 1",
-    redirect: "member-setnix.html"
-  },
-  "Skysmart 1": {
-    password: "Skysmart 1",
-    redirect: "member-skysmart.html"
-  }
-};
-
-// Login function
-function memberLogin() {
-  const usernameInput = document.getElementById("member-username");
-  const passwordInput = document.getElementById("member-password");
-
-  if (!usernameInput || !passwordInput) {
-    alert("Login fields not found.");
+  if (user === "" || pass === "") {
+    alert("Please enter username and password");
     return;
   }
 
-  const username = usernameInput.value.trim();
-  const password = passwordInput.value.trim();
-
-  if (!memberUsers[username]) {
-    alert("Invalid account.");
+  if (user !== pass) {
+    alert("Invalid credentials");
     return;
   }
 
-  if (memberUsers[username].password !== password) {
-    alert("Invalid password.");
+  // 权限矩阵
+  const accessMap = {
+    "CATS Support1": ["cats", "aero", "setnix", "skysmart"],
+    "Longavionic1": ["cats", "aero", "setnix", "skysmart"],
+
+    "Aero Instruments 1": ["aero"],
+    "Setnix 1": ["setnix"],
+    "Skysmart 1": ["skysmart"]
+  };
+
+  if (!accessMap[user]) {
+    alert("Account not authorized");
     return;
   }
 
-  // Login success → redirect to dedicated member page
-  window.location.href = memberUsers[username].redirect;
+  // 保存会话
+  sessionStorage.setItem("memberUser", user);
+  sessionStorage.setItem("memberAccess", JSON.stringify(accessMap[user]));
+
+  // 登录后跳转规则
+  if (accessMap[user].length > 1) {
+    window.location.href = "member-cats.html"; 
+  } else {
+    const target = accessMap[user][0];
+    window.location.href = `member-${target}.html`;
+  }
 }
