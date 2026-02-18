@@ -1,13 +1,14 @@
 function login() {
-  const user = document.getElementById("username").value.trim();
-  const pass = document.getElementById("password").value.trim();
+  // 与 index.html 的 id 对齐
+  const user = document.getElementById("user").value.trim();
+  const pass = document.getElementById("pass").value.trim();
 
   if (!user || !pass) {
     alert("Please enter username and password");
     return;
   }
 
-  // 使用你之前的账号规则：用户名 = 密码
+  // 账号规则：用户名 = 密码
   if (user !== pass) {
     alert("Invalid username or password");
     return;
@@ -16,6 +17,6 @@ function login() {
   // 记录登录用户
   sessionStorage.setItem("memberUser", user);
 
-  // 直接进入聊天
+  // 进入聊天页面（默认 setnix 群）
   window.location.href = "chat.html?group=setnix";
 }
