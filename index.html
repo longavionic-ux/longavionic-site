@@ -21,8 +21,6 @@
       gap: 16px;
       padding: 18px 24px;
       overflow: hidden;
-
-      /* stronger contrast + deeper right side */
       background: linear-gradient(
         90deg,
         #ffffff 0%,
@@ -37,13 +35,11 @@
     .logo {
       height: 68px;
       width: auto;
-      flex: 0 0 auto;
       z-index: 2;
     }
 
     .top-text {
       flex: 1 1 auto;
-      min-width: 0;
       z-index: 2;
     }
 
@@ -67,13 +63,12 @@
       z-index: 1;
     }
 
-    /* bigger plane symbols */
     .top-stars::before {
       content: "✈︎ ✦ ✧ ✈︎ ✦ ✧ ✈︎ ✦ ✧";
       position: absolute;
       top: 18px;
       right: 24px;
-      font-size: 28px;
+      font-size: 42px;
       letter-spacing: 24px;
       opacity: 0.55;
       color: #e3ebff;
@@ -85,14 +80,14 @@
       position: absolute;
       bottom: 18px;
       right: 56px;
-      font-size: 20px;
+      font-size: 30px;
       letter-spacing: 28px;
       opacity: 0.42;
       color: #c7d6ff;
       white-space: nowrap;
     }
 
-    /* ===== Divider (between header and content) ===== */
+    /* ===== Divider ===== */
     .section-divider {
       height: 2px;
       max-width: 1200px;
@@ -116,7 +111,6 @@
       margin-top: 0;
     }
 
-    /* ===== Core Capabilities ===== */
     .capabilities {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -153,47 +147,39 @@
       cursor: pointer;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 13px;
-    }
-
-    table th,
-    table td {
-      border: 1px solid #ccc;
-      padding: 6px;
-      text-align: left;
-    }
-
-    table th {
-      background: #f5f5f5;
-    }
-
-    /* ===== Repair Result Table Scroll Fix ===== */
-    #repairResult {
-      overflow-x: auto;
-      margin-top: 12px;
-    }
-
-    #repairResult table {
-      min-width: 900px;
-      width: 100%;
-    }
-
-    #repairResult th,
-    #repairResult td {
-      white-space: nowrap;
-    }
-
     /* ===== Footer ===== */
     .footer {
       border-top: 1px solid #ddd;
       margin-top: 60px;
-      padding: 20px;
+      padding: 16px 20px;
       text-align: center;
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .footer a {
+      color: #243a7a;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-line {
+      margin: 4px 0;
+    }
+
+    .footer-social span {
+      margin: 0 6px;
+      color: #aaa;
+    }
+
+    .footer-legal {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #888;
     }
 
     /* ===== Mobile ===== */
@@ -204,16 +190,12 @@
       }
 
       .top-stars::before {
-        font-size: 20px;
+        font-size: 30px;
         letter-spacing: 14px;
       }
 
       .top-stars::after {
         display: none;
-      }
-
-      .section-divider {
-        margin-top: 18px;
       }
     }
   </style>
@@ -233,26 +215,14 @@
     <div class="top-stars"></div>
   </div>
 
-  <!-- ===== Divider ===== -->
   <div class="section-divider"></div>
 
   <!-- ===== About Us ===== -->
   <div class="section">
     <h2>About Us</h2>
-
-    <p>
-      Long Avionic, LLC was founded in January 2023 and is based in Houston, Texas.
-    </p>
-
-    <p>
-      龍 Long Avionic, LLC provides professional aviation test solutions and
-      engineering services for global aviation partners.
-    </p>
-
-    <p>
-      We focus on avionics test bench design, test equipment integration,
-      and technical consulting, supporting MROs, operators, and engineering teams.
-    </p>
+    <p>Long Avionic, LLC was founded in January 2023 and is based in Houston, Texas.</p>
+    <p>龍 Long Avionic, LLC provides professional aviation test solutions and engineering services for global aviation partners.</p>
+    <p>We focus on avionics test bench design, test equipment integration, and technical consulting, supporting MROs, operators, and engineering teams.</p>
   </div>
 
   <!-- ===== Core Capabilities ===== -->
@@ -260,52 +230,43 @@
     <h2>Core Capabilities</h2>
 
     <div class="capabilities">
-
       <div class="card">
         <h3>Aviation Component Distribution & Repair</h3>
-
-        <h4>Component Distribution Search</h4>
         <input type="text" placeholder="Search inventory by PN or Description">
         <button>Search Inventory</button>
-
-        <hr style="margin:16px 0;">
-
-        <h4>Repair Capability Search</h4>
-        <input
-          type="text"
-          id="repairInput"
-          placeholder="Search repair capability by PN"
-        >
-        <button onclick="searchRepair()">Search Repair Capability</button>
-
-        <div id="repairResult"></div>
       </div>
 
       <div class="card">
         <h3>Avionics Test Equipment R&D</h3>
-        <p>Submit your test or development requirements to our engineering team.</p>
         <textarea rows="5" placeholder="Describe your requirement"></textarea>
         <button>Submit Inquiry</button>
       </div>
 
       <div class="card">
         <h3>Authorized Member Area</h3>
-        <p>Internal access for approved partners and team members.</p>
         <input type="text" placeholder="Username">
         <input type="password" placeholder="Password">
         <button>Login</button>
       </div>
-
     </div>
   </div>
 
   <!-- ===== Footer ===== -->
   <div class="footer">
-    <p><strong>Website under construction.</strong></p>
-    <p>
-      Contact:
+    <div class="footer-line">
+      📍 Houston, Texas, USA ·
       <a href="mailto:longavionic@gmail.com">longavionic@gmail.com</a>
-    </p>
+    </div>
+
+    <div class="footer-line footer-social">
+      <a href="#">LinkedIn</a><span>·</span>
+      <a href="#">Twitter</a><span>·</span>
+      <a href="#">Facebook</a>
+    </div>
+
+    <div class="footer-legal">
+      © 2023–2026 Long Avionic, LLC. All rights reserved.
+    </div>
   </div>
 
   <script src="repair_search.js"></script>
