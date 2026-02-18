@@ -22,13 +22,15 @@
       padding: 18px 24px;
       overflow: hidden;
 
+      /* stronger contrast + deeper right side */
       background: linear-gradient(
         90deg,
         #ffffff 0%,
         #ffffff 140px,
-        #e1ebf5 45%,
-        #9fb5d1 70%,
-        #2f4fa8 100%
+        #e1ebf5 42%,
+        #8ea7c6 68%,
+        #2a4493 86%,
+        #0e1f4f 100%
       );
     }
 
@@ -51,7 +53,7 @@
       font-size: 22px;
       font-weight: normal;
       line-height: 1.15;
-      color: #2b3f8f;
+      color: #243a7a;
     }
 
     /* ===== Aviation Symbol Layer ===== */
@@ -59,34 +61,48 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: 50%;
+      width: 55%;
       height: 100%;
       pointer-events: none;
       z-index: 1;
     }
 
+    /* bigger plane symbols */
     .top-stars::before {
       content: "✈︎ ✦ ✧ ✈︎ ✦ ✧ ✈︎ ✦ ✧";
       position: absolute;
-      top: 20px;
-      right: 28px;
-      font-size: 22px;
-      letter-spacing: 20px;
-      opacity: 0.45;
-      color: #d6e2ff;
+      top: 18px;
+      right: 24px;
+      font-size: 28px;
+      letter-spacing: 24px;
+      opacity: 0.55;
+      color: #e3ebff;
       white-space: nowrap;
     }
 
     .top-stars::after {
       content: "✧ ✦ ✈︎ ✧ ✦ ✈︎ ✧ ✦";
       position: absolute;
-      bottom: 22px;
-      right: 60px;
-      font-size: 16px;
-      letter-spacing: 24px;
-      opacity: 0.35;
-      color: #c2d4ff;
+      bottom: 18px;
+      right: 56px;
+      font-size: 20px;
+      letter-spacing: 28px;
+      opacity: 0.42;
+      color: #c7d6ff;
       white-space: nowrap;
+    }
+
+    /* ===== Divider (between header and content) ===== */
+    .section-divider {
+      height: 2px;
+      max-width: 1200px;
+      margin: 26px auto 0;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #243a7a 50%,
+        transparent 100%
+      );
     }
 
     /* ===== Main Content ===== */
@@ -128,6 +144,7 @@
       padding: 6px;
       font-size: 14px;
       margin-bottom: 8px;
+      box-sizing: border-box;
     }
 
     .card button {
@@ -187,12 +204,16 @@
       }
 
       .top-stars::before {
-        font-size: 16px;
-        letter-spacing: 12px;
+        font-size: 20px;
+        letter-spacing: 14px;
       }
 
       .top-stars::after {
         display: none;
+      }
+
+      .section-divider {
+        margin-top: 18px;
       }
     }
   </style>
@@ -211,6 +232,9 @@
 
     <div class="top-stars"></div>
   </div>
+
+  <!-- ===== Divider ===== -->
+  <div class="section-divider"></div>
 
   <!-- ===== About Us ===== -->
   <div class="section">
