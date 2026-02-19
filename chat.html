@@ -53,7 +53,7 @@
     .msg { margin-bottom: 6px; font-size: 14px; }
     .msg b { color: #22c55e; }
 
-    /* ✅ 新增：图片显示样式 */
+    /* 图片显示样式 */
     .msg img {
       max-width: 220px;
       border-radius: 6px;
@@ -106,7 +106,6 @@
 
 <textarea id="input" placeholder="Type message..."></textarea>
 
-<!-- ✅ 新增：图片选择 -->
 <input type="file" id="imageInput" accept="image/*" style="margin-top:6px;color:#94a3b8">
 
 <br>
@@ -114,22 +113,22 @@
 <button onclick="sendImage()">Send Image</button>
 
 <script>
-  // ===== 1️⃣ 当前登录用户 =====
+  // ===== 当前用户 =====
   const user = sessionStorage.getItem("memberUser") || "Guest";
   document.getElementById("userInfo").textContent = "Logged in as: " + user;
 
-  // ===== 2️⃣ 群名 =====
+  // ===== 群名 =====
   const params = new URLSearchParams(window.location.search);
   const group = (params.get("group") || "general").toLowerCase();
 
   document.getElementById("title").textContent =
     "CATS Chat · " + group.toUpperCase();
 
-  // ===== 3️⃣ storage key =====
+  // ===== storage key =====
   const chat = document.getElementById("chat");
   const key = "cats_chat_" + group;
 
-  // ===== 4️⃣ 在线 =====
+  // ===== 在线用户 =====
   const onlineKey = "online_users_" + group;
   const onlineBox = document.getElementById("onlineInfo");
 
@@ -142,7 +141,7 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
-  // ✅ 原有文本发送：完全不动
+  // 文本发送（原样保留）
   function send() {
     const input = document.getElementById("input");
     const text = input.value.trim();
@@ -156,18 +155,25 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
-  // ✅ 新增：图片发送（独立函数，不影响 send）
+  // 图片发送（≤5MB）
   function sendImage() {
     const fileInput = document.getElementById("imageInput");
     const file = fileInput.files[0];
     if (!file) return;
 
+    const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+    if (file.size > MAX_SIZE) {
+      alert("Image too large. Max size is 5MB.");
+      fileInput.value = "";
+      return;
+    }
+
     const reader = new FileReader();
     reader.onload = function(e) {
       const msg =
         `<div class="msg"><b>${user}:</b><br>
-           <img src="${e.target.result}">
-         </div>`;
+          <img src="${e.target.result}">
+        </div>`;
 
       chat.innerHTML += msg;
       localStorage.setItem(key, chat.innerHTML);
