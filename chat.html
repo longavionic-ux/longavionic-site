@@ -47,7 +47,7 @@
 </head>
 <body>
 
-<h2>CATS Chat</h2>
+<h2 id="title">CATS Chat</h2>
 <div class="user" id="userInfo"></div>
 
 <div class="chat-box" id="chat"></div>
@@ -56,11 +56,21 @@
 <button onclick="send()">Send</button>
 
 <script>
+  // ===== 1️⃣ 当前登录用户 =====
   const user = sessionStorage.getItem("memberUser") || "Guest";
   document.getElementById("userInfo").textContent = "Logged in as: " + user;
 
+  // ===== 2️⃣ 读取群名（来自 URL）=====
+  const params = new URLSearchParams(window.location.search);
+  const group = params.get("group") || "general";
+
+  // 标题显示当前群
+  document.getElementById("title").textContent =
+    "CATS Chat · " + group.toUpperCase();
+
+  // ===== 3️⃣ 每个群一个 storage key（关键改动）=====
   const chat = document.getElementById("chat");
-  const key = "cats_chat";
+  const key = "cats_chat_" + group;
 
   function load() {
     chat.innerHTML = localStorage.getItem(key) || "";
@@ -70,9 +80,11 @@
   function send() {
     const input = document.getElementById("input");
     if (!input.value.trim()) return;
+
     const msg = `<div class="msg"><b>${user}:</b> ${input.value}</div>`;
     chat.innerHTML += msg;
     localStorage.setItem(key, chat.innerHTML);
+
     input.value = "";
     chat.scrollTop = chat.scrollHeight;
   }
