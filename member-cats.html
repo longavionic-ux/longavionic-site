@@ -19,9 +19,31 @@
       margin-bottom: 10px;
     }
 
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
     .role {
       color: #94a3b8;
-      margin-bottom: 30px;
+    }
+
+    .btn-secondary {
+      padding: 8px 16px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      background: #334155;
+      color: white;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #475569;
     }
 
     .group-box {
@@ -67,12 +89,21 @@
     function enterGroup(group) {
       window.location.href = "chat.html?group=" + encodeURIComponent(group);
     }
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
   </script>
 </head>
 
 <body>
 
-  <h1>CATS Support Center</h1>
+  <!-- 顶部标题 + 返回主页 -->
+  <div class="top-row">
+    <h1>CATS Support Center</h1>
+    <button class="btn-secondary" onclick="goHome()">Back to Home</button>
+  </div>
+
   <div class="role">
     Role: Global Debug & Integration Authority
   </div>
