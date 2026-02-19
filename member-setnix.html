@@ -48,6 +48,7 @@
     }
 
     button {
+      margin-right: 12px; /* ← 新增：按钮间距 */
       padding: 10px 18px;
       font-size: 14px;
       border: none;
@@ -82,8 +83,14 @@
     </p>
 
     <div class="btn-group">
+      <!-- 原有按钮：完全不动 -->
       <button onclick="location.href='chat.html?group=setnix'">
         Enter SETNIX CATS Chat
+      </button>
+
+      <!-- ✅ 新增按钮：返回主页 -->
+      <button onclick="location.href='index.html'">
+        Back to Home
       </button>
     </div>
   </div>
