@@ -49,8 +49,17 @@
       background: #020617;
       margin-bottom: 10px;
     }
+
     .msg { margin-bottom: 6px; font-size: 14px; }
     .msg b { color: #22c55e; }
+
+    /* ✅ 新增：图片显示样式 */
+    .msg img {
+      max-width: 220px;
+      border-radius: 6px;
+      margin-top: 6px;
+      display: block;
+    }
 
     textarea {
       width: 100%;
@@ -64,6 +73,7 @@
 
     button {
       margin-top: 6px;
+      margin-right: 6px;
       padding: 8px 16px;
       border: none;
       border-radius: 6px;
@@ -82,43 +92,49 @@
 </head>
 <body>
 
-  <div class="top-row">
-    <div class="left">
-      <button class="btn-secondary" onclick="goBack()">Back</button>
-      <h2 id="title">CATS Chat</h2>
-    </div>
+<div class="top-row">
+  <div class="left">
+    <button class="btn-secondary" onclick="goBack()">Back</button>
+    <h2 id="title">CATS Chat</h2>
   </div>
+</div>
 
-  <div class="user" id="userInfo"></div>
-  <div class="online" id="onlineInfo"></div>
+<div class="user" id="userInfo"></div>
+<div class="online" id="onlineInfo"></div>
 
-  <div class="chat-box" id="chat"></div>
+<div class="chat-box" id="chat"></div>
 
-  <textarea id="input" placeholder="Type message..."></textarea>
-  <button onclick="send()">Send</button>
+<textarea id="input" placeholder="Type message..."></textarea>
+
+<!-- ✅ 新增：图片选择 -->
+<input type="file" id="imageInput" accept="image/*" style="margin-top:6px;color:#94a3b8">
+
+<br>
+<button onclick="send()">Send</button>
+<button onclick="sendImage()">Send Image</button>
 
 <script>
   // ===== 1️⃣ 当前登录用户 =====
   const user = sessionStorage.getItem("memberUser") || "Guest";
   document.getElementById("userInfo").textContent = "Logged in as: " + user;
 
-  // ===== 2️⃣ 读取群名（来自 URL）=====
+  // ===== 2️⃣ 群名 =====
   const params = new URLSearchParams(window.location.search);
   const group = (params.get("group") || "general").toLowerCase();
 
-  // 标题显示当前群
-  document.getElementById("title").textContent = "CATS Chat · " + group.toUpperCase();
+  document.getElementById("title").textContent =
+    "CATS Chat · " + group.toUpperCase();
 
-  // ===== 3️⃣ 每个群一个 storage key（聊天不混）=====
+  // ===== 3️⃣ storage key =====
   const chat = document.getElementById("chat");
   const key = "cats_chat_" + group;
 
-  // ===== 4️⃣ 在线人员（每群独立）=====
-  const onlineKey = "online_users_" + group; // value: { username: lastSeenMs, ... }
+  // ===== 4️⃣ 在线 =====
+  const onlineKey = "online_users_" + group;
   const onlineBox = document.getElementById("onlineInfo");
 
   function safeParseJSON(s, fallback) {
-    try { return JSON.parse(s); } catch (e) { return fallback; }
+    try { return JSON.parse(s); } catch { return fallback; }
   }
 
   function load() {
@@ -126,6 +142,7 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
+  // ✅ 原有文本发送：完全不动
   function send() {
     const input = document.getElementById("input");
     const text = input.value.trim();
@@ -139,9 +156,29 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
-  // --- Back: 回到对应 member 页面 ---
+  // ✅ 新增：图片发送（独立函数，不影响 send）
+  function sendImage() {
+    const fileInput = document.getElementById("imageInput");
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const msg =
+        `<div class="msg"><b>${user}:</b><br>
+           <img src="${e.target.result}">
+         </div>`;
+
+      chat.innerHTML += msg;
+      localStorage.setItem(key, chat.innerHTML);
+      chat.scrollTop = chat.scrollHeight;
+    };
+    reader.readAsDataURL(file);
+
+    fileInput.value = "";
+  }
+
   function goBack() {
-    // cats 页面里会进 setnix/aero/skysmart 三个群，所以需要 group 判断回哪
     const map = {
       setnix: "member-setnix.html",
       aero: "member-aero.html",
@@ -152,7 +189,6 @@
     window.location.href = map[group] || "index.html";
   }
 
-  // --- Online: 心跳 + 渲染 ---
   function updateOnline() {
     if (!user || user === "Guest") {
       onlineBox.textContent = "Online: (login required)";
@@ -163,7 +199,6 @@
     const data = safeParseJSON(localStorage.getItem(onlineKey) || "{}", {});
     data[user] = now;
 
-    // 清理离线用户：超过 90 秒不更新就算离线
     const TTL = 90 * 1000;
     Object.keys(data).forEach(name => {
       if (now - data[name] > TTL) delete data[name];
@@ -172,21 +207,16 @@
     localStorage.setItem(onlineKey, JSON.stringify(data));
 
     const list = Object.keys(data);
-    if (list.length === 0) {
-      onlineBox.textContent = "Online: (none)";
-      return;
-    }
-
-    // 显示
-    onlineBox.innerHTML = "Online (" + list.length + "): <b>" + list.map(escapeHtml).join("</b>, <b>") + "</b>";
+    onlineBox.innerHTML =
+      list.length
+        ? "Online (" + list.length + "): <b>" + list.map(escapeHtml).join("</b>, <b>") + "</b>"
+        : "Online: (none)";
   }
 
-  // 跨标签页/跨窗口同步在线列表
   window.addEventListener("storage", (e) => {
     if (e.key === onlineKey) updateOnline();
   });
 
-  // 页面关闭时尽量移除自己（不保证100%触发，但能减少残留）
   window.addEventListener("beforeunload", () => {
     const data = safeParseJSON(localStorage.getItem(onlineKey) || "{}", {});
     delete data[user];
@@ -202,11 +232,8 @@
       .replaceAll("'", "&#39;");
   }
 
-  // 初始化
   load();
   updateOnline();
-
-  // 每 10 秒心跳一次
   setInterval(updateOnline, 10000);
 </script>
 
