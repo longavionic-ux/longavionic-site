@@ -64,15 +64,6 @@
       color: #64748b;
     }
   </style>
-  <script>
-  const user = sessionStorage.getItem("memberUser");
-  const access = JSON.parse(sessionStorage.getItem("memberAccess") || "[]");
-
-  if (!user || !access.includes("skysmart")) {
-    alert("Access denied");
-    window.location.href = "index.html";
-  }
-</script>
 </head>
 
 <body>
@@ -92,11 +83,11 @@
     </p>
 
     <div class="btn-group">
-      <button onclick="alert('Skysmart debug workspace coming soon')">
+      <button onclick="location.href='chat.html?group=skysmart'">
         Debug Workspace
       </button>
 
-      <button onclick="alert('Communication module planned')">
+      <button onclick="location.href='chat.html?group=skysmart'">
         Team Communication
       </button>
     </div>
