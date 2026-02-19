@@ -60,15 +60,6 @@
       color: #64748b;
     }
   </style>
-  <script>
-  const user = sessionStorage.getItem("memberUser");
-  const access = JSON.parse(sessionStorage.getItem("memberAccess") || "[]");
-
-  if (!user || !access.includes("aero")) {
-    alert("Access denied");
-    window.location.href = "index.html";
-  }
-</script>
 </head>
 
 <body>
@@ -86,7 +77,7 @@
       will be handled within this channel only.
     </p>
 
-    <button onclick="alert('Aero Instruments debug module will be connected next step')">
+    <button onclick="location.href='chat.html?group=aero'">
       Enter Debug Area
     </button>
   </div>
