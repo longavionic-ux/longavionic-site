@@ -58,7 +58,8 @@
 <script>
   // ===== 1️⃣ 当前登录用户 =====
   const user = sessionStorage.getItem("memberUser") || "Guest";
-  document.getElementById("userInfo").textContent = "Logged in as: " + user;
+  document.getElementById("userInfo").textContent =
+    "Logged in as: " + user;
 
   // ===== 2️⃣ 读取群名（来自 URL）=====
   const params = new URLSearchParams(window.location.search);
@@ -68,7 +69,7 @@
   document.getElementById("title").textContent =
     "CATS Chat · " + group.toUpperCase();
 
-  // ===== 3️⃣ 每个群一个 storage key（关键改动）=====
+  // ===== 3️⃣ 每个群一个 storage key（关键点）=====
   const chat = document.getElementById("chat");
   const key = "cats_chat_" + group;
 
@@ -81,7 +82,9 @@
     const input = document.getElementById("input");
     if (!input.value.trim()) return;
 
-    const msg = `<div class="msg"><b>${user}:</b> ${input.value}</div>`;
+    const msg =
+      `<div class="msg"><b>${user}:</b> ${input.value}</div>`;
+
     chat.innerHTML += msg;
     localStorage.setItem(key, chat.innerHTML);
 
