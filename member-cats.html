@@ -63,18 +63,8 @@
     }
   </style>
 
-  <!-- ===== Access Guard (原样保留) ===== -->
   <script>
-    const user = sessionStorage.getItem("memberUser");
-    const access = JSON.parse(sessionStorage.getItem("memberAccess") || "[]");
-
-    if (!user || !access.includes("cats")) {
-      alert("Access denied");
-      window.location.href = "index.html";
-    }
-
     function enterGroup(group) {
-      // 现在先统一跳到占位页
       window.location.href = "chat.html?group=" + encodeURIComponent(group);
     }
   </script>
