@@ -13,7 +13,33 @@
       color: #e5e7eb;
     }
     h2 { color: #38bdf8; margin-top: 0; }
+
+    .top-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:8px;
+      flex-wrap:wrap;
+    }
+
+    .left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .user { color: #94a3b8; margin-bottom: 10px; }
+
+    .online {
+      color:#94a3b8;
+      font-size:13px;
+      margin-bottom:10px;
+    }
+
+    .online b { color:#22c55e; }
+
     .chat-box {
       height: 320px;
       overflow-y: auto;
@@ -25,6 +51,7 @@
     }
     .msg { margin-bottom: 6px; font-size: 14px; }
     .msg b { color: #22c55e; }
+
     textarea {
       width: 100%;
       height: 60px;
@@ -34,6 +61,7 @@
       border-radius: 6px;
       padding: 8px;
     }
+
     button {
       margin-top: 6px;
       padding: 8px 16px;
@@ -43,35 +71,55 @@
       color: white;
       cursor: pointer;
     }
+
+    .btn-secondary{
+      background:#334155;
+    }
+    .btn-secondary:hover{
+      background:#475569;
+    }
   </style>
 </head>
 <body>
 
-<h2 id="title">CATS Chat</h2>
-<div class="user" id="userInfo"></div>
+  <div class="top-row">
+    <div class="left">
+      <button class="btn-secondary" onclick="goBack()">Back</button>
+      <h2 id="title">CATS Chat</h2>
+    </div>
+  </div>
 
-<div class="chat-box" id="chat"></div>
+  <div class="user" id="userInfo"></div>
+  <div class="online" id="onlineInfo"></div>
 
-<textarea id="input" placeholder="Type message..."></textarea>
-<button onclick="send()">Send</button>
+  <div class="chat-box" id="chat"></div>
+
+  <textarea id="input" placeholder="Type message..."></textarea>
+  <button onclick="send()">Send</button>
 
 <script>
   // ===== 1️⃣ 当前登录用户 =====
   const user = sessionStorage.getItem("memberUser") || "Guest";
-  document.getElementById("userInfo").textContent =
-    "Logged in as: " + user;
+  document.getElementById("userInfo").textContent = "Logged in as: " + user;
 
   // ===== 2️⃣ 读取群名（来自 URL）=====
   const params = new URLSearchParams(window.location.search);
-  const group = params.get("group") || "general";
+  const group = (params.get("group") || "general").toLowerCase();
 
   // 标题显示当前群
-  document.getElementById("title").textContent =
-    "CATS Chat · " + group.toUpperCase();
+  document.getElementById("title").textContent = "CATS Chat · " + group.toUpperCase();
 
-  // ===== 3️⃣ 每个群一个 storage key（关键点）=====
+  // ===== 3️⃣ 每个群一个 storage key（聊天不混）=====
   const chat = document.getElementById("chat");
   const key = "cats_chat_" + group;
+
+  // ===== 4️⃣ 在线人员（每群独立）=====
+  const onlineKey = "online_users_" + group; // value: { username: lastSeenMs, ... }
+  const onlineBox = document.getElementById("onlineInfo");
+
+  function safeParseJSON(s, fallback) {
+    try { return JSON.parse(s); } catch (e) { return fallback; }
+  }
 
   function load() {
     chat.innerHTML = localStorage.getItem(key) || "";
@@ -80,11 +128,10 @@
 
   function send() {
     const input = document.getElementById("input");
-    if (!input.value.trim()) return;
+    const text = input.value.trim();
+    if (!text) return;
 
-    const msg =
-      `<div class="msg"><b>${user}:</b> ${input.value}</div>`;
-
+    const msg = `<div class="msg"><b>${user}:</b> ${escapeHtml(text)}</div>`;
     chat.innerHTML += msg;
     localStorage.setItem(key, chat.innerHTML);
 
@@ -92,7 +139,75 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
+  // --- Back: 回到对应 member 页面 ---
+  function goBack() {
+    // cats 页面里会进 setnix/aero/skysmart 三个群，所以需要 group 判断回哪
+    const map = {
+      setnix: "member-setnix.html",
+      aero: "member-aero.html",
+      skysmart: "member-skysmart.html",
+      cats: "member-cats.html",
+      general: "index.html"
+    };
+    window.location.href = map[group] || "index.html";
+  }
+
+  // --- Online: 心跳 + 渲染 ---
+  function updateOnline() {
+    if (!user || user === "Guest") {
+      onlineBox.textContent = "Online: (login required)";
+      return;
+    }
+
+    const now = Date.now();
+    const data = safeParseJSON(localStorage.getItem(onlineKey) || "{}", {});
+    data[user] = now;
+
+    // 清理离线用户：超过 90 秒不更新就算离线
+    const TTL = 90 * 1000;
+    Object.keys(data).forEach(name => {
+      if (now - data[name] > TTL) delete data[name];
+    });
+
+    localStorage.setItem(onlineKey, JSON.stringify(data));
+
+    const list = Object.keys(data);
+    if (list.length === 0) {
+      onlineBox.textContent = "Online: (none)";
+      return;
+    }
+
+    // 显示
+    onlineBox.innerHTML = "Online (" + list.length + "): <b>" + list.map(escapeHtml).join("</b>, <b>") + "</b>";
+  }
+
+  // 跨标签页/跨窗口同步在线列表
+  window.addEventListener("storage", (e) => {
+    if (e.key === onlineKey) updateOnline();
+  });
+
+  // 页面关闭时尽量移除自己（不保证100%触发，但能减少残留）
+  window.addEventListener("beforeunload", () => {
+    const data = safeParseJSON(localStorage.getItem(onlineKey) || "{}", {});
+    delete data[user];
+    localStorage.setItem(onlineKey, JSON.stringify(data));
+  });
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  // 初始化
   load();
+  updateOnline();
+
+  // 每 10 秒心跳一次
+  setInterval(updateOnline, 10000);
 </script>
 
 </body>
