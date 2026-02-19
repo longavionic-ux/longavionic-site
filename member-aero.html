@@ -45,6 +45,7 @@
 
     button {
       margin-top: 20px;
+      margin-right: 12px; /* ← 新增：让两个按钮有间距 */
       padding: 10px 20px;
       font-size: 14px;
       border: none;
@@ -77,8 +78,14 @@
       will be handled within this channel only.
     </p>
 
+    <!-- 原有按钮：完全不动 -->
     <button onclick="location.href='chat.html?group=aero'">
       Enter Debug Area
+    </button>
+
+    <!-- ✅ 新增按钮：返回主页 -->
+    <button onclick="location.href='index.html'">
+      Back to Home
     </button>
   </div>
 
