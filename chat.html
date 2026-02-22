@@ -31,13 +31,7 @@
     }
 
     .user { color: #94a3b8; margin-bottom: 10px; }
-
-    .online {
-      color:#94a3b8;
-      font-size:13px;
-      margin-bottom:10px;
-    }
-
+    .online { color:#94a3b8; font-size:13px; margin-bottom:10px; }
     .online b { color:#22c55e; }
 
     .chat-box {
@@ -98,7 +92,6 @@
 
 <textarea id="input" placeholder="Type message..."></textarea>
 
-<!-- ★ CHANGED: file input, not image -->
 <input type="file" id="fileInput" style="margin-top:6px;color:#94a3b8">
 
 <br>
@@ -106,6 +99,14 @@
 <button onclick="sendFile()">Send File</button>
 
 <script>
+  /* ================================
+     CONFIG – 只改这里
+     ================================ */
+  const API_BASE = "https://YOUR_VM_IP:3000"; // ← 换成你的 VM
+
+  /* ================================
+     原有逻辑：用户 & 分组
+     ================================ */
   const user = sessionStorage.getItem("memberUser") || "Guest";
   document.getElementById("userInfo").textContent = "Logged in as: " + user;
 
@@ -116,7 +117,6 @@
 
   const chat = document.getElementById("chat");
   const key = "cats_chat_" + group;
-
   const onlineKey = "online_users_" + group;
   const onlineBox = document.getElementById("onlineInfo");
 
@@ -124,45 +124,92 @@
     try { return JSON.parse(s); } catch { return fallback; }
   }
 
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
   function load() {
     chat.innerHTML = localStorage.getItem(key) || "";
     chat.scrollTop = chat.scrollHeight;
   }
 
-  function send() {
+  /* ================================
+     文本消息：本地 + 云端
+     ================================ */
+  async function send() {
     const input = document.getElementById("input");
     const text = input.value.trim();
     if (!text) return;
 
-    const msg = `<div class="msg"><b>${user}:</b> ${escapeHtml(text)}</div>`;
-    chat.innerHTML += msg;
-    localStorage.setItem(key, chat.innerHTML);
+    const msgHTML =
+      `<div class="msg"><b>${user}:</b> ${escapeHtml(text)}</div>`;
 
-    input.value = "";
+    chat.innerHTML += msgHTML;
+    localStorage.setItem(key, chat.innerHTML);
     chat.scrollTop = chat.scrollHeight;
+    input.value = "";
+
+    /* 云端发送（失败不影响本地） */
+    try {
+      const fd = new FormData();
+      fd.append("user", user);
+      fd.append("group", group);
+      fd.append("message", text);
+
+      await fetch(API_BASE + "/api/chat", {
+        method: "POST",
+        body: fd
+      });
+    } catch (e) {
+      console.warn("Cloud chat failed, local only", e);
+    }
   }
 
-  /* ★ CHANGED: sendFile instead of sendImage */
-  function sendFile() {
+  /* ================================
+     文件消息：本地 + 云端
+     ================================ */
+  async function sendFile() {
     const fileInput = document.getElementById("fileInput");
     const file = fileInput.files[0];
     if (!file) return;
 
     const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
 
-    const msg =
+    const msgHTML =
       `<div class="msg">
         <b>${user}:</b><br>
         📎 <i>${escapeHtml(file.name)}</i> (${sizeMB} MB)
       </div>`;
 
-    chat.innerHTML += msg;
+    chat.innerHTML += msgHTML;
     localStorage.setItem(key, chat.innerHTML);
     chat.scrollTop = chat.scrollHeight;
-
     fileInput.value = "";
+
+    /* 云端发送（支持 >5MB） */
+    try {
+      const fd = new FormData();
+      fd.append("user", user);
+      fd.append("group", group);
+      fd.append("file", file);
+
+      await fetch(API_BASE + "/api/chat", {
+        method: "POST",
+        body: fd
+      });
+    } catch (e) {
+      console.warn("Cloud file upload failed, local only", e);
+    }
   }
 
+  /* ================================
+     返回逻辑（原样保留）
+     ================================ */
   function goBack() {
     const map = {
       setnix: "member-setnix.html",
@@ -174,6 +221,9 @@
     window.location.href = map[group] || "index.html";
   }
 
+  /* ================================
+     在线用户逻辑（原样保留）
+     ================================ */
   function updateOnline() {
     if (!user || user === "Guest") {
       onlineBox.textContent = "Online: (login required)";
@@ -208,15 +258,6 @@
     delete data[user];
     localStorage.setItem(onlineKey, JSON.stringify(data));
   });
-
-  function escapeHtml(str) {
-    return String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;");
-  }
 
   load();
   updateOnline();
