@@ -116,5 +116,5 @@ function requestQuote(pn) {
     `Thank you.`;
 
   window.location.href =
-    `mailto:businesses@longavionic.com?😄subject=${subject}&body=${body}`;
+    `mailto:businesses@longavionic.com?subject=${subject}&body=${body}`;
 }
