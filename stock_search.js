@@ -114,5 +114,5 @@ function requestStockQuote(pn, condition, qty) {
     `Thank you.`;
 
   window.location.href =
-    `mailto:longavionic@gmail.com?subject=${subject}&body=${body}`;
+    `mailto:businesses@longavionic.com?subject=${subject}&body=${body}`;
 }
