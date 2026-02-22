@@ -99,14 +99,15 @@
 <button onclick="sendFile()">Send File</button>
 
 <script>
-  /* ================================
-     CONFIG – 只改这里
-     ================================ */
-  const API_BASE = "https://YOUR_VM_IP:3000"; // ← 换成你的 VM
+  /* ==================================================
+     CONFIG（唯一需要你确认的一行）
+     ================================================== */
+  const API_BASE = "http://34.55.16.228:3000";
+  // ↑ 后期可换成 https://chat.longavionic.com
 
-  /* ================================
-     原有逻辑：用户 & 分组
-     ================================ */
+  /* ==================================================
+     原有逻辑：用户 & 分组（完全保留）
+     ================================================== */
   const user = sessionStorage.getItem("memberUser") || "Guest";
   document.getElementById("userInfo").textContent = "Logged in as: " + user;
 
@@ -138,9 +139,9 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
-  /* ================================
-     文本消息：本地 + 云端
-     ================================ */
+  /* ==================================================
+     文本消息：本地 + 云端（云端失败不影响本地）
+     ================================================== */
   async function send() {
     const input = document.getElementById("input");
     const text = input.value.trim();
@@ -154,7 +155,6 @@
     chat.scrollTop = chat.scrollHeight;
     input.value = "";
 
-    /* 云端发送（失败不影响本地） */
     try {
       const fd = new FormData();
       fd.append("user", user);
@@ -166,13 +166,13 @@
         body: fd
       });
     } catch (e) {
-      console.warn("Cloud chat failed, local only", e);
+      console.warn("Cloud chat failed (local ok)", e);
     }
   }
 
-  /* ================================
-     文件消息：本地 + 云端
-     ================================ */
+  /* ==================================================
+     文件消息：本地 + 云端（支持 >5MB）
+     ================================================== */
   async function sendFile() {
     const fileInput = document.getElementById("fileInput");
     const file = fileInput.files[0];
@@ -191,7 +191,6 @@
     chat.scrollTop = chat.scrollHeight;
     fileInput.value = "";
 
-    /* 云端发送（支持 >5MB） */
     try {
       const fd = new FormData();
       fd.append("user", user);
@@ -203,13 +202,13 @@
         body: fd
       });
     } catch (e) {
-      console.warn("Cloud file upload failed, local only", e);
+      console.warn("Cloud file upload failed (local ok)", e);
     }
   }
 
-  /* ================================
+  /* ==================================================
      返回逻辑（原样保留）
-     ================================ */
+     ================================================== */
   function goBack() {
     const map = {
       setnix: "member-setnix.html",
@@ -221,9 +220,9 @@
     window.location.href = map[group] || "index.html";
   }
 
-  /* ================================
+  /* ==================================================
      在线用户逻辑（原样保留）
-     ================================ */
+     ================================================== */
   function updateOnline() {
     if (!user || user === "Guest") {
       onlineBox.textContent = "Online: (login required)";
