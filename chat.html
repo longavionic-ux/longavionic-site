@@ -108,6 +108,17 @@
 <!-- ✅ 新增：Socket.IO 客户端（必须） -->
 <script src="http://34.55.16.228:3000/socket.io/socket.io.js"></script>
 
+<!-- ✅ 登录态兜底（仅新增这一段，不改任何旧逻辑） -->
+<script>
+  (function () {
+    const u = sessionStorage.getItem("memberUser");
+    if (!u) {
+      alert("Session expired. Please login again.");
+      window.location.href = "index.html";
+    }
+  })();
+</script>
+
 <script>
   /* ==================================================
      CONFIG
