@@ -30,9 +30,15 @@
       flex-wrap:wrap;
     }
 
-    .user { color: #94a3b8; margin-bottom: 10px; }
-    .online { color:#94a3b8; font-size:13px; margin-bottom:10px; }
+    .user { color: #94a3b8; margin-bottom: 6px; }
+    .online { color:#94a3b8; font-size:13px; margin-bottom:6px; }
     .online b { color:#22c55e; }
+
+    .cloud-status{
+      font-size:12px;
+      color:#64748b;
+      margin-bottom:10px;
+    }
 
     .chat-box {
       height: 320px;
@@ -87,6 +93,7 @@
 
 <div class="user" id="userInfo"></div>
 <div class="online" id="onlineInfo"></div>
+<div class="cloud-status" id="cloudStatus">Cloud: unknown</div>
 
 <div class="chat-box" id="chat"></div>
 
@@ -100,10 +107,9 @@
 
 <script>
   /* ==================================================
-     CONFIG（唯一需要你确认的一行）
+     CONFIG
      ================================================== */
   const API_BASE = "http://34.55.16.228:3000";
-  // ↑ 后期可换成 https://chat.longavionic.com
 
   /* ==================================================
      原有逻辑：用户 & 分组（完全保留）
@@ -120,6 +126,7 @@
   const key = "cats_chat_" + group;
   const onlineKey = "online_users_" + group;
   const onlineBox = document.getElementById("onlineInfo");
+  const cloudStatus = document.getElementById("cloudStatus");
 
   function safeParseJSON(s, fallback) {
     try { return JSON.parse(s); } catch { return fallback; }
@@ -134,13 +141,44 @@
       .replaceAll("'", "&#39;");
   }
 
-  function load() {
+  /* ==================================================
+     本地加载（原样保留）
+     ================================================== */
+  function loadLocal() {
     chat.innerHTML = localStorage.getItem(key) || "";
     chat.scrollTop = chat.scrollHeight;
   }
 
   /* ==================================================
-     文本消息：本地 + 云端（云端失败不影响本地）
+     ⭐ NEW：从云端加载消息（成功才覆盖本地）
+     ================================================== */
+  async function loadFromCloud() {
+    try {
+      const res = await fetch(API_BASE + "/api/chat?group=" + group);
+      if (!res.ok) throw new Error("bad response");
+      const list = await res.json();
+
+      if (Array.isArray(list)) {
+        let html = "";
+        list.forEach(m => {
+          if (m.type === "text") {
+            html += `<div class="msg"><b>${escapeHtml(m.user)}:</b> ${escapeHtml(m.text)}</div>`;
+          } else if (m.type === "file") {
+            html += `<div class="msg"><b>${escapeHtml(m.user)}:</b><br>📎 <i>${escapeHtml(m.fileName)}</i></div>`;
+          }
+        });
+        chat.innerHTML = html;
+        localStorage.setItem(key, html);
+        chat.scrollTop = chat.scrollHeight;
+        cloudStatus.textContent = "Cloud: synced";
+      }
+    } catch (e) {
+      cloudStatus.textContent = "Cloud: offline (local mode)";
+    }
+  }
+
+  /* ==================================================
+     文本消息：本地 + 云端（原逻辑保留）
      ================================================== */
   async function send() {
     const input = document.getElementById("input");
@@ -159,19 +197,22 @@
       const fd = new FormData();
       fd.append("user", user);
       fd.append("group", group);
-      fd.append("message", text);
+      fd.append("text", text);
 
-      await fetch(API_BASE + "/api/chat", {
+      await fetch(API_BASE + "/api/chat?group=" + group, {
         method: "POST",
         body: fd
       });
+
+      // ⭐ NEW：发送成功后，重新拉一次云
+      loadFromCloud();
     } catch (e) {
       console.warn("Cloud chat failed (local ok)", e);
     }
   }
 
   /* ==================================================
-     文件消息：本地 + 云端（支持 >5MB）
+     文件消息：本地 + 云端（原逻辑保留）
      ================================================== */
   async function sendFile() {
     const fileInput = document.getElementById("fileInput");
@@ -194,20 +235,22 @@
     try {
       const fd = new FormData();
       fd.append("user", user);
-      fd.append("group", group);
       fd.append("file", file);
 
-      await fetch(API_BASE + "/api/chat", {
+      await fetch(API_BASE + "/api/upload?group=" + group + "&user=" + encodeURIComponent(user), {
         method: "POST",
         body: fd
       });
+
+      // ⭐ NEW：同步
+      loadFromCloud();
     } catch (e) {
       console.warn("Cloud file upload failed (local ok)", e);
     }
   }
 
   /* ==================================================
-     返回逻辑（原样保留）
+     返回逻辑（原样）
      ================================================== */
   function goBack() {
     const map = {
@@ -258,7 +301,11 @@
     localStorage.setItem(onlineKey, JSON.stringify(data));
   });
 
-  load();
+  /* ==================================================
+     启动
+     ================================================== */
+  loadLocal();       // 先保证单机
+  loadFromCloud();  // 再尝试云
   updateOnline();
   setInterval(updateOnline, 10000);
 </script>
