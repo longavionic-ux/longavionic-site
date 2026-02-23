@@ -112,7 +112,7 @@
   const API_BASE = "http://34.55.16.228:3000";
 
   /* ==================================================
-     原有逻辑：用户 & 分组（完全保留）
+     用户 & 分组（原样保留）
      ================================================== */
   const user = sessionStorage.getItem("memberUser") || "Guest";
   document.getElementById("userInfo").textContent = "Logged in as: " + user;
@@ -142,7 +142,7 @@
   }
 
   /* ==================================================
-     本地加载（原样保留）
+     本地加载（完全保留）
      ================================================== */
   function loadLocal() {
     chat.innerHTML = localStorage.getItem(key) || "";
@@ -150,7 +150,7 @@
   }
 
   /* ==================================================
-     ⭐ NEW：从云端加载消息（成功才覆盖本地）
+     云端加载（关键）
      ================================================== */
   async function loadFromCloud() {
     try {
@@ -178,7 +178,7 @@
   }
 
   /* ==================================================
-     文本消息：本地 + 云端（原逻辑保留）
+     发送文字（本地 + 云）
      ================================================== */
   async function send() {
     const input = document.getElementById("input");
@@ -196,7 +196,6 @@
     try {
       const fd = new FormData();
       fd.append("user", user);
-      fd.append("group", group);
       fd.append("text", text);
 
       await fetch(API_BASE + "/api/chat?group=" + group, {
@@ -204,7 +203,6 @@
         body: fd
       });
 
-      // ⭐ NEW：发送成功后，重新拉一次云
       loadFromCloud();
     } catch (e) {
       console.warn("Cloud chat failed (local ok)", e);
@@ -212,7 +210,7 @@
   }
 
   /* ==================================================
-     文件消息：本地 + 云端（原逻辑保留）
+     发送文件（本地 + 云）
      ================================================== */
   async function sendFile() {
     const fileInput = document.getElementById("fileInput");
@@ -242,7 +240,6 @@
         body: fd
       });
 
-      // ⭐ NEW：同步
       loadFromCloud();
     } catch (e) {
       console.warn("Cloud file upload failed (local ok)", e);
@@ -264,7 +261,7 @@
   }
 
   /* ==================================================
-     在线用户逻辑（原样保留）
+     在线用户（原样）
      ================================================== */
   function updateOnline() {
     if (!user || user === "Guest") {
@@ -304,10 +301,12 @@
   /* ==================================================
      启动
      ================================================== */
-  loadLocal();       // 先保证单机
-  loadFromCloud();  // 再尝试云
+  loadLocal();        // 单机兜底
+  loadFromCloud();   // 首次云同步
   updateOnline();
+
   setInterval(updateOnline, 10000);
+  setInterval(loadFromCloud, 3000); // ⭐ 云轮询（关键）
 </script>
 
 </body>
