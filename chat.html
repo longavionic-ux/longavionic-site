@@ -105,6 +105,9 @@
 <button onclick="send()">Send</button>
 <button onclick="sendFile()">Send File</button>
 
+<!-- ✅ 新增：Socket.IO 客户端（必须） -->
+<script src="http://34.55.16.228:3000/socket.io/socket.io.js"></script>
+
 <script>
   /* ==================================================
      CONFIG
@@ -150,31 +153,75 @@
   }
 
   /* ==================================================
-     云端加载（关键）
+     云端加载（HTTP 拉历史，兜底）
      ================================================== */
   async function loadFromCloud() {
     try {
-      const res = await fetch(API_BASE + "/api/chat?group=" + group);
+      const res = await fetch(API_BASE + "/api/chat?group=" + group, { cache: "no-store" });
       if (!res.ok) throw new Error("bad response");
       const list = await res.json();
 
-      if (Array.isArray(list)) {
-        let html = "";
-        list.forEach(m => {
-          if (m.type === "text") {
-            html += `<div class="msg"><b>${escapeHtml(m.user)}:</b> ${escapeHtml(m.text)}</div>`;
-          } else if (m.type === "file") {
-            html += `<div class="msg"><b>${escapeHtml(m.user)}:</b><br>📎 <i>${escapeHtml(m.fileName)}</i></div>`;
-          }
-        });
-        chat.innerHTML = html;
-        localStorage.setItem(key, html);
-        chat.scrollTop = chat.scrollHeight;
-        cloudStatus.textContent = "Cloud: synced";
+      if (!Array.isArray(list)) return;
+
+      let html = "";
+      list.forEach(m => {
+        if (m.type === "text") {
+          html += `<div class="msg"><b>${escapeHtml(m.user)}:</b> ${escapeHtml(m.text)}</div>`;
+        } else if (m.type === "file") {
+          html += `<div class="msg"><b>${escapeHtml(m.user)}:</b><br>📎 <i>${escapeHtml(m.fileName)}</i></div>`;
+        }
+      });
+
+      chat.innerHTML = html;
+      localStorage.setItem(key, html);
+      chat.scrollTop = chat.scrollHeight;
+      // 不要在这里强行写 realtime，避免误导
+      if (!cloudStatus.textContent.includes("realtime")) {
+        cloudStatus.textContent = "Cloud: synced (HTTP)";
       }
     } catch (e) {
-      cloudStatus.textContent = "Cloud: offline (local mode)";
+      if (!cloudStatus.textContent.includes("realtime")) {
+        cloudStatus.textContent = "Cloud: offline (local mode)";
+      }
     }
+  }
+
+  /* ==================================================
+     ✅ Socket.IO 实时层（新增核心，不删旧逻辑）
+     ================================================== */
+  let socketOK = false;
+
+  try {
+    const socket = io(API_BASE, { transports: ['polling','websocket'] });
+
+    socket.on('connect', () => {
+      socketOK = true;
+      socket.emit('join', { group, user });
+      cloudStatus.textContent = "Cloud: realtime connected";
+    });
+
+    socket.on('disconnect', () => {
+      socketOK = false;
+      cloudStatus.textContent = "Cloud: synced (HTTP)";
+    });
+
+    socket.on('message', (m) => {
+      // 收到实时消息就追加，不覆盖
+      let html = "";
+      if (m && m.type === "text") {
+        html = `<div class="msg"><b>${escapeHtml(m.user)}:</b> ${escapeHtml(m.text)}</div>`;
+      } else if (m && m.type === "file") {
+        html = `<div class="msg"><b>${escapeHtml(m.user)}:</b><br>📎 <i>${escapeHtml(m.fileName)}</i></div>`;
+      } else {
+        return;
+      }
+
+      chat.innerHTML += html;
+      localStorage.setItem(key, chat.innerHTML);
+      chat.scrollTop = chat.scrollHeight;
+    });
+  } catch (e) {
+    // socket 加载失败就静默，保留 HTTP + local
   }
 
   /* ==================================================
@@ -188,6 +235,7 @@
     const msgHTML =
       `<div class="msg"><b>${user}:</b> ${escapeHtml(text)}</div>`;
 
+    // 本地立刻显示（保留原体验）
     chat.innerHTML += msgHTML;
     localStorage.setItem(key, chat.innerHTML);
     chat.scrollTop = chat.scrollHeight;
@@ -202,8 +250,6 @@
         method: "POST",
         body: fd
       });
-
-      loadFromCloud();
     } catch (e) {
       console.warn("Cloud chat failed (local ok)", e);
     }
@@ -225,6 +271,7 @@
         📎 <i>${escapeHtml(file.name)}</i> (${sizeMB} MB)
       </div>`;
 
+    // 本地立刻显示（保留原体验）
     chat.innerHTML += msgHTML;
     localStorage.setItem(key, chat.innerHTML);
     chat.scrollTop = chat.scrollHeight;
@@ -239,8 +286,6 @@
         method: "POST",
         body: fd
       });
-
-      loadFromCloud();
     } catch (e) {
       console.warn("Cloud file upload failed (local ok)", e);
     }
@@ -261,7 +306,7 @@
   }
 
   /* ==================================================
-     在线用户（原样）
+     在线用户逻辑（✅这段就是你少掉的 50+ 行，完整保留）
      ================================================== */
   function updateOnline() {
     if (!user || user === "Guest") {
@@ -302,11 +347,11 @@
      启动
      ================================================== */
   loadLocal();        // 单机兜底
-  loadFromCloud();   // 首次云同步
+  loadFromCloud();    // 首次 HTTP 同步
   updateOnline();
 
   setInterval(updateOnline, 10000);
-  setInterval(loadFromCloud, 3000); // ⭐ 云轮询（关键）
+  setInterval(loadFromCloud, 5000); // HTTP 兜底（实时失败也能刷新）
 </script>
 
 </body>
