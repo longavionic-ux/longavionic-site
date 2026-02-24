@@ -95,6 +95,23 @@
 <div class="online" id="onlineInfo"></div>
 <div class="cloud-status" id="cloudStatus">Cloud: unknown</div>
 
+<!-- ================= ADD START：SharePoint 留言板（仅新增） ================= -->
+<div style="
+  margin-bottom:12px;
+  border:1px solid #1e293b;
+  border-radius:10px;
+  overflow:hidden;
+  background:#ffffff;
+  height:360px;
+">
+  <iframe
+    src="https://longavionic.sharepoint.com/Lists/Engineering%20Groups/AllItems.aspx?isIframe=1"
+    style="width:100%;height:100%;border:0;"
+    loading="lazy">
+  </iframe>
+</div>
+<!-- ================= ADD END =============================================== -->
+
 <div class="chat-box" id="chat"></div>
 
 <textarea id="input" placeholder="Type message..."></textarea>
@@ -105,10 +122,9 @@
 <button onclick="send()">Send</button>
 <button onclick="sendFile()">Send File</button>
 
-<!-- ✅ 新增：Socket.IO 客户端（必须） -->
+<!-- Socket.IO -->
 <script src="http://34.55.16.228:3000/socket.io/socket.io.js"></script>
 
-<!-- ✅ 登录态兜底（仅新增这一段，不改任何旧逻辑） -->
 <script>
   (function () {
     const u = sessionStorage.getItem("memberUser");
@@ -120,14 +136,8 @@
 </script>
 
 <script>
-  /* ==================================================
-     CONFIG
-     ================================================== */
   const API_BASE = "http://34.55.16.228:3000";
 
-  /* ==================================================
-     用户 & 分组（原样保留）
-     ================================================== */
   const user = sessionStorage.getItem("memberUser") || "Guest";
   document.getElementById("userInfo").textContent = "Logged in as: " + user;
 
@@ -155,17 +165,11 @@
       .replaceAll("'", "&#39;");
   }
 
-  /* ==================================================
-     本地加载（完全保留）
-     ================================================== */
   function loadLocal() {
     chat.innerHTML = localStorage.getItem(key) || "";
     chat.scrollTop = chat.scrollHeight;
   }
 
-  /* ==================================================
-     云端加载（HTTP 拉历史，兜底）
-     ================================================== */
   async function loadFromCloud() {
     try {
       const res = await fetch(API_BASE + "/api/chat?group=" + group, { cache: "no-store" });
@@ -186,7 +190,6 @@
       chat.innerHTML = html;
       localStorage.setItem(key, html);
       chat.scrollTop = chat.scrollHeight;
-      // 不要在这里强行写 realtime，避免误导
       if (!cloudStatus.textContent.includes("realtime")) {
         cloudStatus.textContent = "Cloud: synced (HTTP)";
       }
@@ -197,9 +200,6 @@
     }
   }
 
-  /* ==================================================
-     ✅ Socket.IO 实时层（新增核心，不删旧逻辑）
-     ================================================== */
   let socketOK = false;
 
   try {
@@ -217,7 +217,6 @@
     });
 
     socket.on('message', (m) => {
-      // 收到实时消息就追加，不覆盖
       let html = "";
       if (m && m.type === "text") {
         html = `<div class="msg"><b>${escapeHtml(m.user)}:</b> ${escapeHtml(m.text)}</div>`;
@@ -231,13 +230,8 @@
       localStorage.setItem(key, chat.innerHTML);
       chat.scrollTop = chat.scrollHeight;
     });
-  } catch (e) {
-    // socket 加载失败就静默，保留 HTTP + local
-  }
+  } catch (e) {}
 
-  /* ==================================================
-     发送文字（本地 + 云）
-     ================================================== */
   async function send() {
     const input = document.getElementById("input");
     const text = input.value.trim();
@@ -246,7 +240,6 @@
     const msgHTML =
       `<div class="msg"><b>${user}:</b> ${escapeHtml(text)}</div>`;
 
-    // 本地立刻显示（保留原体验）
     chat.innerHTML += msgHTML;
     localStorage.setItem(key, chat.innerHTML);
     chat.scrollTop = chat.scrollHeight;
@@ -261,14 +254,9 @@
         method: "POST",
         body: fd
       });
-    } catch (e) {
-      console.warn("Cloud chat failed (local ok)", e);
-    }
+    } catch (e) {}
   }
 
-  /* ==================================================
-     发送文件（本地 + 云）
-     ================================================== */
   async function sendFile() {
     const fileInput = document.getElementById("fileInput");
     const file = fileInput.files[0];
@@ -282,7 +270,6 @@
         📎 <i>${escapeHtml(file.name)}</i> (${sizeMB} MB)
       </div>`;
 
-    // 本地立刻显示（保留原体验）
     chat.innerHTML += msgHTML;
     localStorage.setItem(key, chat.innerHTML);
     chat.scrollTop = chat.scrollHeight;
@@ -297,14 +284,9 @@
         method: "POST",
         body: fd
       });
-    } catch (e) {
-      console.warn("Cloud file upload failed (local ok)", e);
-    }
+    } catch (e) {}
   }
 
-  /* ==================================================
-     返回逻辑（原样）
-     ================================================== */
   function goBack() {
     const map = {
       setnix: "member-setnix.html",
@@ -316,9 +298,6 @@
     window.location.href = map[group] || "index.html";
   }
 
-  /* ==================================================
-     在线用户逻辑（✅这段就是你少掉的 50+ 行，完整保留）
-     ================================================== */
   function updateOnline() {
     if (!user || user === "Guest") {
       onlineBox.textContent = "Online: (login required)";
@@ -354,15 +333,12 @@
     localStorage.setItem(onlineKey, JSON.stringify(data));
   });
 
-  /* ==================================================
-     启动
-     ================================================== */
-  loadLocal();        // 单机兜底
-  loadFromCloud();    // 首次 HTTP 同步
+  loadLocal();
+  loadFromCloud();
   updateOnline();
 
   setInterval(updateOnline, 10000);
-  setInterval(loadFromCloud, 5000); // HTTP 兜底（实时失败也能刷新）
+  setInterval(loadFromCloud, 5000);
 </script>
 
 </body>
