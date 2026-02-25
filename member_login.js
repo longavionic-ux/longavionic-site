@@ -1,5 +1,4 @@
 function login() {
-  // 与 portal.html / index.html 中的 input id 对齐
   const user = document.getElementById("user").value.trim();
   const pass = document.getElementById("pass").value.trim();
 
@@ -8,7 +7,7 @@ function login() {
     return;
   }
 
-  // ===== 统一密码（后续只需要改这一行）=====
+  // 统一密码
   const MASTER_PASSWORD = "cats2026";
 
   if (pass !== MASTER_PASSWORD) {
@@ -16,25 +15,24 @@ function login() {
     return;
   }
 
-  // ===== 账号 → 页面映射（核心规则）=====
-  const USER_ROUTE_MAP = {
-    "Longavionic1": "member-cats.html",
-    "CATSSupport1": "member-cats.html",
-    "Setnix1": "member-setnix.html",
-    "Aero1": "member-aero.html",
-    "Skysmart1": "member-skysmart.html"
-  };
-
-  const targetPage = USER_ROUTE_MAP[user];
-
-  if (!targetPage) {
-    alert("Account not configured");
-    return;
-  }
-
-  // 记录登录用户（将来如需显示 welcome 信息可用）
+  // 记录登录用户（可选，方便以后审计）
   sessionStorage.setItem("memberUser", user);
 
-  // 跳转到对应页面
-  window.location.href = targetPage;
+  // ===== Discord 群跳转 =====
+  if (user === "Longavionic1" || user === "CATSSupport1") {
+    // 内部 / CATS
+    window.location.href = "https://discord.gg/7cERtwaH";
+  } 
+  else if (user === "Setnix1") {
+    window.location.href = "https://discord.gg/7cERtwaH";
+  } 
+  else if (user === "Aero1") {
+    window.location.href = "https://discord.gg/QtQSEhPPZ";
+  } 
+  else if (user === "Skysmart1") {
+    window.location.href = "https://discord.gg/TjHjXW7fD";
+  } 
+  else {
+    alert("Account not configured");
+  }
 }
