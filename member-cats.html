@@ -14,22 +14,27 @@
       color: #e5e7eb;
     }
 
-    h1 {
-      color: #38bdf8;
-      margin-bottom: 10px;
-    }
-
-    .top-row {
+    /* ===============================
+       Header
+       =============================== */
+    .header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       flex-wrap: wrap;
-      margin-bottom: 20px;
-      gap: 12px;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      color: #38bdf8;
+      margin: 0 0 6px 0;
+      font-size: 26px;
     }
 
     .role {
       color: #94a3b8;
+      font-size: 14px;
     }
 
     .btn-secondary {
@@ -40,109 +45,124 @@
       background: #334155;
       color: white;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .btn-secondary:hover {
       background: #475569;
     }
 
+    /* ===============================
+       Group Boxes
+       =============================== */
     .group-box {
       background: #020617;
       border: 1px solid #1e293b;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
     }
 
     .group-box h2 {
-      margin-top: 0;
+      margin: 0 0 8px 0;
+      font-size: 18px;
       color: #22c55e;
     }
 
     .group-box p {
+      margin: 0 0 18px 0;
       color: #cbd5f5;
-      margin-bottom: 15px;
+      font-size: 14px;
+      line-height: 1.55;
     }
 
-    .group-box button {
-      padding: 10px 18px;
-      border: none;
+    .group-box a {
+      display: inline-block;
+      padding: 10px 20px;
       border-radius: 6px;
-      cursor: pointer;
       font-size: 14px;
       background: #2563eb;
       color: white;
+      text-decoration: none;
     }
 
-    .group-box button:hover {
+    .group-box a:hover {
       background: #1d4ed8;
     }
 
+    /* ===============================
+       Footer Note
+       =============================== */
     .note {
-      margin-top: 40px;
+      margin-top: 48px;
       font-size: 13px;
       color: #64748b;
     }
   </style>
-
-  <script>
-    function enterGroup(group) {
-      window.location.href = "chat.html?group=" + encodeURIComponent(group);
-    }
-
-    function goHome() {
-      window.location.href = "index.html";
-    }
-  </script>
 </head>
 
 <body>
 
-  <!-- 顶部标题 + 返回主页 -->
-  <div class="top-row">
-    <h1>CATS Support Center</h1>
-    <button class="btn-secondary" onclick="goHome()">Back to Home</button>
+  <!-- ===============================
+       Header
+       =============================== -->
+  <div class="header">
+    <div>
+      <h1>CATS Support Center</h1>
+      <div class="role">
+        Role: Global Debug & Integration Authority
+      </div>
+    </div>
+
+    <button class="btn-secondary" onclick="window.location.href='index.html'">
+      Back to Home
+    </button>
   </div>
 
-  <div class="role">
-    Role: Global Debug & Integration Authority
-  </div>
-
-  <!-- ===== SETNIX ===== -->
+  <!-- ===============================
+       SETNIX
+       =============================== -->
   <div class="group-box">
     <h2>SETNIX · CATS</h2>
     <p>
-      Core CATS development, TPS debug, hardware integration and global coordination.
+      Core CATS development, TPS debugging, hardware integration,
+      and global engineering coordination.
     </p>
-    <button onclick="enterGroup('setnix')">
-      Enter Group
-    </button>
+    <a href="https://discord.gg/7cERtwaH" target="_blank">
+      Enter SETNIX Discord Workspace
+    </a>
   </div>
 
-  <!-- ===== AERO ===== -->
+  <!-- ===============================
+       AERO
+       =============================== -->
   <div class="group-box">
     <h2>Aero Instruments · CATS AITS6000</h2>
     <p>
-      Dedicated support channel for Aero Instruments systems and field debugging.
+      Dedicated support workspace for Aero Instruments systems,
+      field troubleshooting, and integration support.
     </p>
-    <button onclick="enterGroup('aero')">
-      Enter Group
-    </button>
+    <a href="https://discord.gg/QtQSEhPPZ" target="_blank">
+      Enter AERO Discord Workspace
+    </a>
   </div>
 
-  <!-- ===== SKYSMART ===== -->
+  <!-- ===============================
+       SKYSMART
+       =============================== -->
   <div class="group-box">
     <h2>Skysmart · CATS</h2>
     <p>
-      Skysmart-specific test environment, issue tracking and remote debug.
+      Skysmart-specific test environment,
+      issue tracking, and remote debugging coordination.
     </p>
-    <button onclick="enterGroup('skysmart')">
-      Enter Group
-    </button>
+    <a href="https://discord.gg/TjHjXW7fD" target="_blank">
+      Enter SKYSMART Discord Workspace
+    </a>
   </div>
 
   <div class="note">
-    © Longavionic · Internal Use Only · Advanced Member Area
+    © Longavionic · Internal Engineering Access Only · Discord-Based Collaboration
   </div>
 
 </body>
