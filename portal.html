@@ -2,26 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Engineering Collaboration Portal</title>
+  <title>Engineering Collaboration (VIP)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#111;background:#fff}
-    .wrap{max-width:1200px;margin:40px auto;padding:0 20px}
-    .card{border:1px solid #ddd;padding:20px;background:#fff}
-    .hint{color:#444;font-size:14px;line-height:1.5}
-    .btn{display:inline-block;margin-top:12px;padding:8px 14px;border:1px solid #243a7a;color:#243a7a;text-decoration:none}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111;
+      background: #fff;
+    }
+
+    .wrap {
+      max-width: 480px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .hint {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      padding: 24px;
+      background: #fff;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      background: #243a7a;
+      color: #fff;
+      border: none;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #243a7a;
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <h2>Engineering Collaboration Portal</h2>
-    <div class="card">
-      <div class="hint">
-        This page will host the message board and image upload.<br>
-        Admin engineers will see all cases. Customer engineers will see only their own.
-      </div>
-      <a class="btn" href="index.html">Back to Home</a>
+    <h2>Engineering Collaboration (VIP)</h2>
+
+    <div class="hint">
+      Access limited to approved engineers only.<br>
+      Please log in to enter your engineering collaboration space.
     </div>
+
+    <div class="card">
+      <input type="text" id="user" placeholder="Username">
+      <input type="password" id="pass" placeholder="Password">
+
+      <button onclick="login()">Enter</button>
+    </div>
+
+    <a class="back" href="index.html">← Back to Home</a>
   </div>
+
+  <!-- 登录逻辑 -->
+  <script src="member_login.js"></script>
 </body>
 </html>
