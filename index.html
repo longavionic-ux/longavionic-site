@@ -1,306 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Longavionic</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Longavionic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #111;
-      background: #fff;
-    }
+<style>
 
-    /* =====================================================
-       Top Bar
-       ===================================================== */
-    .top-bar {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 24px;
-      overflow: hidden;
-      background: linear-gradient(
-        90deg,
-        #ffffff 0%,
-        #ffffff 140px,
-        #e1ebf5 42%,
-        #8ea7c6 68%,
-        #2a4493 86%,
-        #0e1f4f 100%
-      );
-    }
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+color:#111;
+background:#fff;
+}
 
-    .logo {
-      height: 68px;
-      width: auto;
-      flex: 0 0 auto;
-      z-index: 2;
-    }
+/* =====================================================
+Top Bar
+===================================================== */
 
-    .top-text {
-      flex: 1 1 auto;
-      min-width: 0;
-      z-index: 2;
-    }
+.top-bar{
+position:relative;
+display:flex;
+align-items:center;
+gap:16px;
+padding:18px 24px;
+overflow:hidden;
 
-    .top-text h1,
-    .top-text h2 {
-      margin: 0;
-      font-size: 22px;
-      font-weight: normal;
-      line-height: 1.15;
-      color: #243a7a;
-    }
+background:linear-gradient(
+90deg,
+#ffffff 0%,
+#ffffff 140px,
+#e1ebf5 42%,
+#8ea7c6 68%,
+#2a4493 86%,
+#0e1f4f 100%
+);
+}
 
-    /* Aviation symbols */
-    .top-stars {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 55%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
+.logo{
+height:68px;
+width:auto;
+flex:0 0 auto;
+z-index:2;
+}
 
-    .top-stars::before {
-      content: "✈︎ ✦ ✧ ✈︎ ✦ ✧ ✈︎ ✦ ✧";
-      position: absolute;
-      top: 18px;
-      right: 24px;
-      font-size: 28px;
-      letter-spacing: 24px;
-      opacity: 0.55;
-      color: #e3ebff;
-      white-space: nowrap;
-    }
+.top-text{
+flex:1 1 auto;
+min-width:0;
+z-index:2;
+}
 
-    .top-stars::after {
-      content: "✧ ✦ ✈︎ ✧ ✦ ✈︎ ✧ ✦";
-      position: absolute;
-      bottom: 18px;
-      right: 56px;
-      font-size: 20px;
-      letter-spacing: 28px;
-      opacity: 0.42;
-      color: #c7d6ff;
-      white-space: nowrap;
-    }
+.top-text h1,
+.top-text h2{
+margin:0;
+font-size:22px;
+font-weight:normal;
+line-height:1.15;
+color:#243a7a;
+}
 
-    /* =====================================================
-       Divider
-       ===================================================== */
-    .section-divider {
-      height: 2px;
-      max-width: 1200px;
-      margin: 26px auto 0;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        #243a7a 50%,
-        transparent 100%
-      );
-    }
+/* Aviation symbols */
 
-    /* =====================================================
-       Sections
-       ===================================================== */
-    .section {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+.top-stars{
+position:absolute;
+top:0;
+right:0;
+width:55%;
+height:100%;
+pointer-events:none;
+z-index:1;
+}
 
-    h2 {
-      margin-top: 0;
-    }
+.top-stars::before{
+content:"✈︎ ✦ ✧ ✈︎ ✦ ✧ ✈︎ ✦ ✧";
+position:absolute;
+top:18px;
+right:24px;
+font-size:28px;
+letter-spacing:24px;
+opacity:.55;
+color:#e3ebff;
+white-space:nowrap;
+}
 
-    /* =====================================================
-       Core Capabilities
-       ===================================================== */
-    .capabilities {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
+.top-stars::after{
+content:"✧ ✦ ✈︎ ✧ ✦ ✈︎ ✧ ✦";
+position:absolute;
+bottom:18px;
+right:56px;
+font-size:20px;
+letter-spacing:28px;
+opacity:.42;
+color:#c7d6ff;
+white-space:nowrap;
+}
 
-    .card {
-      border: 1px solid #ddd;
-      padding: 20px;
-      background: #fff;
-    }
+/* Divider */
 
-    .card h3 {
-      margin-top: 0;
-    }
+.section-divider{
+height:2px;
+max-width:1200px;
+margin:26px auto 0;
 
-    .card h4 {
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
+background:linear-gradient(
+90deg,
+transparent 0%,
+#243a7a 50%,
+transparent 100%
+);
+}
 
-    .card input,
-    .card textarea {
-      width: 100%;
-      padding: 6px;
-      font-size: 14px;
-      margin-bottom: 8px;
-      box-sizing: border-box;
-    }
+/* Sections */
 
-    .card button {
-      padding: 6px 12px;
-      font-size: 14px;
-      cursor: pointer;
-    }
+.section{
+max-width:1200px;
+margin:40px auto;
+padding:0 20px;
+}
 
-    /* =====================================================
-       Tables
-       ===================================================== */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 13px;
-    }
+/* =====================================================
+Core Capabilities
+===================================================== */
 
-    table th,
-    table td {
-      border: 1px solid #ccc;
-      padding: 6px;
-      text-align: left;
-      white-space: nowrap;
-    }
+.capabilities{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:24px;
+}
 
-    table th {
-      background: #f5f5f5;
-    }
+.card{
+border:1px solid #ddd;
+padding:20px;
+background:#fff;
+}
 
-    #inventoryResult,
-    #repairResult {
-      overflow-x: auto;
-      margin-top: 12px;
-    }
+.card h3{
+margin-top:0;
+}
 
-    #inventoryResult table,
-    #repairResult table {
-      min-width: 900px;
-    }
+.card h4{
+margin-bottom:8px;
+font-size:15px;
+}
 
-    .quote-btn {
-      padding: 4px 10px;
-      font-size: 12px;
-      border: 1px solid #243a7a;
-      background: #fff;
-      color: #243a7a;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+.card input,
+.card textarea{
+width:100%;
+padding:6px;
+font-size:14px;
+margin-bottom:8px;
+box-sizing:border-box;
+}
 
-    .quote-btn:hover {
-      background: #243a7a;
-      color: #fff;
-    }
+.card button{
+padding:6px 12px;
+font-size:14px;
+cursor:pointer;
+}
 
-    /* =====================================================
-       Footer
-       ===================================================== */
-    .footer {
-      border-top: 1px solid #ddd;
-      margin-top: 60px;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-    }
+/* Tables */
 
-    .footer a {
-      color: #243a7a;
-      text-decoration: none;
-    }
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+font-size:13px;
+}
 
-    .footer-line {
-      margin: 6px 0;
-    }
+table th,
+table td{
+border:1px solid #ccc;
+padding:6px;
+text-align:left;
+white-space:nowrap;
+}
 
-    .footer-line span {
-      margin: 0 6px;
-      color: #aaa;
-    }
+table th{
+background:#f5f5f5;
+}
 
-    /* =====================================================
-       Mobile
-       ===================================================== */
-    @media (max-width: 600px) {
-      .top-text h1,
-      .top-text h2 {
-        font-size: 18px;
-      }
+#inventoryResult,
+#repairResult{
+overflow-x:auto;
+margin-top:12px;
+}
 
-      .top-stars::before {
-        font-size: 20px;
-        letter-spacing: 14px;
-      }
+#inventoryResult table,
+#repairResult table{
+min-width:900px;
+}
 
-      .top-stars::after {
-        display: none;
-      }
+.quote-btn{
+padding:4px 10px;
+font-size:12px;
+border:1px solid #243a7a;
+background:#fff;
+color:#243a7a;
+cursor:pointer;
+white-space:nowrap;
+}
 
-      .section-divider {
-        margin-top: 18px;
-      }
-    }
+.quote-btn:hover{
+background:#243a7a;
+color:#fff;
+}
 
-    /* =====================================================
-       VIP Engineering Entry (NEW, ONLY ADDITION)
-       ===================================================== */
-    .vip-entry {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 9999;
-    }
+/* Footer */
 
-    .vip-entry a {
-      display: inline-block;
-      padding: 12px 16px;
-      background: #243a7a;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 14px;
-    }
+.footer{
+border-top:1px solid #ddd;
+margin-top:60px;
+padding:20px;
+text-align:center;
+font-size:14px;
+}
 
-    .vip-entry a:hover {
-      background: #1b2f66;
-    }
-  </style>
+.footer a{
+color:#243a7a;
+text-decoration:none;
+}
+
+.footer-line{
+margin:6px 0;
+}
+
+.footer-line span{
+margin:0 6px;
+color:#aaa;
+}
+
+/* Mobile */
+
+@media (max-width:600px){
+
+.top-text h1,
+.top-text h2{
+font-size:18px;
+}
+
+.top-stars::before{
+font-size:20px;
+letter-spacing:14px;
+}
+
+.top-stars::after{
+display:none;
+}
+
+.section-divider{
+margin-top:18px;
+}
+
+}
+
+/* VIP Button */
+
+.vip-entry{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:9999;
+}
+
+.vip-entry a{
+display:inline-block;
+padding:12px 16px;
+background:#243a7a;
+color:#fff;
+text-decoration:none;
+border-radius:6px;
+font-size:14px;
+}
+
+.vip-entry a:hover{
+background:#1b2f66;
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <!-- =====================================================
-       Top Bar
-       ===================================================== -->
-  <div class="top-bar">
-    <img src="IMG_0431.png" class="logo" alt="Long Avionic Logo">
+<!-- Top Bar -->
 
-    <div class="top-text">
-      <h1>Aviation Component Distribution & Repair</h1>
-      <h2>Avionics Test Equipment R&D</h2>
-    </div>
+<div class="top-bar">
 
-    <div class="top-stars"></div>
-  </div>
+<img src="IMG_0431.png" class="logo" alt="Long Avionic Logo">
 
-  <div class="section-divider"></div>
+<div class="top-text">
+<h1>Aviation Component Distribution & Repair</h1>
+<h2>Avionics Test Equipment R&D</h2>
+</div>
 
-  <!-- =====================================================
-       About Us
-       ===================================================== -->
+<div class="top-stars"></div>
+
+</div>
+
+
+<div class="section-divider"></div>
+
+
+<!-- Intro -->
 
 <div class="section">
 
@@ -316,93 +317,122 @@ serving MROs, operators, and engineering teams worldwide.
 </p>
 
 </div>
-  <!-- =====================================================
-       Core Capabilities
-       ===================================================== -->
-  <div class="section">
 
-    <div class="capabilities">
 
-      <!-- Distribution -->
-      <div class="card">
-      <h3 style="visibility:hidden;">placeholder</h3>
-        <h4>Component Distribution Search</h4>
-        <input type="text" id="inventoryInput"
-               placeholder="Search inventory by PN or Description">
-        <button onclick="searchStock()">Search Inventory</button>
+<!-- Tools -->
 
-        <div id="inventoryResult"></div>
+<div class="section">
 
-        <hr style="margin:16px 0;">
+<div class="capabilities">
 
-        <h4>Repair Capability Search</h4>
-        <input type="text" id="repairInput"
-               placeholder="Search repair capability by PN">
-        <button onclick="searchRepair()">Search Repair Capability</button>
 
-        <div id="repairResult"></div>
-      </div>
+<!-- Distribution -->
 
-      <!-- R&D -->
-      <div class="card">
-        <h3>Avionics Test Equipment R&D</h3>
-        <p>
-          Submit your test or development requirements to our engineering team.
-        </p>
-        <textarea rows="5" placeholder="Describe your requirement"></textarea>
-        <button>Submit Inquiry</button>
-      </div>
+<div class="card">
 
-      <!-- Member / Engineering Portal (UNCHANGED) -->
-      <div class="card">
-        <h3>Engineering Collaboration Portal</h3>
-        <p>
-          Secure access for internal engineers and approved partners.<br>
-          Used for engineering discussion, message exchange, and image upload.
-        </p>
+<h3 style="visibility:hidden;">.</h3>
 
-        <input type="text" id="user" placeholder="Username">
-        <input type="password" id="pass" placeholder="Password">
-        <button onclick="login()">Enter Portal</button>
-      </div>
+<h4>Component Distribution Search</h4>
 
-    </div>
-  </div>
+<input type="text" id="inventoryInput"
+placeholder="Search inventory by PN or Description">
 
-  <!-- =====================================================
-       Footer
-       ===================================================== -->
-  <div class="footer">
-    <div class="footer-line">
-      <strong>Website under construction.</strong>
-      <span>·</span>
-      <a href="mailto:businesses@longavionic.com">businesses@longavionic.com</a>
-      <span>·</span>
-      <a href="#">LinkedIn</a><span>·</span>
-      <a href="#">Twitter</a><span>·</span>
-      <a href="#">Facebook</a>
-    </div>
+<button onclick="searchStock()">Search Inventory</button>
 
-    <div class="footer-line">
-      Houston, Texas, USA
-      <span>·</span>
-      © 2023–2026 Long Avionic, LLC
-    </div>
-  </div>
+<div id="inventoryResult"></div>
 
-  <!-- =====================================================
-       VIP Engineering Entry (NEW)
-       ===================================================== -->
-  <div class="vip-entry">
-    <a href="portal.html">Engineering Collaboration (VIP)</a>
-  </div>
+<hr style="margin:16px 0;">
 
-  <!-- =====================================================
-       Scripts
-       ===================================================== -->
-  <script src="stock_search.js"></script>
-  <script src="repair_search.js"></script>
-  <script src="member_login.js"></script>
+<h4>Repair Capability Search</h4>
+
+<input type="text" id="repairInput"
+placeholder="Search repair capability by PN">
+
+<button onclick="searchRepair()">Search Repair Capability</button>
+
+<div id="repairResult"></div>
+
+</div>
+
+
+<!-- R&D -->
+
+<div class="card">
+
+<h3>Avionics Test Equipment R&D</h3>
+
+<p>
+Submit your test or development requirements to our engineering team.
+</p>
+
+<textarea rows="5" placeholder="Describe your requirement"></textarea>
+
+<button>Submit Inquiry</button>
+
+</div>
+
+
+<!-- Portal -->
+
+<div class="card">
+
+<h3>Engineering Collaboration Portal</h3>
+
+<p>
+Secure access for internal engineers and approved partners.<br>
+Used for engineering discussion, message exchange, and image upload.
+</p>
+
+<input type="text" id="user" placeholder="Username">
+
+<input type="password" id="pass" placeholder="Password">
+
+<button onclick="login()">Enter Portal</button>
+
+</div>
+
+
+</div>
+</div>
+
+
+<!-- Footer -->
+
+<div class="footer">
+
+<div class="footer-line">
+<strong>Website under construction.</strong>
+<span>·</span>
+<a href="mailto:businesses@longavionic.com">businesses@longavionic.com</a>
+<span>·</span>
+<a href="#">LinkedIn</a>
+<span>·</span>
+<a href="#">Twitter</a>
+<span>·</span>
+<a href="#">Facebook</a>
+</div>
+
+<div class="footer-line">
+Houston, Texas, USA
+<span>·</span>
+© 2023–2026 Long Avionic, LLC
+</div>
+
+</div>
+
+
+<!-- VIP -->
+
+<div class="vip-entry">
+<a href="portal.html">Engineering Collaboration (VIP)</a>
+</div>
+
+
+<!-- Scripts -->
+
+<script src="stock_search.js"></script>
+<script src="repair_search.js"></script>
+<script src="member_login.js"></script>
 
 </body>
 </html>
