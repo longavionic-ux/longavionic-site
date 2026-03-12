@@ -3,6 +3,8 @@
  * Data source: Repair.csv
  * Feature:
  *  - Search by PN
+ *  - Search by Host PN
+ *  - Search by CMM
  *  - Display full CSV fields
  *  - Add "Request Quote" button per result
  *************************************************/
@@ -38,6 +40,7 @@ fetch('Repair.csv')
 
 /* ===== Search Repair Capability ===== */
 function searchRepair() {
+
   const input = document
     .getElementById('repairInput')
     .value
@@ -48,12 +51,21 @@ function searchRepair() {
   resultBox.innerHTML = '';
 
   if (!input) {
-    resultBox.innerHTML = '<p>Please enter a PN.</p>';
+    resultBox.innerHTML = '<p>Please enter PN, Host PN or CMM.</p>';
     return;
   }
 
   const results = repairData.filter(item =>
-    item.PN && item.PN.toUpperCase().includes(input)
+
+    /* PN search */
+    (item.PN && item.PN.toUpperCase().includes(input)) ||
+
+    /* Host PN search */
+    (item["Host PN"] && item["Host PN"].toUpperCase().includes(input)) ||
+
+    /* CMM search */
+    (item.CMM && item.CMM.toUpperCase().includes(input))
+
   );
 
   if (results.length === 0) {
@@ -76,6 +88,7 @@ function searchRepair() {
 
   // Table rows
   results.forEach(row => {
+
     html += '<tr>';
 
     Object.keys(row).forEach(key => {
@@ -94,6 +107,7 @@ function searchRepair() {
     `;
 
     html += '</tr>';
+
   });
 
   html += '</table>';
@@ -102,6 +116,7 @@ function searchRepair() {
 
 /* ===== Request Quote (Email) ===== */
 function requestQuote(pn) {
+
   const subject = `Repair Quote Request - ${pn}`;
 
   const body =
