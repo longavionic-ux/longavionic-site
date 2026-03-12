@@ -3,8 +3,6 @@
  * Data source: Repair.csv
  * Feature:
  *  - Search by PN
- *  - Search by Host PN
- *  - Search by CMM
  *  - Display full CSV fields
  *  - Add "Request Quote" button per result
  *************************************************/
@@ -51,21 +49,13 @@ function searchRepair() {
   resultBox.innerHTML = '';
 
   if (!input) {
-    resultBox.innerHTML = '<p>Please enter PN, Host PN or CMM.</p>';
+    resultBox.innerHTML = '<p>Please enter PN.</p>';
     return;
   }
 
+  /* ===== ONLY SEARCH PN ===== */
   const results = repairData.filter(item =>
-
-    /* PN search */
-    (item.PN && item.PN.toUpperCase().includes(input)) ||
-
-    /* Host PN search */
-    (item["Host PN"] && item["Host PN"].toUpperCase().includes(input)) ||
-
-    /* CMM search */
-    (item.CMM && item.CMM.toUpperCase().includes(input))
-
+    item.PN && item.PN.toUpperCase().includes(input)
   );
 
   if (results.length === 0) {
