@@ -9,6 +9,45 @@
 
 let repairData = [];
 
+/* ===== CSV Parser (supports commas and quotes) ===== */
+function parseCSVLine(line) {
+
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+
+    const char = line[i];
+
+    if (char === '"') {
+
+      if (inQuotes && line[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+
+    } else if (char === ',' && !inQuotes) {
+
+      result.push(current.trim());
+      current = '';
+
+    } else {
+
+      current += char;
+
+    }
+
+  }
+
+  result.push(current.trim());
+
+  return result;
+}
+
+
 /* ===== Load Repair.csv ===== */
 fetch('Repair.csv')
   .then(response => response.text())
@@ -16,17 +55,22 @@ fetch('Repair.csv')
     const lines = text.split('\n');
     if (lines.length < 2) return;
 
-    const headers = lines[0].split(',').map(h => h.trim());
+    const headers = parseCSVLine(lines[0]);
 
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
 
-      const values = line.split(',');
+      const values = parseCSVLine(line);
       let item = {};
 
       headers.forEach((header, index) => {
-        item[header] = values[index] ? values[index].trim() : '';
+        let value = values[index] ? values[index].trim() : '';
+
+        /* remove Excel quotes */
+        value = value.replace(/^"|"$/g, '');
+
+        item[header] = value;
       });
 
       repairData.push(item);
