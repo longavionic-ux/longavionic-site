@@ -17,21 +17,23 @@ background:#fff;
 color:#111;
 }
 
-/* Header with logo */
+/* ✅ NEW Header (专业版，不拉扯) */
 
 .header{
-position:relative;
-padding:16px 20px;
 background:#243a7a;
 color:#fff;
-text-align:center;
+}
+
+.header-inner{
+max-width:1200px;
+margin:0 auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 20px;
 }
 
 .logo{
-position:absolute;
-left:20px;
-top:50%;
-transform:translateY(-50%);
 height:40px;
 cursor:pointer;
 }
@@ -124,10 +126,18 @@ width:100%;
 <body>
 
 <div class="header">
-<a href="index.html">
-<img src="Logo.png" class="logo" alt="Long Avionic Logo">
-</a>
-<h2>WRD-1000</h2>
+  <div class="header-inner">
+
+    <a href="index.html">
+      <img src="Logo.png" class="logo" alt="Long Avionic Logo">
+    </a>
+
+    <h2>WRD-1000</h2>
+
+    <!-- 占位，让标题保持真正居中 -->
+    <div style="width:40px;"></div>
+
+  </div>
 </div>
 
 <div class="section">
