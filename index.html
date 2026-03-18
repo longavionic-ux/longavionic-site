@@ -348,9 +348,11 @@ Click "Submit Inquiry" to send your request directly to us.
 </p>
 
 <textarea rows="5" placeholder="Describe your requirement"></textarea>
+<button onclick="submitInquiry()">Submit Inquiry</button>
 
-<button>Submit Inquiry</button>
-
+<button onclick="goToEquipment()" style="margin-left:10px;">
+View Our Equipment
+</button>
 </div>
 
 </div>
@@ -379,6 +381,14 @@ Houston, Texas, USA
 <script src="stock_search.js"></script>
 <script src="repair_search.js"></script>
 <script src="member_login.js"></script>
+<script>
+function goToEquipment(){
+    window.location.href = "equipment.html";
+}
 
+function submitInquiry(){
+    alert("Inquiry submitted. We will contact you soon.");
+}
+</script>
 </body>
 </html>
