@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WRD-1000 | Longavionic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#fff;
+color:#111;
+}
+
+.header{
+padding:20px;
+background:#243a7a;
+color:#fff;
+text-align:center;
+}
+
+.section{
+max-width:1200px;
+margin:40px auto;
+padding:0 20px;
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:30px;
+}
+
+.title{
+font-size:32px;
+color:#243a7a;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:22px;
+color:#1aa0d8;
+margin-bottom:20px;
+}
+
+.text p{
+line-height:1.6;
+margin-bottom:14px;
+}
+
+.features{
+border:1px solid #ccc;
+padding:20px;
+background:#f9f9f9;
+}
+
+.features h3{
+margin-top:0;
+color:#243a7a;
+}
+
+.features ul{
+padding-left:18px;
+}
+
+.features li{
+margin-bottom:10px;
+}
+
+.images{
+margin-top:20px;
+display:flex;
+gap:20px;
+}
+
+.images img{
+width:48%;
+border:1px solid #ddd;
+}
+
+.back{
+display:block;
+margin:40px auto;
+text-align:center;
+text-decoration:none;
+color:#243a7a;
+}
+
+/* mobile */
+@media (max-width:800px){
+.section{
+grid-template-columns:1fr;
+}
+.images{
+flex-direction:column;
+}
+.images img{
+width:100%;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h2>WRD-1000</h2>
+</div>
+
+<div class="section">
+
+<div class="text">
+
+<div class="title">WRD-1000</div>
+<div class="subtitle">Weather Radar Test Set</div>
+
+<p>
+The WRD-1000 simulates radar echoes and measures transmission power, frequency, sensitivity, and more of airborne WXR systems, enabling complete testing of these devices.
+</p>
+
+<p>
+It is suitable for engineering development, verification, manufacturing, and maintenance testing.
+</p>
+
+<p>
+The WRD-1000 is equipped with a touch-screen and user-friendly graphical software. It supports both local and remote operation and can function as a standalone instrument or be integrated into an ATE system.
+</p>
+
+<p>
+It can replace the RDX7708.
+</p>
+
+<div class="images">
+<img src="wrd1000_1.png">
+<img src="wrd1000_2.png">
+</div>
+
+</div>
+
+<div class="features">
+
+<h3>Key Features</h3>
+
+<ul>
+<li>Simulates meteorological, turbulence, and other radar echoes</li>
+<li>Adjustable echo pulse width and frequency offset</li>
+<li>Automatically acquires and tracks radar transmissions</li>
+<li>Measures carrier frequency</li>
+<li>Measures PRF of radar transmissions</li>
+<li>Measures peak power of radar pulses</li>
+<li>Coupled output, detector output, and trigger interfaces</li>
+<li>LAN remote control (UDP/IP supported)</li>
+<li>Supports VXI-11 and SCPI command control</li>
+</ul>
+
+</div>
+
+</div>
+
+<a href="equipment.html" class="back">← Back to Equipment</a>
+
+</body>
+</html>
