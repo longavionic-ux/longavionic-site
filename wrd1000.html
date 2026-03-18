@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>WRD-1000 | Longavionic</title>
+
+<title>WRD-1000 Weather Radar Test Set | RDX7708 Replacement</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="WRD-1000 weather radar test set, a modern replacement for RDX7708. Supports WXR simulation, frequency, PRF, and power measurement for avionics testing.">
 
 <style>
 body{
@@ -13,12 +17,24 @@ background:#fff;
 color:#111;
 }
 
+/* Header with logo */
+
 .header{
-padding:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;
+padding:16px 20px;
 background:#243a7a;
 color:#fff;
-text-align:center;
 }
+
+.logo{
+height:40px;
+cursor:pointer;
+}
+
+/* Main layout */
 
 .section{
 max-width:1200px;
@@ -74,7 +90,10 @@ gap:20px;
 .images img{
 width:48%;
 border:1px solid #ddd;
+object-fit:cover;
 }
+
+/* Back button */
 
 .back{
 display:block;
@@ -85,6 +104,7 @@ color:#243a7a;
 }
 
 /* mobile */
+
 @media (max-width:800px){
 .section{
 grid-template-columns:1fr;
@@ -102,6 +122,9 @@ width:100%;
 <body>
 
 <div class="header">
+<a href="index.html">
+<img src="Logo.png" class="logo" alt="Long Avionic Logo">
+</a>
 <h2>WRD-1000</h2>
 </div>
 
@@ -109,8 +132,9 @@ width:100%;
 
 <div class="text">
 
-<div class="title">WRD-1000</div>
-<div class="subtitle">Weather Radar Test Set</div>
+<h1 class="title">WRD-1000 Weather Radar Test Set</h1>
+
+<div class="subtitle">Avionics WXR Test Equipment</div>
 
 <p>
 The WRD-1000 simulates radar echoes and measures transmission power, frequency, sensitivity, and more of airborne WXR systems, enabling complete testing of these devices.
@@ -125,12 +149,18 @@ The WRD-1000 is equipped with a touch-screen and user-friendly graphical softwar
 </p>
 
 <p>
-It can replace the RDX7708.
+The WRD-1000 is a modern replacement for the legacy RDX7708 weather radar test set. As the RDX7708 has been discontinued, the WRD-1000 provides a reliable alternative with enhanced performance and improved usability.
+</p>
+
+<h3>RDX7708 Replacement</h3>
+
+<p>
+If you are searching for the RDX7708 test set, the WRD-1000 offers a direct replacement solution, supporting radar echo simulation, PRF testing, frequency measurement, and power analysis for avionics applications.
 </p>
 
 <div class="images">
-<img src="wrd1000_1.png">
-<img src="wrd1000_2.png">
+<img src="wrd1000_1.png" alt="WRD-1000 front view">
+<img src="wrd1000_2.png" alt="WRD-1000 display panel">
 </div>
 
 </div>
