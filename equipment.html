@@ -33,20 +33,20 @@ max-width:1200px;
 margin:0 auto;
 display:flex;
 align-items:center;
-gap:20px;
-padding:18px 24px;
+gap:16px;
+padding:14px 20px;   /* 收紧 */
 }
 
 .header-link{
 display:flex;
 align-items:center;
-gap:20px;
+gap:16px;
 text-decoration:none;
 width:100%;
 }
 
 .logo{
-height:60px;
+height:56px;   /* 略缩小 */
 cursor:pointer;
 }
 
@@ -57,14 +57,14 @@ flex-direction:column;
 
 .header-text h1{
 margin:0;
-font-size:22px;
+font-size:20px;
 color:#1f3b73;
 font-weight:600;
 }
 
 .header-text h2{
 margin:2px 0 0;
-font-size:22px;
+font-size:20px;
 color:#1f3b73;
 font-weight:600;
 }
@@ -73,24 +73,46 @@ font-weight:600;
 
 .section{
 max-width:1200px;
-margin:40px auto;
-padding:0 20px;
+margin:30px auto;   /* 收紧 */
+padding:0 16px;
 }
+
+/* 分类标题 */
+
+.section h3{
+margin:18px 0 10px;   /* 收紧 */
+font-size:18px;
+}
+
+/* grid */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:14px;   /* 收紧 */
 }
+
+/* 卡片 */
 
 .card{
 border:1px solid #ddd;
-padding:16px;
+padding:12px 14px;   /* 收紧 */
 background:#fff;
 }
 
+/* 标题 */
+
 .card h4{
-margin-top:0;
+margin:0 0 6px;
+font-size:16px;
+}
+
+/* 描述 */
+
+.card p{
+margin:0;
+font-size:14px;
+line-height:1.4;
 }
 
 /* links */
@@ -105,9 +127,12 @@ text-decoration:underline;
 color:#1b2f66;
 }
 
+/* Back */
+
 .back{
 display:inline-block;
-margin-top:20px;
+margin-top:16px;   /* 收紧 */
+font-size:14px;
 text-decoration:none;
 color:#243a7a;
 }
@@ -116,10 +141,11 @@ color:#243a7a;
 
 .footer{
 border-top:1px solid #ddd;
-margin-top:60px;
-padding:20px;
+margin-top:40px;   /* 收紧 */
+padding:18px;
 text-align:center;
-font-size:14px;
+font-size:13px;
+background:#fafafa;
 }
 
 .footer a{
@@ -129,6 +155,7 @@ text-decoration:none;
 
 .footer-line{
 margin:6px 0;
+line-height:1.5;
 }
 
 .footer-line span{
@@ -243,7 +270,7 @@ color:#aaa;
 
 </div>
 
-<!-- ✅ Footer -->
+<!-- Footer -->
 <div class="footer">
 
 <div class="footer-line">
