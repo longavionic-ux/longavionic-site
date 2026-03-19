@@ -409,7 +409,16 @@ function goToEquipment(){
 }
 
 function submitInquiry(){
-    alert("Inquiry submitted. We will contact you soon.");
+
+    const text = document.querySelector("textarea").value;
+
+    if(!text){
+        alert("Please enter your requirement.");
+        return;
+    }
+
+    window.location.href =
+    "mailto:businesses@longavionic.com?subject=Inquiry&body=" + encodeURIComponent(text);
 }
 </script>
 </body>
