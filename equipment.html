@@ -13,7 +13,7 @@ background:#fff;
 color:#111;
 }
 
-/* ===== Header（统一渐变风格）===== */
+/* ===== Header ===== */
 
 .header{
 background:linear-gradient(
@@ -37,7 +37,6 @@ gap:20px;
 padding:18px 24px;
 }
 
-/* ✅ 新增：整块可点击 */
 .header-link{
 display:flex;
 align-items:center;
@@ -56,7 +55,6 @@ display:flex;
 flex-direction:column;
 }
 
-/* ✅ h1 */
 .header-text h1{
 margin:0;
 font-size:22px;
@@ -64,7 +62,6 @@ color:#1f3b73;
 font-weight:600;
 }
 
-/* ✅ 核心：h2 完全一致 */
 .header-text h2{
 margin:2px 0 0;
 font-size:22px;
@@ -72,7 +69,7 @@ color:#1f3b73;
 font-weight:600;
 }
 
-/* ===== 内容 ===== */
+/* ===== Content ===== */
 
 .section{
 max-width:1200px;
@@ -96,7 +93,7 @@ background:#fff;
 margin-top:0;
 }
 
-/* 链接样式 */
+/* links */
 
 .card a{
 color:#243a7a;
@@ -114,6 +111,30 @@ margin-top:20px;
 text-decoration:none;
 color:#243a7a;
 }
+
+/* ===== Footer ===== */
+
+.footer{
+border-top:1px solid #ddd;
+margin-top:60px;
+padding:20px;
+text-align:center;
+font-size:14px;
+}
+
+.footer a{
+color:#243a7a;
+text-decoration:none;
+}
+
+.footer-line{
+margin:6px 0;
+}
+
+.footer-line span{
+margin:0 6px;
+color:#aaa;
+}
 </style>
 </head>
 
@@ -122,7 +143,6 @@ color:#243a7a;
 <div class="header">
   <div class="header-inner">
 
-    <!-- ✅ 整块header可点击 -->
     <a href="index.html" class="header-link">
 
       <img src="Logo.png" class="logo" alt="Long Avionic Logo">
@@ -220,6 +240,27 @@ color:#243a7a;
 </div>
 
 <a href="index.html" class="back">← Back to Home</a>
+
+</div>
+
+<!-- ✅ Footer -->
+<div class="footer">
+
+<div class="footer-line">
+<a href="mailto:businesses@longavionic.com">businesses@longavionic.com</a>
+<span>·</span>
+<a href="#">LinkedIn</a>
+<span>·</span>
+<a href="#">Twitter</a>
+<span>·</span>
+<a href="#">Facebook</a>
+</div>
+
+<div class="footer-line">
+Houston, Texas, USA
+<span>·</span>
+© 2023–2026 Long Avionic, LLC
+</div>
 
 </div>
 
