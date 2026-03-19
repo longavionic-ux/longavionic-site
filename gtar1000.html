@@ -120,15 +120,18 @@ padding-left:18px;
 margin-bottom:10px;
 }
 
-/* ===== Image placeholder（不会串产品）===== */
+/* ===== Images（与你WRD完全一致）===== */
 
-.image-box{
+.images{
 margin-top:20px;
-padding:40px;
-border:1px dashed #ccc;
-text-align:center;
-color:#888;
-font-size:14px;
+display:flex;
+gap:20px;
+}
+
+.images img{
+width:48%;
+border:1px solid #ddd;
+object-fit:cover;
 }
 
 /* ===== Back ===== */
@@ -170,6 +173,12 @@ color:#aaa;
 @media (max-width:800px){
 .section{
 grid-template-columns:1fr;
+}
+.images{
+flex-direction:column;
+}
+.images img{
+width:100%;
 }
 }
 </style>
@@ -226,9 +235,10 @@ It supports both automated and manual testing modes, equipped with a touch-scree
 Supports a wide range of avionics systems including communication, navigation, and surveillance equipment, suitable for MRO, production, and engineering environments.
 </p>
 
-<!-- 不放错图 -->
-<div class="image-box">
-GTAR-1000 image coming soon
+<!-- ✅ 图片（不会串） -->
+<div class="images">
+<img src="gtar1000_1.png" alt="GTAR-1000 system">
+<img src="gtar1000_2.png" alt="GTAR-1000 interface">
 </div>
 
 </div>
