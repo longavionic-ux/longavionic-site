@@ -28,13 +28,15 @@ background:linear-gradient(
 border-bottom:1px solid #ccc;
 }
 
+/* ✅ 修改1 */
 .header-inner{
-max-width:1200px;
+width:92%;
+max-width:1400px;
 margin:0 auto;
 display:flex;
 align-items:center;
 gap:16px;
-padding:14px 20px;   /* 收紧 */
+padding:14px 20px;
 }
 
 .header-link{
@@ -46,7 +48,7 @@ width:100%;
 }
 
 .logo{
-height:56px;   /* 略缩小 */
+height:56px;
 cursor:pointer;
 }
 
@@ -71,16 +73,18 @@ font-weight:600;
 
 /* ===== Content ===== */
 
+/* ✅ 修改2 */
 .section{
-max-width:1200px;
-margin:30px auto;   /* 收紧 */
+width:92%;
+max-width:1400px;
+margin:30px auto;
 padding:0 16px;
 }
 
 /* 分类标题 */
 
 .section h3{
-margin:18px 0 10px;   /* 收紧 */
+margin:18px 0 10px;
 font-size:18px;
 }
 
@@ -89,14 +93,14 @@ font-size:18px;
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:14px;   /* 收紧 */
+gap:14px;
 }
 
 /* 卡片 */
 
 .card{
 border:1px solid #ddd;
-padding:12px 14px;   /* 收紧 */
+padding:12px 14px;
 background:#fff;
 }
 
@@ -131,7 +135,7 @@ color:#1b2f66;
 
 .back{
 display:inline-block;
-margin-top:16px;   /* 收紧 */
+margin-top:16px;
 font-size:14px;
 text-decoration:none;
 color:#243a7a;
@@ -139,13 +143,18 @@ color:#243a7a;
 
 /* ===== Footer ===== */
 
+/* ✅ 修改3 */
 .footer{
 border-top:1px solid #ddd;
-margin-top:40px;   /* 收紧 */
+margin-top:40px;
 padding:18px;
 text-align:center;
 font-size:13px;
 background:#fafafa;
+width:92%;
+max-width:1400px;
+margin-left:auto;
+margin-right:auto;
 }
 
 .footer a{
