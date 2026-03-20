@@ -423,6 +423,31 @@ function submitInquiry(){
     window.location.href =
     "mailto:businesses@longavionic.com?subject=Inquiry&body=" + encodeURIComponent(text);
 }
+// ===== Enter key support =====
+
+// Component Search
+document.getElementById("inventoryInput").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        e.preventDefault();
+        searchStock();
+    }
+});
+
+// Repair Search
+document.getElementById("repairInput").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        e.preventDefault();
+        searchRepair();
+    }
+});
+
+// Submit Request
+document.querySelector("textarea").addEventListener("keydown", function(e){
+    if(e.key === "Enter" && !e.shiftKey){
+        e.preventDefault();
+        submitInquiry();
+    }
+});    
 </script>
 </body>
 </html>
