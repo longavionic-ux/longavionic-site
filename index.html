@@ -151,7 +151,10 @@ border:1px solid #ddd;
 padding:20px;
 background:#fff;
 }
-
+.card-no-border{
+border:none;
+padding:20px 10px;
+}
 .card h3{
 margin-top:0;
 }
@@ -351,25 +354,28 @@ placeholder="Search by PN">
 </div>
 
 </div>
+<div class="card card-no-border">
 
-<div class="card">
+<h3>
+<a href="equipment.html" style="text-decoration:none; color:#111;">
+Avionics Test Equipment R&D
+</a>
+</h3>
 
-<h3>Avionics Test Equipment R&D</h3>
-
-<p>
-Submit your test or development requirements to our engineering team.
+<p style="margin-top:10px; margin-bottom:20px;">
+Access our avionics test equipment database or submit your requirement to our engineering team.
 </p>
 
-<p>
-Click "Submit Inquiry" to send your request directly to us.
-</p>
-
-<textarea rows="5" placeholder="Describe your requirement"></textarea>
-<button onclick="submitInquiry()">Submit Inquiry</button>
-
-<button onclick="goToEquipment()" style="margin-left:10px;">
-View Our Equipment
+<button onclick="goToEquipment()" style="width:100%; margin-bottom:12px;">
+Enter Equipment Library
 </button>
+
+<textarea rows="4" placeholder="Leave your requirement (optional)"></textarea>
+
+<button onclick="submitInquiry()" style="width:100%; margin-top:6px;">
+Submit Requirement
+</button>
+
 </div>
 
 </div>
