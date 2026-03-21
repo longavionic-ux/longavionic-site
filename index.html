@@ -371,7 +371,7 @@ Access our avionics test equipment database or submit your requirement to our en
 
 <button onclick="goToEquipment()" style="margin-bottom:12px; padding:14px 26px; font-size:18px; font-weight:600;">⭐ Equipment Library</button>
 
-<textarea rows="4" placeholder="Leave your requirement (optional)"></textarea>
+<input type="text" id="inquiryInput" placeholder="Leave your requirement (optional)">
 
 <button onclick="submitInquiry()" style="margin-top:6px;">
 Submit Request
@@ -411,7 +411,7 @@ function goToEquipment(){
 
 function submitInquiry(){
 
-    const text = document.querySelector("textarea").value;
+    const text = document.getElementById("inquiryInput").value;
 
     if(!text){
         alert("Please enter your requirement.");
@@ -440,7 +440,7 @@ document.getElementById("repairInput").addEventListener("keydown", function(e){
 });
 
 // Submit Request
-document.querySelector("textarea").addEventListener("keydown", function(e){
+document.getElementById("inquiryInput").addEventListener("keydown", function(e){
     if(e.key === "Enter" && !e.shiftKey){
         e.preventDefault();
         submitInquiry();
