@@ -104,26 +104,29 @@ margin-bottom:12px;
 font-size:14px;
 }
 
-/* 图片 */
+/* 图片（上下结构） */
 
 .images{
 margin-top:16px;
 display:flex;
+flex-direction:column;
 gap:14px;
 }
 
 .images img{
 width:100%;
+max-width:100%;
 border:1px solid #ddd;
+object-fit:contain;
 }
 
 /* 表格 */
 
 .table{
-margin-top:20px;
+margin-top:12px;
 border-collapse:collapse;
 width:100%;
-font-size:14px;
+font-size:13px;
 }
 
 .table th,
@@ -148,9 +151,13 @@ font-size:14px;
 }
 
 .features h3{
-margin-top:0;
+margin-top:16px;
 font-size:16px;
 color:#243a7a;
+}
+
+.features h3:first-child{
+margin-top:0;
 }
 
 .features ul{
@@ -257,13 +264,45 @@ The software platform enables TPS development and execution based on CMM require
 Mature TPS libraries allow fast deployment, significantly improving testing efficiency for MRO and engineering applications.
 </p>
 
-<!-- 图片（1张） -->
+<!-- 图片 -->
 <div class="images">
+
+<p><b>GTCA-1000 Test System</b></p>
 <img src="gtca1000_1.png" alt="GTCA system">
+
+<p><b>System Configuration (TUA Setup)</b></p>
 <img src="gtca1000_2.png" alt="GTCA TUA setup">
+
 </div>
 
-<!-- 表格 -->
+</div>
+
+<!-- 右侧 -->
+<div class="features">
+
+<h3>Key Features</h3>
+
+<ul>
+<li>Integrated TCAS automatic test system</li>
+<li>Built-in TCAS signal simulation capability</li>
+<li>Programmable AC power supply included</li>
+<li>Supports CMM-based TPS development</li>
+<li>Automatic and manual testing modes</li>
+<li>Expandable ATE integration capability</li>
+<li>External display and control interface support</li>
+<li>Fast TPS deployment for MRO environments</li>
+</ul>
+
+<h3>Supported LRUs</h3>
+
+<ul>
+<li>TPA-81A (Honeywell)</li>
+<li>TTR-921 (Collins)</li>
+<li>TPA-100B (Honeywell)</li>
+</ul>
+
+<h3>LRU Details</h3>
+
 <table class="table">
 <tr>
 <th>LRU</th>
@@ -294,32 +333,6 @@ Mature TPS libraries allow fast deployment, significantly improving testing effi
 </tr>
 
 </table>
-
-</div>
-
-<!-- 右侧 -->
-<div class="features">
-
-<h3>Key Features</h3>
-
-<ul>
-<li>Integrated TCAS automatic test system</li>
-<li>Built-in TCAS signal simulation capability</li>
-<li>Programmable AC power supply included</li>
-<li>Supports CMM-based TPS development</li>
-<li>Automatic and manual testing modes</li>
-<li>Expandable ATE integration capability</li>
-<li>External display and control interface support</li>
-<li>Fast TPS deployment for MRO environments</li>
-</ul>
-
-<h3>Supported LRUs</h3>
-
-<ul>
-<li>TPA-81A (Honeywell)</li>
-<li>TTR-921 (Collins)</li>
-<li>TPA-100B (Honeywell)</li>
-</ul>
 
 </div>
 
