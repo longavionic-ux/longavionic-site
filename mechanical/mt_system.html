@@ -113,14 +113,29 @@ padding-left:18px;
 line-height:1.7;
 }
 
+/* ===== NEW LAYOUT ===== */
+
+.flex{
+display:flex;
+gap:30px;
+align-items:flex-start;
+flex-wrap:wrap;
+}
+
 .image{
-margin-top:15px;
+flex:1;
+min-width:300px;
 }
 
 .image img{
 width:100%;
-max-width:700px;
+max-width:500px;
 border:1px solid #ddd;
+}
+
+.text{
+flex:1;
+min-width:300px;
 }
 
 /* ===== Back ===== */
@@ -191,6 +206,13 @@ Magnetic particle inspection systems for aerospace, MRO, and industrial applicat
 <!-- ===== Module 1 ===== -->
 <div class="block">
 
+<div class="flex">
+
+<div class="image">
+<img src="mt1.png">
+</div>
+
+<div class="text">
 <h2>Data Sheet for CHiNDT Standard MPI Systems</h2>
 
 <ul>
@@ -207,16 +229,21 @@ Magnetic particle inspection systems for aerospace, MRO, and industrial applicat
 <li>Suspension Tank: 40–100L, per request</li>
 <li>Magnetization: single vector, multiple vector</li>
 </ul>
-
-<div class="image">
-<img src="mt1.png">
 </div>
 
+</div>
 </div>
 
 <!-- ===== Module 2 ===== -->
 <div class="block">
 
+<div class="flex">
+
+<div class="image">
+<img src="mt2.png">
+</div>
+
+<div class="text">
 <h2>Custom MPI Systems</h2>
 
 <h3>For Aerospace Industry</h3>
@@ -229,10 +256,9 @@ Magnetic particle inspection systems for aerospace, MRO, and industrial applicat
 <li>Intelligent Control: PLC and Touch Screen control for user-friendly operation</li>
 </ul>
 
-<div class="image">
-<img src="mt2.png">
 </div>
 
+</div>
 </div>
 
 </div>
