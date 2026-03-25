@@ -99,7 +99,7 @@ line-height:1.6;
 margin-bottom:20px;
 }
 
-/* ===== Image ===== */
+/* ===== Image（已修复）===== */
 
 .image{
 margin:20px 0;
@@ -107,8 +107,8 @@ margin:20px 0;
 
 .image img{
 width:100%;
-max-height:320px;
-object-fit:cover;
+height:auto;              /* ✅ 保持比例 */
+object-fit:contain;       /* ✅ 不裁剪 */
 border:1px solid #ddd;
 }
 
