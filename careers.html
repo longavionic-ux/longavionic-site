@@ -75,19 +75,30 @@ line-height:1.7;
 }
 
 .section h2{
-margin-bottom:10px;
+margin-bottom:14px;
 color:#1f3b73;
+font-size:24px;
+letter-spacing:0.5px;
 }
 
-/* ✅ 分块 + 横线 */
+/* 分块 */
 .section-block{
 margin:28px 0;
 padding-top:16px;
 border-top:1px solid #e5e5e5;
 }
 
+/* 🔥 左侧蓝线标题 */
+.section-block b{
+display:inline-block;
+padding-left:10px;
+border-left:3px solid #2a4493;
+margin-bottom:8px;
+}
+
 .section ul{
 padding-left:18px;
+margin-top:8px;
 }
 
 .section li{
@@ -105,10 +116,12 @@ color:#fff;
 text-decoration:none;
 font-weight:600;
 border-radius:4px;
+transition:all 0.2s ease;
 }
 
 .apply-btn:hover{
-opacity:0.9;
+transform:translateY(-1px);
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
 }
 
 /* ===== Footer ===== */
@@ -180,7 +193,7 @@ This is a project-based role with travel required.
 
 <!-- Scope -->
 <div class="section-block">
-<b>Scope of Work:</b>
+<b>Scope of Work</b>
 <ul>
 <li>Mechanical equipment installation</li>
 <li>Avionics test equipment setup and integration</li>
@@ -190,7 +203,7 @@ This is a project-based role with travel required.
 
 <!-- Requirements -->
 <div class="section-block">
-<b>Requirements:</b>
+<b>Requirements</b>
 <ul>
 <li>Fluent in English</li>
 <li>Chinese background preferred</li>
@@ -201,7 +214,7 @@ This is a project-based role with travel required.
 
 <!-- Notes -->
 <div class="section-block">
-<b>Notes:</b>
+<b>Notes</b>
 <ul>
 <li>Training will be provided before project start</li>
 <li>Work is arranged based on project needs</li>
