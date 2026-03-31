@@ -2,55 +2,112 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Avionics PN Repair Capability | Long Avionic</title>
+<title>Repair Capability Index | Long Avionic</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
 body{
-margin:0;
+margin:0;  
 font-family:Arial,Helvetica,sans-serif;
+background:#fff;
 color:#111;
 }
 
-/* ===== Top ===== */
-.top-bar{
-padding:18px 24px;
-background:linear-gradient(90deg,#ffffff 0%,#e1ebf5 50%,#2a4493 100%);
+/* ===== Header ===== */
+.header{
+background:linear-gradient(
+90deg,
+#ffffff 0%,
+#ffffff 140px,
+#e1ebf5 42%,
+#8ea7c6 68%,
+#2a4493 86%,
+#0e1f4f 100%
+);
+border-bottom:1px solid #ccc;
 }
 
-.top-bar h1{
+.header-inner{
+width:92%;
+max-width:1400px;
+margin:0 auto;
+display:flex;
+align-items:center;
+gap:16px;
+padding:14px 20px;
+}
+
+.header-link{
+display:flex;
+align-items:center;
+gap:16px;
+text-decoration:none;
+width:100%;
+}
+
+.logo{
+height:56px;
+}
+
+.header-text h1{
 margin:0;
-font-size:22px;
+font-size:20px;
+color:#1f3b73;
+}
+
+.header-text h2{
+margin:2px 0 0;
+font-size:20px;
 color:#1f3b73;
 }
 
 /* ===== Content ===== */
+
 .section{
 width:92%;
-max-width:1200px;
+max-width:1400px;
 margin:30px auto;
-}
-
-h2{
-color:#243a7a;
+padding:0 16px;
 }
 
 .notice{
-margin:12px 0;
+margin:12px 0 20px;
 padding:12px;
 background:#f5f7fb;
 border-left:4px solid #243a7a;
 font-size:14px;
 }
 
+table{
+width:100%;
+border-collapse:collapse;
+font-size:13px;
+}
+
+th, td{
+border:1px solid #ddd;
+padding:6px;
+text-align:left;
+}
+
+th{
+background:#f5f7fb;
+}
+
 /* ===== Footer ===== */
+
 .footer{
 border-top:1px solid #ddd;
-margin-top:60px;
-padding:20px;
+margin-top:40px;
+padding:18px;
 text-align:center;
-font-size:14px;
+font-size:13px;
+background:#fafafa;
+width:92%;
+max-width:1400px;
+margin-left:auto;
+margin-right:auto;
 }
 
 .footer a{
@@ -58,61 +115,100 @@ color:#243a7a;
 text-decoration:none;
 }
 
+.footer-line{
+margin:6px 0;
+}
+
+.footer-line span{
+margin:0 6px;
+color:#aaa;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- ===== Top ===== -->
-<div class="top-bar">
-<h1>Long Avionic</h1>
+<!-- ===== Header ===== -->
+<div class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-link">
+      <img src="Logo.png" class="logo">
+      <div class="header-text">
+        <h1>Aviation Component Distribution & Repair</h1>
+        <h2>Avionics Test Equipment R&D</h2>
+      </div>
+    </a>
+  </div>
 </div>
 
 <!-- ===== Content ===== -->
 <div class="section">
 
-<h2>Avionics PN Repair Capability List</h2>
+<h2>Avionics PN Repair Capability (Sample List)</h2>
 
 <div class="notice">
-This is a sample capability list. For the complete and detailed capability list, please contact us via email.
+This is a sample capability list for demonstration purposes only.  
+For the full and detailed capability list, please search on the homepage or contact us via email.
 </div>
 
-<hr>
+<table>
 
-<p>066-1021-01 MARKER BEACON RECEIVER repair capability</p>
-<p>066-1062-00 ATCRBS TRANSPONDER repair capability</p>
-<p>066-1064-00 DISTANCE MEASURING EQUIPMENT repair capability</p>
-<p>066-1088-00 DISTANCE MEASURING EQUIPMENT repair capability</p>
-<p>066-3054-00 RADAR ALTIMETER repair capability</p>
-<p>066-1069-00 DME INDICATOR repair capability</p>
-<p>069-1024-00 VHF NAV/COM TRANSCEIVER repair capability</p>
+<tr>
+<th>PN</th>
+<th>Description</th>
+<th>FAA</th>
+<th>EASA</th>
+<th>CAA</th>
+<th>CAAC</th>
+<th>OEM</th>
+</tr>
 
-<p>210-5566-004 CONTROL UNIT repair capability</p>
-<p>301-4455-010 DISPLAY UNIT repair capability</p>
-<p>822-2189-003 FLIGHT DISPLAY repair capability</p>
+<tr><td>2-1515-1</td><td>Brake Assembly</td><td>I/R/M/OH</td><td>I/R/M/OH</td><td>I/R/M/OH</td><td></td><td></td></tr>
+<tr><td>1982660109</td><td>DMC</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>THALES</td></tr>
+<tr><td>350E053020202</td><td>FWC</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td></td></tr>
+<tr><td>4077880-982</td><td>MCDU</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>HONEYWELL</td></tr>
+<tr><td>B372BAM0509</td><td>SEC</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>THALES</td></tr>
+<tr><td>C19298AF05</td><td>LCDU</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>THALES</td></tr>
+<tr><td>C19366AF05</td><td>LCDU</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>THALES</td></tr>
+<tr><td>C12848CA01</td><td>RMP</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>THALES</td></tr>
+<tr><td>C12850AC02</td><td>FCU</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>THALES</td></tr>
+<tr><td>C13043BA05</td><td>FMGC</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>THALES</td></tr>
+<tr><td>C19755BA01</td><td>EDU</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>THALES</td></tr>
+<tr><td>171497-04-01</td><td>FMC</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>GE</td></tr>
+<tr><td>965-0976-003-203-203</td><td>EGPWS</td><td>I/R/M</td><td>I/R/M</td><td>I/R/M</td><td></td><td>HONEYWELL</td></tr>
 
-<p>646-8043-007 DISPLAY MODULE repair capability</p>
-<p>C19298 DISPLAY UNIT repair capability</p>
-<p>C19755 DISPLAY UNIT repair capability</p>
-<p>C19366 DISPLAY UNIT repair capability</p>
-<p>E24232 DISPLAY UNIT repair capability</p>
+<tr><td>622-1396-101</td><td>VHF COMMUNICATIONS TRANSCEIVER</td><td>I/R/M</td><td>I/R/M</td><td></td><td></td><td>COLLINS</td></tr>
+<tr><td>93A100-31</td><td>COCKPIT VOICE RECORDER</td><td>I/R/M</td><td>I/R/M</td><td></td><td></td><td>L3</td></tr>
+<tr><td>980-4700-005</td><td>FLIGHT DATA RECORDER</td><td>I/R/M</td><td>I/R/M</td><td></td><td></td><td>HONEYWELL</td></tr>
+
+<tr><td>622-3257-004</td><td>VOR/ILS RECEIVER</td><td>I/R/M</td><td>I/R/M</td><td></td><td></td><td>COLLINS</td></tr>
+<tr><td>822-1338-003</td><td>MODE S TRANSPONDER</td><td>I/R/M</td><td></td><td></td><td></td><td>COLLINS</td></tr>
+<tr><td>7517800-55002</td><td>DATA LINK TRANSPONDER</td><td>I/R/M</td><td>I/R/M</td><td></td><td></td><td>ACSS</td></tr>
+<tr><td>792-6216-002</td><td>ADF RECEIVER</td><td>I/R/M</td><td></td><td></td><td></td><td>COLLINS</td></tr>
+
+</table>
 
 </div>
 
 <!-- ===== Footer ===== -->
 <div class="footer">
 
-<p>
-<a href="index.html">Back to Homepage</a>
-</p>
-
-<p>
+<div class="footer-line">
 <a href="mailto:businesses@longavionic.com">businesses@longavionic.com</a>
-</p>
+<span>·</span>
+<a href="https://www.linkedin.com">LinkedIn</a>
+<span>·</span>
+<a href="https://x.com">X</a>
+<span>·</span>
+<a href="https://facebook.com">Facebook</a>
+</div>
 
-<p>
+<div class="footer-line">
 Houston, Texas, USA
-</p>
+<span>·</span>
+© 2023–2026 Long Avionic, LLC
+</div>
 
 </div>
 
