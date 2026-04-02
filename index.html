@@ -344,7 +344,7 @@ Test bench design for instruments, RF, Weather Radar (WXR), and TCAS, with RD-30
 
 <div class="card">
 
-<h4>Component Search</h4>
+<h4>Check stock availability</h4>
 
 <input type="text" id="inventoryInput"
 placeholder="Enter PN (e.g. 646-8043-007)">
@@ -438,7 +438,7 @@ function submitInquiry(){
 }
 // ===== Enter key support =====
 
-// Component Search
+// ===== Stock Search (Enter key trigger) =====
 document.getElementById("inventoryInput").addEventListener("keydown", function(e){
     if(e.key === "Enter"){
         e.preventDefault();
