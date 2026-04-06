@@ -37,7 +37,6 @@ background:linear-gradient(
 border-bottom:1px solid #ccc;
 }
 
-/* ✅ 修改1 */
 .header-inner{
 width:92%;
 max-width:1400px;
@@ -82,7 +81,6 @@ font-weight:600;
 
 /* ===== Content ===== */
 
-/* ✅ 修改2 */
 .section{
 width:92%;
 max-width:1400px;
@@ -90,14 +88,10 @@ margin:30px auto;
 padding:0 16px;
 }
 
-/* 分类标题 */
-
 .section h3{
 margin:18px 0 10px;
 font-size:18px;
 }
-
-/* grid */
 
 .grid{
 display:grid;
@@ -106,30 +100,22 @@ justify-content:center;
 gap:14px;
 }
 
-/* 卡片 */
-
 .card{
 border:1px solid #ddd;
 padding:12px 14px;
 background:#fff;
 }
 
-/* 标题 */
-
 .card h4{
 margin:0 0 6px;
 font-size:16px;
 }
-
-/* 描述 */
 
 .card p{
 margin:0;
 font-size:14px;
 line-height:1.4;
 }
-
-/* links */
 
 .card a{
 color:#243a7a;
@@ -141,8 +127,6 @@ text-decoration:underline;
 color:#1b2f66;
 }
 
-/* Back */
-
 .back{
 display:inline-block;
 margin-top:16px;
@@ -153,7 +137,6 @@ color:#243a7a;
 
 /* ===== Footer ===== */
 
-/* ✅ 修改3 */
 .footer{
 border-top:1px solid #ddd;
 margin-top:40px;
@@ -205,6 +188,28 @@ color:#aaa;
 
 <div class="section">
 
+<!-- 🔥 Core Equipment -->
+<h3 style="margin-top:0;">Core Avionics Test Equipment</h3>
+
+<div class="grid">
+
+<div class="card" style="border:2px solid #2a4493;">
+<h4><a href="wrd1000.html">WRD-1000</a></h4>
+<p>Weather radar test set, equivalent replacement for RDX-7708</p>
+</div>
+
+<div class="card" style="border:2px solid #2a4493;">
+<h4><a href="gtar1000.html">GTAR-1000</a></h4>
+<p>ATE platform for CNS avionics testing</p>
+</div>
+
+<div class="card" style="border:2px solid #2a4493;">
+<h4><a href="star1000d.html">STAR-1000D</a></h4>
+<p>Integrated avionics bench tester</p>
+</div>
+
+</div>
+
 <h3>1. CNS & Portable Test Equipment</h3>
 <div class="grid">
 
@@ -240,7 +245,7 @@ color:#aaa;
 
 <div class="card">
 <h4><a href="wrd1000.html">WRD-1000</a></h4>
-<p>Weather radar test set</p>
+<p>Weather radar test set, replacement for RDX-7708</p>
 </div>
 
 <div class="card">
@@ -265,7 +270,9 @@ color:#aaa;
 
 </div>
 
-<h3>4. Non-Destructive Testing (NDT)</h3>
+<h3 style="color:#777;font-size:16px;">
+4. Other Industrial Equipment (NDT)
+</h3>
 
 <div class="grid">
 
@@ -295,6 +302,8 @@ color:#aaa;
 </div>
 
 </div>
+
+<!-- ✅ 已恢复原注释（未来扩展用） -->
 <!--
 <h3>5. Surface Treatment Equipment</h3>
 
@@ -331,7 +340,7 @@ color:#aaa;
 <a href="index.html" class="back">← Back to Home</a>
 
 </div>
-<!-- Footer -->
+
 <div class="footer">
 
 <div class="footer-line">
