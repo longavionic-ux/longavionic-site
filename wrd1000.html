@@ -19,13 +19,33 @@
 <meta name="description" content="WRD-1000 weather radar test set, a modern replacement for RDX7708. Supports WXR simulation, frequency, PRF, and power measurement for avionics testing.">
 
 <style>
+
 body{
 margin:0;
 font-family:Arial,Helvetica,sans-serif;
 background:#fff;
 color:#111;
 }
+/* ===== Sticky RFQ Button ===== */
 
+.rfq-sticky {
+  position: fixed;
+  right: 20px;
+  top: 60%;
+  transform: translateY(-50%);
+  background-color: #2a4493;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.rfq-sticky:hover {
+  background-color: #1c2f66;
+}
 /* ===== Header ===== */
 
 .header{
@@ -305,6 +325,9 @@ Houston, Texas, USA
 </div>
 
 </div>
-
+<a href="mailto:businesses@longavionic.com?subject=Request Quote&body=Hello,%0A%0AI have a PN for quotation.%0APN:%0A%0APlease advise replacement / availability.%0A%0AThanks."
+   class="rfq-sticky">
+   Send PN for Quote
+</a>
 </body>
 </html>
