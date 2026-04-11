@@ -160,8 +160,6 @@ color:#aaa;
 
 <body>
 
-<!-- ===== Header ===== -->
-
 <div class="header">
   <div class="header-inner">
     <a href="../index.html" class="header-link">
@@ -175,8 +173,6 @@ color:#aaa;
 </div>
 
 <div class="section-divider"></div>
-
-<!-- ===== Content ===== -->
 
 <div class="section">
 
@@ -251,16 +247,17 @@ document.write(data.map(d=>{
 
 if(d[5]==="CERT"){
 return `
-<tr>
-<td>${d[0]}</td>
-<td>${d[1]}</td>
+<tr style="background:#fff2f2;font-weight:700;color:#b30000;">
+<td><span style="color:#d32f2f;font-weight:700;">New Arrival</span><br>${d[0]}</td>
+<td style="font-size:15px;">${d[1]}</td>
 <td>${d[2]}</td>
-<td>${d[3]}</td>
+<td style="font-size:15px;">${d[3]}</td>
 <td>${d[4]}</td>
 <td>
-<a class="quote-btn" href="../cert/5244-84-83.jpg" target="_blank">CERT</a>
+<a class="quote-btn" href="../cert/5244-84-83.jpg" target="_blank" style="border-color:#b30000;color:#b30000;font-weight:700;">CERT</a>
 <br><br>
 <a class="quote-btn"
+style="background:#b30000;color:#fff;border-color:#b30000;font-weight:700;"
 href="mailto:businesses@longavionic.com?subject=Price Request ${d[0]}&body=Hello,%0A%0AI am interested in PN ${d[0]}. Please provide price and availability.%0A%0AThank you.">
 Request Price
 </a>
@@ -294,8 +291,6 @@ Request Price
 <a href="../index.html">← Back to Home</a>
 
 </div>
-
-<!-- ===== Footer ===== -->
 
 <div class="footer">
 
