@@ -10,10 +10,10 @@ body{
 margin:0;
 font-family:Arial,Helvetica,sans-serif;
 color:#111;
-background:#fff;
+background:#f5f7fa; /* 微灰背景，让容器更突出 */
 }
 
-/* ===== Header（按首页风格） ===== */
+/* ===== Header（保持不动） ===== */
 
 .top-bar{
 display:flex;
@@ -57,17 +57,22 @@ margin:20px auto;
 background:linear-gradient(90deg,transparent,#243a7a,transparent);
 }
 
-/* ===== Content ===== */
+/* ===== Container（核心优化） ===== */
 
 .section{
 width:92%;
-max-width:1400px;
+max-width:1200px;
 margin:40px auto;
-padding:0 20px;
+padding:24px 28px;
+
+background:#fff;
+border:1px solid #ddd;
+border-radius:6px;
+
+box-shadow:0 2px 8px rgba(0,0,0,0.06);
 }
 
 h1{color:#243a7a;}
-
 p{font-size:14px;}
 
 /* ===== Table ===== */
@@ -75,7 +80,8 @@ p{font-size:14px;}
 table{
 width:100%;
 border-collapse:collapse;
-margin-top:20px;
+margin-top:16px;
+background:#fff;
 }
 
 th,td{
@@ -84,12 +90,14 @@ padding:8px;
 font-size:13px;
 }
 
-th{background:#f5f5f5;}
+th{
+background:#f8f8f8;
+}
 
 /* ===== Button ===== */
 
 .quote-btn{
-padding:4px 10px;
+padding:3px 8px;
 border:1px solid #243a7a;
 background:#fff;
 color:#243a7a;
@@ -102,7 +110,7 @@ background:#243a7a;
 color:#fff;
 }
 
-/* ===== Footer ===== */
+/* ===== Footer（保持不动） ===== */
 
 .footer{
 border-top:1px solid #ddd;
@@ -110,6 +118,7 @@ margin-top:50px;
 padding:20px;
 text-align:center;
 font-size:14px;
+background:#fff;
 }
 
 .footer a{
@@ -131,6 +140,7 @@ color:#aaa;
 <body>
 
 <!-- ===== Header ===== -->
+
 <div class="top-bar">
 <div class="top-inner">
 <img src="../Logo.png" class="logo">
