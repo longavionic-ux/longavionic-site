@@ -198,6 +198,8 @@ color:#aaa;
 
 <script>
 const data = [
+["5244-84-83","VOR/LOC Glide Antenna","NEW / ETSO",4,"HX","CERT"],
+
 ["X25650S14","X25650","FAA",5,"HX"],
 ["X2816ADMB35","MICROCIRCUIT","FAA",2,"HX"],
 ["X2816ADMB-35","IC","FAA",2,"HX"],
@@ -245,7 +247,29 @@ const data = [
 ["MS20813-1","Protective cover","FAA/EASA",74,"SZ"]
 ];
 
-document.write(data.map(d=>`
+document.write(data.map(d=>{
+
+if(d[5]==="CERT"){
+return `
+<tr>
+<td>${d[0]}</td>
+<td>${d[1]}</td>
+<td>${d[2]}</td>
+<td>${d[3]}</td>
+<td>${d[4]}</td>
+<td>
+<a class="quote-btn" href="../cert/5244-84-83.jpg" target="_blank">CERT</a>
+<br><br>
+<a class="quote-btn"
+href="mailto:businesses@longavionic.com?subject=Price Request ${d[0]}&body=Hello,%0A%0AI am interested in PN ${d[0]}. Please provide price and availability.%0A%0AThank you.">
+Request Price
+</a>
+</td>
+</tr>
+`;
+}
+
+return `
 <tr>
 <td>${d[0]}</td>
 <td>${d[1]}</td>
@@ -259,7 +283,9 @@ Request Price
 </a>
 </td>
 </tr>
-`).join(""));
+`;
+
+}).join(""));
 </script>
 
 </table>
