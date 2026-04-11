@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stock List | Long Avionic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+color:#111;
+background:#fff;
+}
+
+/* ===== Header（按首页风格） ===== */
+
+.top-bar{
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
+background:linear-gradient(
+90deg,
+#ffffff 0%,
+#e1ebf5 42%,
+#8ea7c6 68%,
+#2a4493 86%,
+#0e1f4f 100%
+);
+}
+
+.top-inner{
+width:92%;
+max-width:1400px;
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.logo{height:68px;}
+
+.top-text h1,
+.top-text h2{
+margin:0;
+color:#1f3b73;
+font-size:22px;
+}
+
+/* ===== Divider ===== */
+
+.section-divider{
+height:2px;
+width:92%;
+max-width:1400px;
+margin:20px auto;
+background:linear-gradient(90deg,transparent,#243a7a,transparent);
+}
+
+/* ===== Content ===== */
+
+.section{
+width:92%;
+max-width:1400px;
+margin:40px auto;
+padding:0 20px;
+}
+
+h1{color:#243a7a;}
+
+p{font-size:14px;}
+
+/* ===== Table ===== */
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+font-size:13px;
+}
+
+th{background:#f5f5f5;}
+
+/* ===== Button ===== */
+
+.quote-btn{
+padding:4px 10px;
+border:1px solid #243a7a;
+background:#fff;
+color:#243a7a;
+text-decoration:none;
+font-size:12px;
+}
+
+.quote-btn:hover{
+background:#243a7a;
+color:#fff;
+}
+
+/* ===== Footer ===== */
+
+.footer{
+border-top:1px solid #ddd;
+margin-top:50px;
+padding:20px;
+text-align:center;
+font-size:14px;
+}
+
+.footer a{
+color:#243a7a;
+text-decoration:none;
+}
+
+.footer-line{
+margin:6px 0;
+}
+
+.footer-line span{
+margin:0 6px;
+color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Header ===== -->
+<div class="top-bar">
+<div class="top-inner">
+<img src="../Logo.png" class="logo">
+<div class="top-text">
+<h1>Aviation Component Distribution & Repair</h1>
+<h2>Avionics Test Equipment R&D</h2>
+</div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== Content ===== -->
+
+<div class="section">
+
+<h1>Stock List (Sample)</h1>
+
+<p>This is a sample list of available stock. Please contact us for price and availability.</p>
+<p>Full inventory is searchable on the homepage.</p>
+
+<table>
+
+<tr>
+<th>PN</th>
+<th>Description</th>
+<th>Cert</th>
+<th>Qty</th>
+<th>Location</th>
+<th>Action</th>
+</tr>
+
+<script>
+const data = [
+["X25650S14","X25650","FAA",5,"HX"],
+["X2816ADMB35","MICROCIRCUIT","FAA",2,"HX"],
+["X2816ADMB-35","IC","FAA",2,"HX"],
+["X28HC256KM-12","EEPROM","FAA",20,"HX"],
+["X365015","RESISTOR","EASA",8,"HX"],
+["XA1N","relay","OEM COC",2,"HX"],
+["XC5210-PQG240AKM1121","IC","FAA",1,"HX"],
+["XC95144-15PQ160I","A2U1","FAA",3,"HX"],
+["XG597","Power Supply","FAA",2,"HX"],
+["XIR763","Power Supply","FAA",2,"HX"],
+["Y166","RING, RETAINING","OEM COC",46,"HX"],
+["YA14-3F-48VCC","relay","EASA",4,"HX"],
+["YA14-3F-48VCC","relay","EASA",3,"HX"],
+["YA14-3F-48VCC","relay","EASA",2,"HX"],
+["Z84C3006CMB","IC Counter Timer","FAA",1,"HX"],
+["Z84C3006PEC","IC","FAA",1,"HX"],
+["3A4047-18","Regulator protective case","FAA/EASA",49,"SZ"],
+["65-90305-66","Filter kit","FAA/EASA",89,"SZ"],
+["2612312-1","brake","FAA/EASA",1,"SZ"],
+["2606949","bakelite mats","FAA/EASA",44,"SZ"],
+["2612523","Drive block gaskets","FAA/EASA",153,"SZ"],
+["950225037","Seals","FAA/EASA",6,"SZ"],
+["L507949-20629","BEARING","FAA/EASA",10,"SZ"],
+["389A20629","BEARING","FAA/EASA",60,"SZ"],
+["389A-20629","BEARING","FAA/EASA",35,"SZ"],
+["M83485-1-120","","FAA/EASA",1,"SZ"],
+["M83485-1-012","Rubber rings","FAA/EASA",72,"SZ"],
+["357692","Friction plates","FAA/EASA",9,"SZ"],
+["357691","Friction plates","FAA/EASA",9,"SZ"],
+["357656","","FAA/EASA",1,"SZ"],
+["357690","Friction plates","FAA/EASA",22,"SZ"],
+["CR3524PR6-03","RIVET","FAA/EASA",59,"SZ"],
+["68-269","Seals","FAA/EASA",25,"SZ"],
+["2207333-2","bearing","FAA/EASA",7,"SZ"],
+["BACN11E4V","NUT","FAA/EASA",43,"SZ"],
+["2207347-2","bearing","FAA/EASA",1,"SZ"],
+["203478-3","Bushings","FAA/EASA",6,"SZ"],
+["S9257-19B0438","Bushings","FAA/EASA",2,"SZ"],
+["68-1125","Seals","FAA/EASA",10,"SZ"],
+["3214-31","Battery","FAA/EASA",1,"SZ"],
+["2612513","Heat shield","FAA/EASA",65,"SZ"],
+["GA31538","Valve stems","FAA/EASA",4,"SZ"],
+["234505","door Seals","FAA/EASA",4500,"SZ"],
+["AS3209-234","","FAA/EASA",30,"SZ"],
+["MS20813-1","Protective cover","FAA/EASA",74,"SZ"]
+];
+
+document.write(data.map(d=>`
+<tr>
+<td>${d[0]}</td>
+<td>${d[1]}</td>
+<td>${d[2]}</td>
+<td>${d[3]}</td>
+<td>${d[4]}</td>
+<td>
+<a class="quote-btn"
+href="mailto:businesses@longavionic.com?subject=Price Request ${d[0]}&body=Hello,%0A%0APlease provide price and availability for PN: ${d[0]}.%0A%0AThank you.">
+Request Price
+</a>
+</td>
+</tr>
+`).join(""));
+</script>
+
+</table>
+
+<br>
+<a href="../index.html">← Back to Home</a>
+
+</div>
+
+<!-- ===== Footer ===== -->
+
+<div class="footer">
+
+<div class="footer-line">
+<a href="mailto:businesses@longavionic.com">businesses@longavionic.com</a>
+<span>·</span>
+<a href="https://www.linkedin.com/company/long-avionic-llc/" target="_blank">LinkedIn</a>
+<span>·</span>
+<a href="https://www.facebook.com/profile.php?id=61575363752030" target="_blank">Facebook</a>
+<span>·</span>
+<a href="https://x.com/Long_Avionic" target="_blank">X</a>
+<span>·</span>
+<a href="../careers.html"><strong>Careers</strong></a>
+</div>
+
+<div class="footer-line">
+Houston, Texas, USA
+<span>·</span>
+© 2023–2026 Long Avionic, LLC
+</div>
+
+</div>
+
+</body>
+</html>
