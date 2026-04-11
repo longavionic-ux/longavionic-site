@@ -248,8 +248,11 @@ document.write(data.map(d=>{
 if(d[5]==="CERT"){
 return `
 <tr style="background:#fff2f2;font-weight:700;color:#b30000;">
-<td><span style="color:#d32f2f;font-weight:700;">New Arrival</span><br>${d[0]}</td>
-<td style="font-size:15px;">${d[1]}</td>
+<td>${d[0]}</td>
+<td style="font-size:15px;">
+<span style="color:#d32f2f;font-weight:700;">New Arrival</span><br>
+${d[1]}
+</td>
 <td>${d[2]}</td>
 <td style="font-size:15px;">${d[3]}</td>
 <td>${d[4]}</td>
